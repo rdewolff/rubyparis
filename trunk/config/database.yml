@@ -1,6 +1,7 @@
 
 development:
   adapter: mysql
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
   database: rubyparis
   host: localhost
   username: root
@@ -8,6 +9,7 @@ development:
 
 test:
   adapter: mysql
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
   database: rubyparis
   host: localhost
   username: root
@@ -15,6 +17,7 @@ test:
 
 production:
   adapter: mysql
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
   database: rubyparis
   host: localhost
   username: root
