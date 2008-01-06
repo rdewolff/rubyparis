@@ -1,0 +1,22 @@
+<html>
+	<head>
+  	<script type="text/javascript" src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+	</head>
+	<script>
+	$(document).ready(function() {
+	  $("a#clickme").click( function() {
+	    $("p.lorem").toggle(150);return false;
+	  });
+	});
+	</script>
+<body>
+	
+  <p>Cliquer ce <a href="#" id="clickme">lien</a>.</p>
+  <p class="lorem">Lorem ipsum dolor sit amet,
+    consectetuer adipiscing elit.</p>
+  <p>Ce texte va rester ici</p>
+  <p class="lorem">Phasellus luctus. Suspendisse nisi
+  	neque, feugiat eget, ullamcorper at, feugiat ut,
+  	tellus.</p>
+</body>
+</html>
