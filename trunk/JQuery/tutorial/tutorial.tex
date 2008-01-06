@@ -1,220 +1,100 @@
-%==============================================================================
-% document template for a LaTeX file
-% Created : 22.11.2006 by Romain de Wolff
-% Modif : 8 octobre 2007, respect standart HEIG-VD pour travaux de diplômes
-%==============================================================================
-% configurations du document
-\documentclass[a4paper, 11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[cyr]{aeguill}
-\usepackage[frenchb]{babel}               % \og et \fg pour les guillemets
-\usepackage{url}                          % pour inclure des URLs
-\usepackage{color}                        % utilisé pour le code source
-\usepackage{listings}                     % pour inclure le code source
-\usepackage{geometry}                     % pour les marges
-\usepackage{algorithmic}                  % pour présenter les algos
-\usepackage{algorithm}                    % pour présenter les algos
-\usepackage{graphicx}                     % pour inclure des images
-\usepackage{fancyvrb}                     % pour avoir du verbatim encadré
-\usepackage{url}                          % pour inclure des URLs
-\usepackage{geometry}                     % See geometry.pdf to learn the layout options
-\usepackage{moreverb}					  % permet d'encadrer le verbatim à l'aide de la commande \begin{boxedverbatim}
-\usepackage{longtable}
+\documentclass[10pt,a4paper,titlepage]{article}
+\usepackage[utf8]{inputenc}     % encodage des characteres en utf8
+\usepackage[francais]{babel} % pour la table des matières en français 
 
-\geometry{a4paper}                        % ... or a4paper or a5paper or ... 
-%\geometry{landscape}                     % Activate for for rotated page geometry
-\usepackage[parfill]{parskip}             % Activate to begin paragraphs with an empty line rather than an indent
-%\usepackage{amssymb}
-%\usepackage{epstopdf}                    % Pour créer des références divers (webographie, etc) 
-\usepackage{bibtopic}
-\geometry{ hmargin=3.5cm, vmargin=2.5cm } % marges
-%==============================================================================
-% debut macro 
-% permet de mettre en gros la premiere lettre d'un paragraphe
-\font\capfont=cmbx12 at 44.87 pt % or yinit, or...?
-\newbox\capbox \newcount\capl \def\a{A}
-\def\docappar{\medbreak\noindent\setbox\capbox\hbox{%
-\capfont\a\hskip0.15em}\hangindent=\wd\capbox%
-\capl=\ht\capbox\divide\capl by\baselineskip\advance\capl by1%
-\hangafter=-\capl%
-\hbox{\vbox to8pt{\hbox to0pt{\hss\box\capbox}\vss}}}
-\def\cappar{\afterassignment\docappar\noexpand\let\a }
-% fin macro
-%==============================================================================
+\usepackage{url} % pour les liens internet
+\usepackage[colorlinks=true,linkcolor=black,bookmarks=true,bookmarksopen=true]{hyperref} % rendre les liens clickable
+\usepackage{fancyhdr}	 
+\usepackage{listings} 
+\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
 
-%==============================================================================
-% première page
-\title{ %\includegraphics[width=100px]{HEIG-VD.jpg} \\ \vspace{4cm}
-\small{WEB - Technologies Web} \\ \vspace{2cm}
-\huge{Tutorial} \\ \vspace{1cm} 
-EJB, Netbeans et XML\\ 
-\small{description}} 
-\vspace{2cm}
-\author{Romain \bsc{de Wolff}, Simon \bsc{Hintermann} et Alberto \bsc{Asuero Arroyo}\\ IL2008 \\ \vspace{2cm} \\ Professeurs M. Abdelali Guerid \vspace{2cm} 
+\usepackage[dvips]{graphicx}
+\usepackage{epstopdf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Info sur le labo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\branchetag}{WEB}
+\newcommand{\branche}{Technologies web}
+% \newcommand{\labonummer}{}
+\newcommand{\laboname}{JQuery}
+\newcommand{\auteurOne}{Romain de Wolff}
+\newcommand{\auteurTwo}{Bruno da Silva}
+\newcommand{\promo}{IL2008}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy} % defini nos propre header & footer
+\fancyhf{} % delete current header and footer 
+\fancyhead[L]{\branchetag}
+\fancyhead[C]{\laboname}
+\fancyhead[R]{\auteurOne \\ \auteurTwo} 
+\fancyfoot[L]{\includegraphics[width=3cm]{img/logo-HEIG-VD.jpg}}
+\fancyfoot[R]{\bfseries\thepage}
+
+\renewcommand{\headrulewidth}{0.5pt} 
+\renewcommand{\footrulewidth}{0.1pt} 
+\addtolength{\footskip}{10.0pt} % space for the rule 
+\fancypagestyle{plain}{
+	\fancyhead{} % get rid of headers on plain pages 
+	\fancyfoot{}
+	\renewcommand{\headrulewidth}{0pt} % and the line 
+	\renewcommand{\footrulewidth}{0pt} % and the line 
 }
-\date{Lausanne, le 7 décembre 2007}  % Activate to display a given date or no date
-\pagebreak{}
+
+\author{\auteurOne, \auteurTwo}
+\title{\branchetag : \laboname}
+\date{\today}
+
 \begin{document}
-\maketitle
-\thispagestyle{empty} % enlève le numéro de page sur la page de titre (uniquement)
+\pagenumbering{Roman}
+\pagestyle{headings}
+\begin{titlepage}
+	\begin{center}
+	\includegraphics{img/logo-HEIG-VD.jpg}\\
+		\vspace{3cm}
+		\LARGE \branche %Laboratoire No %\labonummer \\
+		\vspace{3cm}\\
+		\Huge \laboname \\
+		\vspace{3cm}
+
+		\Large \textsc{Tutorial} \\
+		\vspace{3cm}
+
+		\large \auteurOne \\
+		\auteurTwo \\	
+		\vspace{10pt}
+		\normalsize \textsc{\promo} \\
+
+		\vspace{2cm}
+		\today
+	\end{center}
+\end{titlepage}
+
+\tableofcontents
 \newpage
-%==============================================================================
-% configuration des numérotations de pages (chiffres romains)
-\pagenumbering{arabic} \setcounter{page}{1} 
-
-% Configuration de la distance d'interligne 
-{\setlength{\baselineskip}{1.2\baselineskip}
-% Configureation de la distance entre les paragraphes
-\parskip=10pt
-%==============================================================================
-%==============================================================================
-\section*{Cahier des charges} 
-%==============================================================================
-\section{Contexte}
-
-	Dans le cadre du cours de base de données (\textbf{BDD}), nous allons effectuer un travail sur un sujet proposé par le professeur. Le travail sera rendu le 25 janvier au plus tard.
-	
-\section{Description du projet}
-
-	Le sujet que nous avons choisi est : \textbf{Entreprise Java Beans} (EJB), \textbf{Netbeans 6} et \textbf{Extensible Markup Language} (XML). Nous allons créer des documents explicatifs sur ce sujet. Expliquer ce que sont les \emph{EJB} et comment les mettre en place à l'aide de \emph{Netbeans 6}.
-
+\pagestyle{fancy}
+\pagenumbering{arabic}
 \section{Introduction}
-	
-	Tout notre projet est fortement lié au langage de programmation Java. La version utilisée de Java sera la 1.6, dernière en date.
 
-	Par ce document, nous allons expliciter comment se déroulera notre projet, comment il sera structuré, ainsi que les objectifs à atteindre.
 
-\section{Description des technologies}
+\newpage
+\section{Premiers pas}
 
-	\begin{description}
+\newpage
 
-		\item[Enterprise Java Beans] Les \emph{Enterprise Java Beans} sont des couches de logique métier qui permettent de modéliser une architecture 3-tiers dans les bases de données. Elles ont été créées par IBM en 1997, et Sun Microsystems les a repris par la suite pour les intégrer à Java. \\
+\newpage
+\section{Conclusion}
 
-Les EJB permettent d'un part de porter la couche métier d'une application à une autre, mais surtout de rajouter une couche d'abstraction entre l'application et la base de données. 
+% \appendix
+% 
+% \newpage
+% \section{CACMIndexer.java}
+% \lstinputlisting{../src/rim/cacm/CACMIndexer.java}
+% 
+% \newpage
+% \section{CACMRetriever.java}
+% \lstinputlisting{../src/rim/cacm/CACMRetriever.java}
 
-		\item[Netbeans 6] C'est un IDE (\emph{Integrated development environment}) qui concurrence Eclipse. Netbeans est soutenu par Sun, tandis que IBM soutient Eclipse. Ce sont deux application conséquentes qui mettent à disposition des outils puissant pour l'aide au développement. \\
-
-		\item[XML] XML est un “metalanguage” qui permet de définir ses propres balises. Il est particulièrement utilisé sur internet car sa structure ressemble à des balises HTML et il est très pratique pour échanger des informations entre application. XML peut donc jouer un rôle de base de données ou encore de fichier de configuration. \\
-
-		\item[Java 1.6] C'est le language de programmation qui sera utilisé lors de notre projet. Il est bien entendu utilisé dans \emph{NetBeans}. Il s'agit de la dernière version fournie par \emph{Sun Microsystems}, dont nous allons aussi un peu parler.\\
-
-   	\end{description}
-
-\section{Objectifs}
-
-	\label{sec:objectifs}
-
-	Le but de notre projet est de créer un tutoriel qui montrera comment créer et utiliser des EJB à l'aide des technologies citées ci-dessus, ainsi que comment le XML est utilisé au sein de ces technologies. Une personne ne connaissant pas les EJB doit pouvoir prendre notre mode d'emploi et le suivre pas à pas afin de pouvoir utiliser un EJB dans \emph{Netbeans}.
-	
-	Nous allons donc créer un tutoriel qui permet d'apprendre à utiliser ces technologies ensemble.
-
-\section{Structure du projet}
-
-	Nous allons documenter les éléments suivants dans notre rapport : 
-	
-	\begin{itemize}
-
-		\item{\textbf{Introduction EJB:}} Nous allons expliquer à quoi servent ces EJB et comment les utiliser. Il s'agira d'une part d'une documentation permettant de comprendre pourquoi on utilise ces objets, et d'autre d'une documentation technique permettant de modéliser ainsi que de manipuler un de ces objets. Cette documentation technique comprendra, comme dit dans les \emph{Objectifs}, un tutoriel permettant à un novice en la matière de créer un de ces EJB sans avoir à se documenter pendant des heures.\\
-
-		\item{\textbf{Tutorial utilisation Netbeans 6.0 avec EJB:}}  Le but ne sera pas de permettre à l'utilisateur de gérer une base de données complexe, mais simplement de lui faire voir comment utiliser les principales possibilités de ces EJB. Il lui sera par la suite plus aisé de creuser le sujet pour parvenir à ses fins.\\
-
-Le tutoriel portera autant sur la création d'EJB que sur l'utilisation globale de NetBeans, car il y aura aussi quelques manipulations à faire dans le logiciel afin de parvenir à manipuler les EJB. Il s'agit aussi de permettre une utilisation plus ou moins générale de ce logiciel puissant et efficace. Nous ferons part de nos expériences, par exemple pour l'utilisation d'un SVN au sein de \emph{NetBeans}.\\
-
-		\item{\textbf{XML au seins des EJB:}}  Ce sujet fera l'objet d'une documentation technique permettant simplement de comprendre pourquoi XML est utilisé ici, comment il est utilisé et quels sont les avantages.\\
-
-		\item{\textbf{Discussion}} Nous finirons notre projet par une petite discussion sur l'utilité des EJB, leur efficacité et peut-être sur leur extensibilité.\\
-
-	\end{itemize}
-	
-	\section{Organisation}
-	
-	\subsection{Le groupe}
-
-	Le groupe est formé de: {Romain \bsc{de Wolff}, Simon \bsc{Hintermann} et Alberto \bsc{Asuero Arroyo}
-
-	Le troisième parlant peu le français, nous allons le mettre surtout sur des tâches pratiques telles que la mise sur pied d'un petit tutoriel d'utilisation des EJB.
-
-	\subsection{Répartition des tâches}
-
-	Simon \bsc{Hintermann}: Chef de groupe, il sera chargé de la documentation ainsi que de la répartition des tâches et du respect des échéances. Il devra aussi faire une documentation sur l'utilisation de \emph{NetBeans} basée sur les expériences de l'équipe lors de la réalisation de ce projet ou sur des recherches personnelles.
-
-	Romain \bsc{de Wolff}: Chargé de la description de l'utilisation du XML, ainsi que de la réalisation du tutoriel, de concert avec Alberto \bsc{Asuero Arroyo}, ainsi que de la documentation du tutoriel.
-
-	Alberto \bsc{Asuero Arroyo}: Chargé de la réalisation du tutoriel dans \emph{NetBeans}, ainsi que des choix découlant de ce tutoriel (quel EJB utiliser, quelle base de données, etc...).
-
-	\subsection{Planning}
-
-	\begin{enumerate}
-		\item Choix de l'application de démonstration
-		
-			\begin{enumerate}
-				\item Domaine
-				\item EJB à utiliser
-				\item Limites de l'application
-			\end{enumerate}
-				
-		\item Conception de l'application (needs 1.)
-			
-			\begin{enumerate}
-				\item Documentation
-				\item Schémas
-			\end{enumerate}
-			
-		\item Réalisation (needs 2.)
-		
-			\begin{enumerate}
-				\item Documentation du tutoriel
-				\item Documentation de l'application
-				\item Problèmes rencontrés
-				\item Documentation de \emph{NetBeans}
-			\end{enumerate}
-		
-		\item Documentation (tout le long du projet)
-		
-			\begin{enumerate}
-				\item XML dans notre projet
-				\item Utilisation générale de \emph{NetBeans}
-				\item Les logiciels libres utilisés
-				\item Tutoriel de réalisation de l'application
-				\item Problèmes rencontrés
-			\end{enumerate}
-		
-		\item Tests de l'application (needs 3.)
-		
-			\begin{enumerate}
-				\item Vérification du fonctionnement de l'application.
-			\end{enumerate}
-			
-		\item Recherches annexes / explication utilisation XML
-		
-	\end{enumerate}
-
-	
-\section{Environnements de travail}
-
-	Nos environnments de travail sont \emph{Linux (Debian Etch)} et \emph{Mac OS X Leopard}, mais cela ne devrait pas influencer du tout notre interopérabilité, car Java est fait pour fonctionner sur des systèmes différents.
-
-	Nous travaillerons tous avec les même logiciels et language de programmation cités dans la section \ref{sec:objectifs}.
-
-	La politique de notre groupe sera de favoriser les logiciels libres. Nous détaillerons les logiciels utilisés, leur points forts et faiblesses, ainsi que leur utilisation dans notre documentation du projet.
-
-\section{Ressources}
-
-	\subsection{Bibliographie}
-		
-		\begin{itemize}
-
-			\item[\bsc{keith} Mike \& \bsc{schincariol} Merrick]. Pro EJB 3, \textit{Java Persistance API}. Edition Apress, 2006.
-
-		\end{itemize}
-
-	\subsection{Webographie}
-
-		\begin{itemize}
-
-			\item[Auteur]. Titre page [en ligne]. Dernière modification: x. Disponible sur: \url{}. Consulté le: x
-
-		\end{itemize}
-
-%==============================================================================
-\end{document}  
+\end{document}
