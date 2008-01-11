@@ -1,3 +1,8 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Auteurs : 			Romain de Wolff & Bruno da Silva
+% Date de création : 	2 janvier 2008
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[10pt,a4paper,titlepage]{article}
 \usepackage[utf8]{inputenc}     % encodage des characteres en utf8
 \usepackage[francais]{babel} % pour la table des matières en français 
@@ -5,16 +10,58 @@
 \usepackage{url} % pour les liens internet
 \usepackage[colorlinks=true,linkcolor=black,bookmarks=true,bookmarksopen=true]{hyperref} % rendre les liens clickable
 \usepackage{fancyhdr}	 
-\usepackage{listings} 
-\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
 
 \usepackage[dvips]{graphicx}
 \usepackage{epstopdf}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pour l'utilisation de code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings} 
+%\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
+
+\usepackage{courier}
+\usepackage{color}
+
+% color definitions
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{rgb}{0.92,0.92,1}
+
+\lstset{language=Java,
+  %keywords={break,case,catch,continue,else,elseif,end,for,function,
+  %   global,if,otherwise,persistent,return,switch,try,while},
+  keywords={script, document, function},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{red},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=10pt,
+  backgroundcolor=\color{lightblue},
+  tabsize=2,
+  linewidth=0pt,
+  showspaces=false,
+  showstringspaces=false,
+  frame=single,
+  framexleftmargin=10pt,
+  framexrightmargin=10pt,
+  framexbottommargin=7pt,
+  framextopmargin=7pt,
+  linewidth=350pt, % largeur de la ligne de code affichée
+  xleftmargin=10pt, % espace avant le debut du cadre
+  aboveskip=20pt
+}
+
+\usepackage[parfill]{parskip}             % Activate to begin paragraphs with an empty line rather than an indent
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Info sur le labo
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\branchetag}{WEB}
 \newcommand{\branche}{Technologies web}
 % \newcommand{\labonummer}{}
@@ -23,7 +70,7 @@
 \newcommand{\auteurTwo}{Bruno da Silva}
 \newcommand{\promo}{IL2008}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagestyle{fancy} % defini nos propre header & footer
 \fancyhf{} % delete current header and footer 
@@ -89,7 +136,7 @@ Nous allons commencer par créer un exemple très simple pour se plonger directe
 
 Pour commencer nous allons créer une page HTML basique de la forme suivante :
 
-\begin{verbatim}
+\begin{lstlisting}
 <html>
 <body>
   <p>Cliquer ce <a href="#" id="clickme">lien</a>.</p>
@@ -101,7 +148,7 @@ Pour commencer nous allons créer une page HTML basique de la forme suivante :
   	tellus.</p>
 </body>
 </html>
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Liaison du script JQuery}
 
@@ -109,18 +156,18 @@ Pour utiliser la librairie JQuery, nous allons devoir spécifier où se trouve s
 
 Pour ce faire on rajoute une section \texttt{head} entre la section \texttt{html} et \texttt{body}.
 
-\begin{verbatim}
-	<head>
-	  <script type="text/javascript"
-	    src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
-	</head>
-\end{verbatim}
+\begin{lstlisting}
+<head>
+<script type="text/javascript"
+  src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+</head>
+\end{lstlisting}
 
 \subsection{Ajout de code standard JQuery}
 
 Nous allons ajouter maintenant une fonction JQuery.
 
-\begin{verbatim}
+\begin{lstlisting}
 	<script>
 	$(document).ready(function() {
 	  $("a#clickme").click( function() {
@@ -128,17 +175,41 @@ Nous allons ajouter maintenant une fonction JQuery.
 	  });
 	});
 	</script>
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Que ce passe-t-il?}
 
 On a utilisé une classe HTML nommée \texttt{lorem} qui contient le texte qui disparaît. Le liens portant l'identifiant \texttt{clickme} permet de faire apparaître ou disparaître le texte. 
 
-En définissant la fonction \texttt{toggle} sur click d'un lien, celui fait apparaître et  disparaître les éléments identifié grâce à la balise : \\
+En définissant la fonction \texttt{toggle} sur click d'un lien, celui fait apparaître et  disparaître les éléments identifié grâce à la balise : 
 
-$\$("p.lorem").toggle(100);return false;")$ \\ 
+\begin{lstlisting}
+$("p.lorem").toggle(100);return false;")
+\end{lstlisting}
 
-On voit que JQuery permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
+On voit que \textbf{JQuery} permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
+
+\begin{lstlisting}
+<script>
+$(document).ready(function() {
+  $("a#clickme").click( function() {
+    $("p.lorem").toggle(100);return false;
+  });
+});
+</script>
+\end{lstlisting}
+
+\subsection{Points clés}
+
+Pour revenir sur les étapes effectuées, voilà en trois lignes ce que l'on a fait: \\
+
+\begin{itemize}
+	\item Définir/connaître le nom des objets dans la page HTML
+	\item Lier le script JQuery à l'aide d'une des méthodes
+	\item Ajouter une fonction sur un événement
+\end{itemize}
+
+Une liste exhaustives des événement est disponibles sur le site \url{http://www.gotapi.com}.
 
 
 \newpage
@@ -150,7 +221,7 @@ On voit que JQuery permet d'une manière très simple d'accéder aux objet d'un 
 % 
 % \newpage
 % \section{CACMIndexer.java}
-% \lstinputlisting{../src/rim/cacm/CACMIndexer.java}
+%\lstinputlisting{../src/rim/cacm/CACMIndexer.java}
 % 
 % \newpage
 % \section{CACMRetriever.java}
