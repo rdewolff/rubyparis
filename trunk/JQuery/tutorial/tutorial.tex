@@ -132,8 +132,13 @@ Nous allons ajouter maintenant une fonction JQuery.
 
 \subsection{Que ce passe-t-il?}
 
-On a utilisé une classe nommée \texttt{lorem} qui contient le texte qui disparaît. Le liens portant l'identifiant \texttt{clickme} permet de faire apparaître ou disparaître le texte.  Pour se faire, nous utilisons : 
+On a utilisé une classe HTML nommée \texttt{lorem} qui contient le texte qui disparaît. Le liens portant l'identifiant \texttt{clickme} permet de faire apparaître ou disparaître le texte. 
 
+En définissant la fonction \texttt{toggle} sur click d'un lien, celui fait apparaître et  disparaître les éléments identifié grâce à la balise : \\
+
+$\$("p.lorem").toggle(100);return false;")$ \\ 
+
+On voit que JQuery permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
 
 
 \newpage
