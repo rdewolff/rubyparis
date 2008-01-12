@@ -1,7 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Auteurs : 			Romain de Wolff & Bruno da Silva
 % Date de création : 	2 janvier 2008
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[10pt,a4paper,titlepage]{article}
 \usepackage[utf8]{inputenc}     % encodage des characteres en utf8
@@ -15,9 +15,9 @@
 \usepackage{epstopdf}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pour l'utilisation de code
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{listings} 
 %\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
@@ -33,8 +33,8 @@
 \lstset{language=Html,
   %keywords={break,case,catch,continue,else,elseif,end,for,function,
   %   global,if,otherwise,persistent,return,switch,try,while},
-  keywords={script, document, function},
   basicstyle=\ttfamily\small,
+  basicstyle=\scriptsize,
   keywordstyle=\color{blue},
   commentstyle=\color{dkgreen},
   stringstyle=\color{red},
@@ -57,11 +57,12 @@
   aboveskip=20pt
 }
 
+
 \usepackage[parfill]{parskip}             % Activate to begin paragraphs with an empty line rather than an indent
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Info sur le labo
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\branchetag}{WEB}
 \newcommand{\branche}{Technologies web}
 % \newcommand{\labonummer}{}
@@ -70,7 +71,7 @@
 \newcommand{\auteurTwo}{Bruno da Silva}
 \newcommand{\promo}{IL2008}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagestyle{fancy} % defini nos propre header & footer
 \fancyhf{} % delete current header and footer 
@@ -120,15 +121,19 @@
 \end{titlepage}
 
 \tableofcontents
+
 \newpage
 \pagestyle{fancy}
 \pagenumbering{arabic}
 \section{Introduction}
 
+Connaissance d'HTML requise.
 
 \newpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Premiers pas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % cf. http://techrageo.us/2007/07/05/jquery-introduction/
 
 Nous allons commencer par créer un exemple très simple pour se plonger directement  au coeur de JQuery.
@@ -178,6 +183,18 @@ Nous allons ajouter maintenant une fonction JQuery.
 	</script>
 \end{lstlisting}
 
+La ligne suivante écrite à l'aide de JQuery
+
+\begin{lstlisting}
+$(document).ready(function() { ... } )
+\end{lstlisting}
+
+aurait été écrite de la manière suivante en JavaScript  
+
+\begin{lstlisting}
+window.onload = function(){ ... }
+\end{lstlisting}
+
 \subsection{Que ce passe-t-il?}
 
 On a utilisé une classe HTML nommée \texttt{lorem} qui contient le texte qui disparaît. Le liens portant l'identifiant \texttt{clickme} permet de faire apparaître ou disparaître le texte. 
@@ -212,15 +229,140 @@ Pour revenir sur les étapes effectuées, voilà en trois lignes ce que l'on a f
 
 Une liste exhaustives des événement est disponibles sur le site \url{http://www.gotapi.com}.
 
-\section{}
+\subsection{Sélectionner d'autres éléments}
+
+Voici quelques autres exemples de sélection à l'aide de JQuery. 
+
+\begin{lstlisting}
+jQuery('div.panel')
+\end{lstlisting}
+
+Tous les éléments \texttt{divs} avec \texttt{class="panel"}
+
+\begin{lstlisting}
+jQuery('p#intro')
+\end{lstlisting}
+
+Le paragraphe avec \texttt{id="intro"}
+
+\begin{lstlisting}
+jQuery('div#content a:visible')
+\end{lstlisting}
+
+Tous les liens visibles qui se trouvent à l'intérieur du \texttt{div} avec \texttt{id="content"}
+
+\begin{lstlisting}
+jQuery('input[@name=email]')
+\end{lstlisting}
+
+Tous les champs de formulaire comportant \texttt{name="email"}
+
+\begin{lstlisting}
+jQuery('table.orders tr:odd')
+\end{lstlisting}
+
+Les lignes numérotée de tables “étrange” comportant la classe \texttt{orders}
+
+\begin{lstlisting}
+jQuery('a[@href^="http://"]')
+\end{lstlisting}
+
+Tous les liens externes (liens qui commencent par \verb!http://!).
+
+\begin{lstlisting}
+jQuery('p[a]')
+\end{lstlisting}
+
+Tous les paragraphes qui contienne un ou plusieurs liens.
 
 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{AJAX}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+AJAX permet d'exécuter des requêtes sur d'autre pages sans recharger tout le document en cours. Il permett donc de transférer des données ou de pré-charger des données. JQuery permet de faire du AJAX simple de manière extrêmement facile, et permet de rendre les choses complexe tout à fait faisables. 
+
+Voici quelques exemples de l'utilisation d'AJAX à l'aide de JQuery.
+
+\subsection{Charger des données dans une zone}
+
+Une utilisation classique de Ajax est de charger un bout de code HTML à l'intérieur d'une zone d'une page.
+
+Pour faire ceci à l'aide de JQuery, il suffit de sélectionner l'élément désiré et d'utiliser la fonction \texttt{load()}, comme montré dans l'exemple ci dessous 
+
+\begin{lstlisting}
+$('#stats').load('stats.html');
+\end{lstlisting}
+
+
+\subsection{Passer des paramètres a une page}
+
+Très souvent on veut simplement passer des paramètres a une page sur le serveur. Comme vous vous y attendez, ceci se fait de manière extrêmement simple à l'aide de JQuery. 
+
+On a le choix entre \texttt{\$.post()} et \texttt{\$.get()} en fonction de la méthode dont on a besoin. On peut ensuite spécifier optionnellement un objet comportant les données ainsi qu'une fonction appelée une fois l'opération terminée (fonction de type \emph{callback}).
+
+\begin{lstlisting}
+$.post('save.cgi', {
+    text: 'my string',
+    number: 23
+}, function() {
+    alert('Your data has been saved.');
+});
+\end{lstlisting}
+                                   
+\subsection{Instruction complexes en AJAX rendu simple}
+
+Si l'on désire vraiment effectuer des opérations complexes en AJAX, il faut utiliser la fonction \texttt{\$.ajax()}. On spécifie le type de données utilisée (\texttt{xml, html, script ou json}) et JQuery va préparer les résultats de la fonction de retour automatiquement afin de pouvoir l'utiliser tout de suite. 
+
+On peut aussi spécifier \texttt{beforeSend}, \texttt{error}, \texttt{success} ou encore \texttt{complete} qui permet de mieux gérer ce qu'il se passe durant l'utilisation d'AJAX. Pour par exemple dire à l'utilisateur que la transaction a commencée et l'avertir quand elle est terminée.
+
+D'autre paramètre sont disponible, comme \texttt{timeout} qui permet de limiter le temps d'exécution d'une requête en AJAX.
+
+Voici un exemple d'utilisation d'AJAX. 
+
+\begin{lstlisting}
+$.ajax({
+    url: 'document.xml',
+    type: 'GET',
+    dataType: 'xml',
+    timeout: 1000,
+    error: function(){
+        alert('Error loading XML document');
+    },
+    success: function(xml){
+        // faire quelques chose des donnees xml
+    }
+});
+\end{lstlisting}
+
+On peut ensuite imaginer d'utiliser encore JQuery pour traiter les données XML reçues et les afficher. Pour ce faire, on va utiliser le même principe que pour les fichiers HTML. Cela rends facile de parcourir un fichier XML et d'en afficher le contenu dans un fichier HTML.
+
+L'exemple suivant montre comment utiliser le paramètre \texttt{sucess} pour appeler une fonction d'affichage de notre XML une fois la transaction correctement effectuées.
+
+\begin{lstlisting}
+success: function(xml){
+    $(xml).find('item').each(function(){
+        var item_text = $(this).text();
+
+        $('<li></li>')
+            .html(item_text)
+            .appendTo('ol');
+    });
+}
+\end{lstlisting}
+
+\section{Animations}
+
+
+
 
 \newpage
-
-\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Nous espérons que nous avons pus vous montrer que JQuery n'est pas une simple nouvelle librairie JavaScript comme il en existe tant. 
 
 % \appendix
 % 
@@ -233,3 +375,28 @@ Une liste exhaustives des événement est disponibles sur le site \url{http://ww
 % \lstinputlisting{../src/rim/cacm/CACMRetriever.java}
 
 \end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstdefinelanguage{JavaScript}{
+     keywords={attributes, class, classend, do, empty, endif, endwhile, fail, function, functionend, if, implements, in, inherit, inout, not, of, operations, out, return, set, then, types, while, use},
+     keywordstyle=\color{blue}\bfseries,
+     ndkeywords={},
+     ndkeywordstyle=\color{yellow}\bfseries,
+     identifierstyle=\color{black},
+     sensitive=false,
+     comment=[l]{//},
+     commentstyle=\color{green}\ttfamily,
+     stringstyle=\color{red}\ttfamily
+  }
+
+  \lstset{
+     language=JavaScript,
+     extendedchars=true,
+     basicstyle=\scriptsize,
+     showstringspaces=false,
+     numbers=left,
+     numberstyle=\tiny,
+     stepnumber=1,
+     numbersep=5pt,
+  }
