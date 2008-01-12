@@ -111,7 +111,7 @@
 		\vspace{10pt}
 		\normalsize \textsc{\promo} \\
 
-		\vspace{3cm}
+		\vspace{2cm}
 		\today
 	\end{center}
 \end{titlepage}
@@ -127,15 +127,16 @@
 \section{Qu'est-ce que JQuery?}
 JQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations...
 La vocation première de ce Framework est de gagner du temps dans le développement des applications: "write less, do more".
-\newpage
-\section{Survol Historique}
 
+\newpage
 \section{JavaScript et DOM}
 Avant de commencer à proprement parler de JQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille JQuery. Un brève description de JavaScript et de DOM est donc nécessaire, et il a été jugé inutile de présenter le HTML.
 
 \subsection{Introduction}
 
-\subsection{DOM} % http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html
+\subsection{DOM}
+% http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html
+% http://fr.wikipedia.org/wiki/Document_Object_Model
 Le modèle objet de document (DOM), contrairement à ce que beaucoup de personnes croient, n'est pas un langage, mais une interface de programmation d'application (API) essentiellement utilisé pour des documents HTML valides et XML bien-formés. Ce modèle (DOM), créé en 1998 par le W3C pour , définit la structure logique d'un document et la manière d'y accéder et de le manipuler. Le terme “document” est définit au un sens large par la spécification, ce qui permet par exemple à XML de stocker n'importe quel type de données sous forme de documents et ensuite de les gérer avec DOM.\\
 
 L'API DOM permet donc de construire des documents, naviguer dans leur structure ainsi qu'ajouter, modifier ou supprimer des éléments et leur contenu. Il est ainsi possible d'accéder, modifier, supprimer ou ajouter, à quelques exceptions près, tout le contenu des documents HTML et XML.\\
@@ -172,21 +173,64 @@ qui illustré sous forme graphique ressemble à la figure \ref{dom1}.
 On remarque que le code HTML est structure sous forme d'un arbre et que c'est très proche de la structure du code en elle-même. Ce n'est toutefois pas DOM qui spécifie cette structure en arbre, il se limite tout simplement à reproduire la structure du langage l'utilisant, qui dans ce cas est le HTML.
 
 \subsection{JavaScript}
+% http://fr.wikipedia.org/wiki/Javascript
+% http://www.commentcamarche.net/javascript/jsintro.php3
 JavaScript est un “langage de scripting objet” développé par Brendan Eich, aujourd'hui l'un des leaders du projet Mozilla, en 1995 chez Netscape Communications Corp. Et contrairement à ce que beaucoup de monde croit, il n'a rien à voir avec le java. Néanmoins, il possède une syntaxe similaire à ce dernier et C++ dans un souci de limiter le nombre de nouveaux concepts nécessaires à l'apprentissage du langage.\\
 
-Contrairement à une croyance populaire, JavaScript n'a rien à voir avec le Java. C'est un langage orienté objets à prototype, ce qui veut dire que les bases du langage et ses principales interfaces sont fournies par des objects pas instanciés au sein des classes mais équipés de constructeurs permettant de générer leurs propres propriétés. Notamment celle de prototypage permettant de générer des objets héritiers personnalisés.\\
+C'est un langage essentiellement orienté Web, qui au niveau historique se trouve être le premier langage de script pour le Web. Il a notamment permis d'apporter des améliorations au HTML en permettant d'exécuter des commandes du côté client, c'est-à-dire au niveau du navigateur et non du serveur. Il est donc fortement lié au navigateur appelant la page web incorporant le script, mais en contrepartie, il ne nécessite pas de compilateur.\\
 
+\begin{figure}[h]
+	\begin{center}
+			\includegraphics[width=12cm]{img/schema_js.png}
+			\caption{Hiérarchie d'un objet de navigateur en JavaScript}
+			\label{schema}
+	\end{center}
+\end{figure}
 
+La figure \ref{schema} représente la hiérarchie d'un objet d'un navigateur en JavaScript. Ce qui permet de bien comprendre ce qu'il faut chercher et ou chercher lors de la conception d'un script.
 
 \subsection{Qui fait quoi}
+% http://developer.mozilla.org/fr/docs/Le_DOM_et_JavaScript
+% 
+Comme vu précédemment, le JavaScript en lui-même ne suffit pas pour accéder et modifier le contenu du code HTML. Voici donc un petit exemple qui permettra de différencier ce qui est du DOM et ce qui est du JavaScript.
 
+\begin{lstlisting}
+	var anchorTags = document.getElementsByTagName("a");
+	for (var i = 0; i < anchorTags.length ; i++)
+	{
+	   alert("L'attribut href du " + i + "e element est : " + anchorTags[i].href + "\n");
+	}	
+\end{lstlisting}
 
+Dans l'exemple qui précède, les parties JavaScript sont les suivantes:
+\begin{description}
+	\item [\texttt{var anchorTags =}] {Création d'une variable appelée \texttt{anchorTags}}
+	\item [\texttt{;}] {Fin d'instruction}
+	\item [\texttt{for(var i = 0; i < }] {Boucle \texttt{for} typique dans un langage de programmation. Elle permet de parcourir chacun des noeuds de la liste \texttt{anchorTags}.}
+	\item [\texttt{; i++)}] {C'est l'incrémentation de la variable \texttt{i} dans la boucle, c'est-à-dire l'incrémentation de la boucle.}
+	\item [\texttt{"L'attribut href du " + i + "e element est: " +}] {C'est un chaîne de caractères avec l'opérateur de concaténation (\texttt{+}).}
+	\item [\texttt{"$\backslash$n");}] {Encore une fois le caractère de concaténation et une chaîne de caractères avec le caractère le retour à la ligne.}
+	\item [\texttt{\}}] {Fin d'un bloc d'instructions. Dans ce cas fin de la boucle \texttt{for}.}
+\end{description}
+
+Maintenant ce qui concerne le DOM:
+\begin{description}
+	\item [\texttt{document.getElementsByTagName("a")}] {\texttt{document} est l'objet contenant tout ce qui se trouve sur la page. La méthode \texttt{getElementsByTagName()} renvoie une \emph{NodeList} (sorte de tableu spécifique au DOM contenant des noeuds) de toutes les balises correspondant au paramètre passé à la fonction, et ceci dans l'ordre d'apparition dans le document source. La variable anchorsTag est maintenant une \emph{NodeList}.}
+	\item [\texttt{anchorTags.length}] {C'est la propriété \texttt{length} de l'interface \emph{NodeList}. Elle rend un entier contenant le nombre de noeuds présents dans \texttt{anchorTags}.}
+	\item [\texttt{alert}] {\texttt{alert()} est une méthode DOM qui affiche une boite de dialogue avec une chaîne de caractères passée en paramètres.}
+	\item [\texttt{anchorTags[i].href}] {Permet d'accéder à la propriété \texttt{href} du i\up{ème} noeud.}
+\end{description}
 
 \newpage
 \renewcommand{\labelitemi}{$\bullet$}
 \section{Au coeur de JQuery}
+\subsection{Moteur}
+
+\subsection{Installation \& Utilisation}
+Il est très facile d'installer  
 
 \subsection{Compatibilité avec les navigateurs}
+% http://docs.jquery.com/Browser_Compatibility
 La version actuelle de JQuery est supportée par les navigateurs suivants:
 
 \begin{itemize}
