@@ -25,6 +25,50 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pour l'utilisation de code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings} 
+%\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
+
+\usepackage{courier}
+\usepackage{color}
+
+% color definitions
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{rgb}{0.92,0.92,1}
+
+\lstset{language=Html,
+  %keywords={break,case,catch,continue,else,elseif,end,for,function,
+  %   global,if,otherwise,persistent,return,switch,try,while},
+  keywords={script, document, function},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{red},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=10pt,
+  backgroundcolor=\color{lightblue},
+  tabsize=2,
+  linewidth=0pt,
+  showspaces=false,
+  showstringspaces=false,
+  frame=single,
+  framexleftmargin=10pt,
+  framexrightmargin=10pt,
+  framexbottommargin=7pt,
+  framextopmargin=7pt,
+  linewidth=350pt, % largeur de la ligne de code affichée
+  xleftmargin=10pt, % espace avant le debut du cadre
+  aboveskip=20pt
+}
+
+
 \pagestyle{fancy} % defini nos propre header & footer
 \fancyhf{} % delete current header and footer 
 \fancyhead[L]{\branchetag}
@@ -81,12 +125,90 @@
 
 \newpage
 \section{Qu'est-ce que JQuery?}
-
+JQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations...
+La vocation première de ce Framework est de gagner du temps dans le développement des applications: "write less, do more".
 \newpage
 \section{Survol Historique}
 
+\section{JavaScript et DOM}
+Avant de commencer à proprement parler de JQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille JQuery. Un brève description de JavaScript et de DOM est donc nécessaire, et il a été jugé inutile de présenter le HTML.
+
+\subsection{Introduction}
+
+\subsection{DOM} % http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html
+Le modèle objet de document (DOM), contrairement à ce que beaucoup de personnes croient, n'est pas un langage, mais une interface de programmation d'application (API) essentiellement utilisé pour des documents HTML valides et XML bien-formés. Ce modèle (DOM), créé en 1998 par le W3C pour , définit la structure logique d'un document et la manière d'y accéder et de le manipuler. Le terme “document” est définit au un sens large par la spécification, ce qui permet par exemple à XML de stocker n'importe quel type de données sous forme de documents et ensuite de les gérer avec DOM.\\
+
+L'API DOM permet donc de construire des documents, naviguer dans leur structure ainsi qu'ajouter, modifier ou supprimer des éléments et leur contenu. Il est ainsi possible d'accéder, modifier, supprimer ou ajouter, à quelques exceptions près, tout le contenu des documents HTML et XML.\\
+
+Comme spécification du W3C, un objectif majeur du modèle objet document est qu'il puisse être utilisé par un grand nombre d'environnements et d'applications. Il est donc conçu de manière à pouvoir être utilisé par n'importe quel langage de programmation.\\
+
+La structure du document DOM est très similaire à la structure des documents qu'elle modélise. Pour mieux illustrer cela, prenons l'exemple de code HTML suivant:
+
+\begin{lstlisting}
+	<TABLE>
+		<TBODY> 
+			<TR> 
+				<TD>Text1</TD>
+				<TD>Text2</TD> 
+			</TR> 
+			<TR>
+				<TD>Text3</TD>        
+				<TD>Text4</TD> 
+			</TR> 
+		</TBODY>
+	</TABLE>
+\end{lstlisting}
+
+qui illustré sous forme graphique ressemble à la figure \ref{dom1}.
+
+\begin{figure}[h]
+	\begin{center}
+			\includegraphics[width=12cm]{img/exempleDOM.png}
+			\caption{Répresentation graphique DOM de l'exemple de table}
+			\label{dom1}
+	\end{center}
+\end{figure}
+
+On remarque que le code HTML est structure sous forme d'un arbre et que c'est très proche de la structure du code en elle-même. Ce n'est toutefois pas DOM qui spécifie cette structure en arbre, il se limite tout simplement à reproduire la structure du langage l'utilisant, qui dans ce cas est le HTML.
+
+\subsection{JavaScript}
+JavaScript est un “langage de scripting objet” développé par Brendan Eich, aujourd'hui l'un des leaders du projet Mozilla, en 1995 chez Netscape Communications Corp. Et contrairement à ce que beaucoup de monde croit, il n'a rien à voir avec le java. Néanmoins, il possède une syntaxe similaire à ce dernier et C++ dans un souci de limiter le nombre de nouveaux concepts nécessaires à l'apprentissage du langage.\\
+
+Contrairement à une croyance populaire, JavaScript n'a rien à voir avec le Java. C'est un langage orienté objets à prototype, ce qui veut dire que les bases du langage et ses principales interfaces sont fournies par des objects pas instanciés au sein des classes mais équipés de constructeurs permettant de générer leurs propres propriétés. Notamment celle de prototypage permettant de générer des objets héritiers personnalisés.\\
+
+
+
+\subsection{Qui fait quoi}
+
+
+
 \newpage
+\renewcommand{\labelitemi}{$\bullet$}
 \section{Au coeur de JQuery}
+
+\subsection{Compatibilité avec les navigateurs}
+La version actuelle de JQuery est supportée par les navigateurs suivants:
+
+\begin{itemize}
+	\item {Firefox 1.5+;}
+	\item {Internet Explorer 6+;}
+	\item {Safari 2.0.2+;}
+	\item {Opera 9+.\\}
+\end{itemize}
+
+Par contre, certains problèmes ont été reportés sur les suivantes versions:
+\begin{itemize}
+	\item {Firefox 1.0.x;}
+	\item {Internet Explorers 1-5.x;}
+	\item {Safari 1.x;}
+	\item {Safari 2.0;}
+	\item {Opera 1.0-8.5;}
+	\item {Konqueror.\\}
+\end{itemize}
+
+En général, JQuery fonctionne avec Konqueror et Firefox 1.0.x, mais il peut se produire certains bugs depuis que les tests ne sont pas fait aussi régulièrement qu'avec les versions plus récentes.\\
+
+Pour des renseignements plus précis sur la compatibilité d'un navigateur en particulier, il existe un très bon test à l'adresse \url{http://jquery.com/test/}.
 
 \newpage
 \section{Comparatif}
