@@ -52,7 +52,7 @@
   framexrightmargin=10pt,
   framexbottommargin=7pt,
   framextopmargin=7pt,
-  linewidth=350pt, % largeur de la ligne de code affichée
+  linewidth=335pt, % largeur de la ligne de code affichée
   xleftmargin=10pt, % espace avant le debut du cadre
   aboveskip=20pt
 }
@@ -202,7 +202,7 @@ On a utilisé une classe HTML nommée \texttt{lorem} qui contient le texte qui d
 En définissant la fonction \texttt{toggle} sur click d'un lien, celui fait apparaître et  disparaître les éléments identifié grâce à la balise : 
 
 \begin{lstlisting}
-$("p.lorem").toggle(100);return false;")
+$("p.lorem").toggle(100);
 \end{lstlisting}
 
 On voit que \textbf{JQuery} permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
@@ -352,10 +352,108 @@ success: function(xml){
 }
 \end{lstlisting}
 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Animations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+On peut utiliser JQuery afin de créer des animation simplement. Certaines sont prédéfinies, d'autre peuvent être facilement créées. A la base des animation dans JQuery, il existe la fonction \texttt{animate()} qui permet de modifier n'importe quelle valeur numérique dans le temps. On peut par exemple facilement animer un changement de hauteur, de positions, de couleur ou de transparence. On peut aussi spécifier la vitesse de l'animation en millisecondes, ou à l'aide des vitesses prédéfinies: \texttt{slow}, \texttt{normal} ou \texttt{fast}.
+
+Ci-dessous un exemple qui change la hauteur et la largeur d'un élément en même temps. On remarque qu'il n'y a pas de valeur de départ, les valeurs de départ sont prise à partir de la taille courante de l'élément modifié. On y a ajouté une fonction qui va afficher une alerte lorsque l'animation est terminée.
+
+\begin{lstlisting}
+$('#grossi').animate({ height: 500, width: 500 }, "slow", function(){
+    alert("L'element a finir de grossir!");
+});
+\end{lstlisting}
+
+JQuery met à disposition des animations qui sont celles utilisées les plus fréquemment. On peut par exemple utiliser \texttt{show()} et \texttt{hide()} pour respectivement afficher ou cacher un élément; soit instantanément, soit à une vitesses spécifiée. On peut aussi utiliser les méthodes \texttt{fadeIn()} et \texttt{fadeOut()} ou \texttt{slideDown()} et \texttt{slideUp()} en fonction des effet que l'on désire. 
+
+
+Voici un exemple qui fait par exemple apparaître un menu de navigation
+
+\begin{lstlisting}
+$('#navigation').slideDown('fast');
+\end{lstlisting}
+
+\subsection{Exemple complet}
+
+Voici un exemple complet. Nous allons créer une page HTML comportant 3 liens ainsi qu'un paragraphe. Chaque liens effectuera une animation différentes pour faire apparaître le paragraphe en question.
+
+Voilà à quoi ressemble cette page HTML
+
+\begin{lstlisting}
+<html>
+<head>
+</head>
+<body>
+	<a href="#" class="lien1">anim1: toggle()</a> | 
+	<a href="#" class="lien2">anim2: fadeIn() et fadeOut()</a> | 
+	<a href="#" class="lien3">anim3: slideToggle()</a>
+<p class="text" style="border:1px solid black; color: green;">
+	<br>Quelques animations avec JQuery<br><br></p>
+</body>
+</html>
+\end{lstlisting}
+
+Ensuite, nous allons ajouter les animation à l'aide de JQuery. Chaque liens effectuera une action différentes sur le paragraphe identifié par \texttt{class="text"}.
+
+Pour cela, il faut commencer par ajouter un liens vers la librairie JQuery comme fait au début de ce document. Ce liens doit se situer dans l'en-tête du fichier HTML.
+
+\begin{lstlisting}
+<head>
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+</head>
+\end{lstlisting}
+
+Ensuite nous pouvons ajouter les actions sur les différents éléments de notre page HTML. Nous allons commencer par définir l'action global; l'action effectuée quand le document HTML est chargé. 
+
+\begin{lstlisting}
+<script>
+	$(document).ready(function() {		
+		// action a determiner
+	});
+</script>
+\end{lstlisting}
+
+Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire, nous allons utiliser la fonction \texttt{click()} sur les liens, déjà utilisée précédemment. 
+
+\begin{lstlisting}
+<script>
+	$(document).ready(function() {		
+		$("a.lien1").click(function() {
+			$("p.text").toggle(150);
+		});
+	});
+</script>
+\end{lstlisting}
 
 
 
+\begin{lstlisting}
+<script>
+	$(document).ready(function() {		
+		$("a.lien1").click(function() {
+			$("p.text").toggle(150);
+		});
+
+		$("a.lien2").click(function() {
+			p = $("p.text");
+		    p[ p.is(':visible') ? 'fadeOut' : 'fadeIn' ](800);
+		    return false;
+		});	
+		
+		$("a.lien3").click( function() {
+			$("p.text").slideToggle(300); 
+		});
+	});
+</script>
+\end{lstlisting}
+
+
+
+\lstinputlisting{demo/animation.html}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
