@@ -66,7 +66,7 @@
 \newcommand{\branchetag}{WEB}
 \newcommand{\branche}{Technologies web}
 % \newcommand{\labonummer}{}
-\newcommand{\laboname}{JQuery}
+\newcommand{\laboname}{jQuery}
 \newcommand{\auteurOne}{Romain de Wolff}
 \newcommand{\auteurTwo}{Bruno da Silva}
 \newcommand{\promo}{IL2008}
@@ -125,18 +125,22 @@
 \newpage
 \pagestyle{fancy}
 \pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Connaissance d'HTML requise.
 
-\newpage
+Les fichiers utilisés dans ce document sont disponibles à l'adresse: \\ \url{http://code.google.com/p/rubyparis/downloads/list}
 
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Premiers pas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% cf. http://techrageo.us/2007/07/05/jquery-introduction/
+% cf. http://techrageo.us/2007/07/05/jQuery-introduction/
 
-Nous allons commencer par créer un exemple très simple pour se plonger directement  au coeur de JQuery.
+Nous allons commencer par créer un exemple très simple pour se plonger directement  au coeur de jQuery.
 
 \subsection{Création d'une page HTML basique}
 
@@ -156,22 +160,22 @@ Pour commencer nous allons créer une page HTML basique de la forme suivante :
 </html>
 \end{lstlisting}
 
-\subsection{Liaison du script JQuery}
+\subsection{Liaison du script jQuery}
 
-Pour utiliser la librairie JQuery, nous allons devoir spécifier où se trouve ses sources. On peut, à choix, télécharger le fichier \emph{*.js} où alors mettre le chemin complet de son emplacement sur le site de JQuery. \\
+Pour utiliser la librairie jQuery, nous allons devoir spécifier où se trouve ses sources. On peut, à choix, télécharger le fichier \emph{*.js} où alors mettre le chemin complet de son emplacement sur le site de jQuery. \\
 
 Pour ce faire on rajoute une section \texttt{head} entre la section \texttt{html} et \texttt{body}.
 
 \begin{lstlisting}
 <head>
 <script type="text/javascript"
-  src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+  src="http://code.jQuery.com/jQuery-1.1.3.1.pack.js"/>
 </head>
 \end{lstlisting}
 
-\subsection{Ajout de code standard JQuery}
+\subsection{Ajout de code standard jQuery}
 
-Nous allons ajouter maintenant une fonction JQuery.
+Nous allons ajouter maintenant une fonction jQuery.
 
 \begin{lstlisting}
 	<script>
@@ -183,7 +187,7 @@ Nous allons ajouter maintenant une fonction JQuery.
 	</script>
 \end{lstlisting}
 
-La ligne suivante écrite à l'aide de JQuery
+La ligne suivante écrite à l'aide de jQuery
 
 \begin{lstlisting}
 $(document).ready(function() { ... } )
@@ -205,7 +209,7 @@ En définissant la fonction \texttt{toggle} sur click d'un lien, celui fait appa
 $("p.lorem").toggle(100);
 \end{lstlisting}
 
-On voit que \textbf{JQuery} permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
+On voit que \textbf{jQuery} permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
 
 \begin{lstlisting}
 <script>
@@ -223,7 +227,7 @@ Pour revenir sur les étapes effectuées, voilà en trois lignes ce que l'on a f
 
 \begin{itemize}
 	\item Définir/connaître le nom des objets dans la page HTML
-	\item Lier le script JQuery à l'aide d'une des méthodes
+	\item Lier le script jQuery à l'aide d'une des méthodes
 	\item Ajouter une fonction sur un événement
 \end{itemize}
 
@@ -231,7 +235,7 @@ Une liste exhaustives des événement est disponibles sur le site \url{http://ww
 
 \subsection{Sélectionner d'autres éléments}
 
-Voici quelques autres exemples de sélection à l'aide de JQuery. 
+Voici quelques autres exemples de sélection à l'aide de jQuery. 
 
 \begin{lstlisting}
 jQuery('div.panel')
@@ -281,15 +285,15 @@ Tous les paragraphes qui contienne un ou plusieurs liens.
 \section{AJAX}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-AJAX permet d'exécuter des requêtes sur d'autre pages sans recharger tout le document en cours. Il permett donc de transférer des données ou de pré-charger des données. JQuery permet de faire du AJAX simple de manière extrêmement facile, et permet de rendre les choses complexe tout à fait faisables. 
+AJAX permet d'exécuter des requêtes sur d'autre pages sans recharger tout le document en cours. Il permett donc de transférer des données ou de pré-charger des données. jQuery permet de faire du AJAX simple de manière extrêmement facile, et permet de rendre les choses complexe tout à fait faisables. 
 
-Voici quelques exemples de l'utilisation d'AJAX à l'aide de JQuery.
+Voici quelques exemples de l'utilisation d'AJAX à l'aide de jQuery.
 
 \subsection{Charger des données dans une zone}
 
 Une utilisation classique de Ajax est de charger un bout de code HTML à l'intérieur d'une zone d'une page.
 
-Pour faire ceci à l'aide de JQuery, il suffit de sélectionner l'élément désiré et d'utiliser la fonction \texttt{load()}, comme montré dans l'exemple ci dessous 
+Pour faire ceci à l'aide de jQuery, il suffit de sélectionner l'élément désiré et d'utiliser la fonction \texttt{load()}, comme montré dans l'exemple ci dessous 
 
 \begin{lstlisting}
 $('#stats').load('stats.html');
@@ -298,7 +302,7 @@ $('#stats').load('stats.html');
 
 \subsection{Passer des paramètres a une page}
 
-Très souvent on veut simplement passer des paramètres a une page sur le serveur. Comme vous vous y attendez, ceci se fait de manière extrêmement simple à l'aide de JQuery. 
+Très souvent on veut simplement passer des paramètres a une page sur le serveur. Comme vous vous y attendez, ceci se fait de manière extrêmement simple à l'aide de jQuery. 
 
 On a le choix entre \texttt{\$.post()} et \texttt{\$.get()} en fonction de la méthode dont on a besoin. On peut ensuite spécifier optionnellement un objet comportant les données ainsi qu'une fonction appelée une fois l'opération terminée (fonction de type \emph{callback}).
 
@@ -313,7 +317,7 @@ $.post('save.cgi', {
                                    
 \subsection{Instruction complexes en AJAX rendu simple}
 
-Si l'on désire vraiment effectuer des opérations complexes en AJAX, il faut utiliser la fonction \texttt{\$.ajax()}. On spécifie le type de données utilisée (\texttt{xml, html, script ou json}) et JQuery va préparer les résultats de la fonction de retour automatiquement afin de pouvoir l'utiliser tout de suite. 
+Si l'on désire vraiment effectuer des opérations complexes en AJAX, il faut utiliser la fonction \texttt{\$.ajax()}. On spécifie le type de données utilisée (\texttt{xml, html, script ou json}) et jQuery va préparer les résultats de la fonction de retour automatiquement afin de pouvoir l'utiliser tout de suite. 
 
 On peut aussi spécifier \texttt{beforeSend}, \texttt{error}, \texttt{success} ou encore \texttt{complete} qui permet de mieux gérer ce qu'il se passe durant l'utilisation d'AJAX. Pour par exemple dire à l'utilisateur que la transaction a commencée et l'avertir quand elle est terminée.
 
@@ -336,7 +340,7 @@ $.ajax({
 });
 \end{lstlisting}
 
-On peut ensuite imaginer d'utiliser encore JQuery pour traiter les données XML reçues et les afficher. Pour ce faire, on va utiliser le même principe que pour les fichiers HTML. Cela rends facile de parcourir un fichier XML et d'en afficher le contenu dans un fichier HTML.
+On peut ensuite imaginer d'utiliser encore jQuery pour traiter les données XML reçues et les afficher. Pour ce faire, on va utiliser le même principe que pour les fichiers HTML. Cela rends facile de parcourir un fichier XML et d'en afficher le contenu dans un fichier HTML.
 
 L'exemple suivant montre comment utiliser le paramètre \texttt{sucess} pour appeler une fonction d'affichage de notre XML une fois la transaction correctement effectuées.
 
@@ -357,7 +361,7 @@ success: function(xml){
 \section{Animations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-On peut utiliser JQuery afin de créer des animation simplement. Certaines sont prédéfinies, d'autre peuvent être facilement créées. A la base des animation dans JQuery, il existe la fonction \texttt{animate()} qui permet de modifier n'importe quelle valeur numérique dans le temps. On peut par exemple facilement animer un changement de hauteur, de positions, de couleur ou de transparence. On peut aussi spécifier la vitesse de l'animation en millisecondes, ou à l'aide des vitesses prédéfinies: \texttt{slow}, \texttt{normal} ou \texttt{fast}.
+On peut utiliser jQuery afin de créer des animation simplement. Certaines sont prédéfinies, d'autre peuvent être facilement créées. A la base des animation dans jQuery, il existe la fonction \texttt{animate()} qui permet de modifier n'importe quelle valeur numérique dans le temps. On peut par exemple facilement animer un changement de hauteur, de positions, de couleur ou de transparence. On peut aussi spécifier la vitesse de l'animation en millisecondes, ou à l'aide des vitesses prédéfinies: \texttt{slow}, \texttt{normal} ou \texttt{fast}.
 
 Ci-dessous un exemple qui change la hauteur et la largeur d'un élément en même temps. On remarque qu'il n'y a pas de valeur de départ, les valeurs de départ sont prise à partir de la taille courante de l'élément modifié. On y a ajouté une fonction qui va afficher une alerte lorsque l'animation est terminée.
 
@@ -367,7 +371,7 @@ $('#grossi').animate({ height: 500, width: 500 }, "slow", function(){
 });
 \end{lstlisting}
 
-JQuery met à disposition des animations qui sont celles utilisées les plus fréquemment. On peut par exemple utiliser \texttt{show()} et \texttt{hide()} pour respectivement afficher ou cacher un élément; soit instantanément, soit à une vitesses spécifiée. On peut aussi utiliser les méthodes \texttt{fadeIn()} et \texttt{fadeOut()} ou \texttt{slideDown()} et \texttt{slideUp()} en fonction des effet que l'on désire. 
+jQuery met à disposition des animations qui sont celles utilisées les plus fréquemment. On peut par exemple utiliser \texttt{show()} et \texttt{hide()} pour respectivement afficher ou cacher un élément; soit instantanément, soit à une vitesses spécifiée. On peut aussi utiliser les méthodes \texttt{fadeIn()} et \texttt{fadeOut()} ou \texttt{slideDown()} et \texttt{slideUp()} en fonction des effet que l'on désire. 
 
 
 Voici un exemple qui fait par exemple apparaître un menu de navigation
@@ -391,19 +395,19 @@ Voilà à quoi ressemble cette page HTML
 	<a href="#" class="lien2">anim2: fadeIn() et fadeOut()</a> | 
 	<a href="#" class="lien3">anim3: slideToggle()</a>
 <p class="text" style="border:1px solid black; color: green;">
-	<br>Quelques animations avec JQuery<br><br></p>
+	<br>Quelques animations avec jQuery<br><br></p>
 </body>
 </html>
 \end{lstlisting}
 
-Ensuite, nous allons ajouter les animation à l'aide de JQuery. Chaque liens effectuera une action différentes sur le paragraphe identifié par \texttt{class="text"}.
+Ensuite, nous allons ajouter les animation à l'aide de jQuery. Chaque liens effectuera une action différentes sur le paragraphe identifié par \texttt{class="text"}.
 
-Pour cela, il faut commencer par ajouter un liens vers la librairie JQuery comme fait au début de ce document. Ce liens doit se situer dans l'en-tête du fichier HTML.
+Pour cela, il faut commencer par ajouter un liens vers la librairie jQuery comme fait au début de ce document. Ce liens doit se situer dans l'en-tête du fichier HTML.
 
 \begin{lstlisting}
 <head>
 <script type="text/javascript" 
-	src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+	src="http://code.jQuery.com/jQuery-1.1.3.1.pack.js"/>
 </head>
 \end{lstlisting}
 
@@ -417,19 +421,26 @@ Ensuite nous pouvons ajouter les actions sur les différents éléments de notre
 </script>
 \end{lstlisting}
 
-Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire, nous allons utiliser la fonction \texttt{click()} sur les liens, déjà utilisée précédemment. 
+Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire, nous allons utiliser la fonction \texttt{click()} sur les liens, déjà utilisée précédemment. Dans la fonction click, nous passons en paramètre une fonction anonyme qui va se charger d'effectuer le changement d'affichage (cacher ou afficher).
 
 \begin{lstlisting}
 <script>
-	$(document).ready(function() {		
-		$("a.lien1").click(function() {
-			$("p.text").toggle(150);
+	$(document).ready(function() {    
+		$("a.lien1").click(function() { // sur click du liens "lien1"
+			$("p.text").toggle(150);      // appel toggle sur paragraphe
+			                              // avec parametre 150 (ms)        
 		});
 	});
 </script>
 \end{lstlisting}
 
+Voilà qui est fait pour le premier lien! Ouvrons le fichier HTML dans notre navigateur, et vérifions que cela fonctionne. En cliquant sur le premier lien depuis la gauche, on devrait voir disparaître le paragraphe d'en dessous. Et cliquant à nouveau, celui-ci réapparaît. En ci peu de lignes, c'est magique!
 
+Continuons avec le lien suivant. Le deuxième est un peu plus compliqué. En effet la fonction \texttt{toggleFade()} n'existe pas. Nous allons donc utiliser la propriété \texttt{visible} de l'objet courant afin de déterminer si il faut afficher ou cacher le paragraphe. 
+
+Pour faire cela, nous allons créer une variable \texttt{p} à partir de l'objet \texttt{p.text}. Ensuite, nous allons vérifier si l'objet \texttt{p} est visible et exécuter la fonction \texttt{fadeOut()} si c'est le cas, et \texttt{fadeIn()} sinon. Les crochets “[” et “]” permettent de reconstruire la fonction appelée sur un objet à l'aide d'une chaîne de caractère. Nous utiliserons le seul opérateur ternaire \texttt{cond ? vrai:faux} qui permet de créer une condition \texttt{if} sur une seule ligne. Ensuite nous ajoutons les parenthèses avec l'éventuel paramètre, ici 800, qui représente les 800 ms que durera l'animation.
+
+Voilà ce que cela donne: 
 
 \begin{lstlisting}
 <script>
@@ -437,21 +448,20 @@ Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire
 		$("a.lien1").click(function() {
 			$("p.text").toggle(150);
 		});
-
 		$("a.lien2").click(function() {
 			p = $("p.text");
 		    p[ p.is(':visible') ? 'fadeOut' : 'fadeIn' ](800);
 		    return false;
 		});	
-		
-		$("a.lien3").click( function() {
-			$("p.text").slideToggle(300); 
-		});
 	});
 </script>
 \end{lstlisting}
 
+Il ne reste plus qu'a ajouter le 3\up{ème} lien. La seule différence avec le premier lien c'est qu'il utilise non pas la fonction \texttt{toggle()} mais la fonction \texttt{slideToggle()}.
 
+Ajoutons cela et testons a nouveau le fichier HTML. Tous les liens devrait faire soit apparaître, soit disparaître le paragraphe situé en dessous!
+
+Voilà le fichier \texttt{animation.html} complet: 
 
 \lstinputlisting{demo/animation.html}
 
@@ -460,7 +470,24 @@ Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Nous espérons que nous avons pus vous montrer que JQuery n'est pas une simple nouvelle librairie JavaScript comme il en existe tant. 
+Nous voilà arriver au bout de ce tutoriel. Espérons que nous avons pus vous montrer que jQuery n'est pas une simple nouvelle librairie JavaScript comme il en existe déjà beaucoup. Mais les fonctionnalité mise à disposition sont vraiment bien faites et permette de gagner un temps précieux.
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ressources}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Voici les liens qui nous ont aidé et inspiré pour la création de ce tutoriel.
+
+\small
+\begin{description}
+	\item[\url{http://jquery.com/}] Site officiel de jQuery.
+	\item[\url{http://www.jquery.info/}] Site francophone sur jQuery.
+	\item[\url{http://docs.jquery.com/Tutorials}] Tutoriels officiels.
+	\item[\url{http://www.gotapi.com/html}] Description de l'API jQuery ainsi que HTML. Très utile comme référence rapide et disponibles pour une grande variété de langages courants.
+	\item[\url{http://simonwillison.net/2007/Aug/15/jQuery/}] Exemple d'utilisation de jQuery pour les développeur JavaScript.
+	\item[\url{http://www-128.ibm.com/developerworks/library/x-ajaxjQuery.html}] Utilisation de AJAX dans jQuery
+\end{description}
 
 % \appendix
 % 
