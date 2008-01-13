@@ -130,9 +130,10 @@ La vocation première de ce Framework est de gagner du temps dans le développem
 
 \newpage
 \section{JavaScript et DOM}
-Avant de commencer à proprement parler de JQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille JQuery. Un brève description de JavaScript et de DOM est donc nécessaire, et il a été jugé inutile de présenter le HTML.
+Avant de commencer à proprement parler de JQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille JQuery. Un brève description de JavaScript et de DOM est donc nécessaire, par contre, il a été jugé inutile de présenter le HTML.
 
 \subsection{Introduction}
+A la base, le HTML est un langage totalement statique, ce qui convient pour afficher des informations statiques, mais qui devient très vite limitatif lorsqu'un contenu dynamique est désiré. C'est pour pallier à ce besoin que le Dynamic HTML (DHTML) est apparut et c'est là que l'utilisation de DOM et JavaScript devient utile.
 
 \subsection{DOM}
 % http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html
@@ -146,18 +147,18 @@ Comme spécification du W3C, un objectif majeur du modèle objet document est qu
 La structure du document DOM est très similaire à la structure des documents qu'elle modélise. Pour mieux illustrer cela, prenons l'exemple de code HTML suivant:
 
 \begin{lstlisting}
-	<TABLE>
-		<TBODY> 
-			<TR> 
-				<TD>Text1</TD>
-				<TD>Text2</TD> 
-			</TR> 
-			<TR>
-				<TD>Text3</TD>        
-				<TD>Text4</TD> 
-			</TR> 
-		</TBODY>
-	</TABLE>
+<TABLE>
+	<TBODY> 
+		<TR> 
+			<TD>Text1</TD>
+			<TD>Text2</TD> 
+		</TR> 
+		<TR>
+			<TD>Text3</TD>        
+			<TD>Text4</TD> 
+		</TR> 
+	</TBODY>
+</TABLE>
 \end{lstlisting}
 
 qui illustré sous forme graphique ressemble à la figure \ref{dom1}.
@@ -195,11 +196,11 @@ La figure \ref{schema} représente la hiérarchie d'un objet d'un navigateur en 
 Comme vu précédemment, le JavaScript en lui-même ne suffit pas pour accéder et modifier le contenu du code HTML. Voici donc un petit exemple qui permettra de différencier ce qui est du DOM et ce qui est du JavaScript.
 
 \begin{lstlisting}
-	var anchorTags = document.getElementsByTagName("a");
-	for (var i = 0; i < anchorTags.length ; i++)
-	{
-	   alert("L'attribut href du " + i + "e element est : " + anchorTags[i].href + "\n");
-	}	
+var anchorTags = document.getElementsByTagName("a");
+for (var i = 0; i < anchorTags.length ; i++)
+{
+   alert("L'attribut href du " + i + "e element est : " + anchorTags[i].href + "\n");
+}	
 \end{lstlisting}
 
 Dans l'exemple qui précède, les parties JavaScript sont les suivantes:
@@ -207,15 +208,15 @@ Dans l'exemple qui précède, les parties JavaScript sont les suivantes:
 	\item [\texttt{var anchorTags =}] {Création d'une variable appelée \texttt{anchorTags}}
 	\item [\texttt{;}] {Fin d'instruction}
 	\item [\texttt{for(var i = 0; i < }] {Boucle \texttt{for} typique dans un langage de programmation. Elle permet de parcourir chacun des noeuds de la liste \texttt{anchorTags}.}
-	\item [\texttt{; i++)}] {C'est l'incrémentation de la variable \texttt{i} dans la boucle, c'est-à-dire l'incrémentation de la boucle.}
-	\item [\texttt{"L'attribut href du " + i + "e element est: " +}] {C'est un chaîne de caractères avec l'opérateur de concaténation (\texttt{+}).}
+	\item [\texttt{; i++)}] {C'est l'incrémentation de la variable \texttt{i} dans la boucle, c'est-à-dire l'incré-mentation de la boucle.}
+	\item [\texttt{"L'attribut href du " + i + "e element est: " +}] {Une chaîne de caractères avec l'opérateur de concaténation (\texttt{+}).}
 	\item [\texttt{"$\backslash$n");}] {Encore une fois le caractère de concaténation et une chaîne de caractères avec le caractère le retour à la ligne.}
 	\item [\texttt{\}}] {Fin d'un bloc d'instructions. Dans ce cas fin de la boucle \texttt{for}.}
 \end{description}
 
 Maintenant ce qui concerne le DOM:
 \begin{description}
-	\item [\texttt{document.getElementsByTagName("a")}] {\texttt{document} est l'objet contenant tout ce qui se trouve sur la page. La méthode \texttt{getElementsByTagName()} renvoie une \emph{NodeList} (sorte de tableu spécifique au DOM contenant des noeuds) de toutes les balises correspondant au paramètre passé à la fonction, et ceci dans l'ordre d'apparition dans le document source. La variable anchorsTag est maintenant une \emph{NodeList}.}
+	\item [\texttt{document.getElementsByTagName("a")}] {\texttt{document} est l'objet contenant tout ce qui se trouve sur la page. La méthode \texttt{getElementsByTagName()} renvoie une \emph{NodeList} (sorte de tableu spécifique au DOM contenant des noeuds) de toutes les balises correspondant au paramètre passé à la fonction, et ceci dans l'ordre d'apparition dans le document source. La variable \texttt{anchorsTag} est maintenant une \emph{NodeList}.}
 	\item [\texttt{anchorTags.length}] {C'est la propriété \texttt{length} de l'interface \emph{NodeList}. Elle rend un entier contenant le nombre de noeuds présents dans \texttt{anchorTags}.}
 	\item [\texttt{alert}] {\texttt{alert()} est une méthode DOM qui affiche une boite de dialogue avec une chaîne de caractères passée en paramètres.}
 	\item [\texttt{anchorTags[i].href}] {Permet d'accéder à la propriété \texttt{href} du i\up{ème} noeud.}
@@ -226,8 +227,56 @@ Maintenant ce qui concerne le DOM:
 \section{Au coeur de JQuery}
 \subsection{Moteur}
 
-\subsection{Installation \& Utilisation}
-Il est très facile d'installer  
+\subsection{Installation \& Utilisation}\label{install}
+Il est très facile d'installer JQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
+\begin{lstlisting}
+	<script src="lib/jquery.js" type="text/javascript\"/>
+\end{lstlisting}
+dans le champ \emph{head} d'un document HTML. L'attribut \texttt{src="lib/jquery.js"} correspond au chemin vers la librairie JQuery, qui dans cet exemple est placée dans un répertoire \texttt{lib} se trouvant dans le même répertoire que le fichier HTML.\\
+
+Une fois ceci fait, la libraire est prête à être utilisée en appelant simplement les méthodes existantes de la librairie.
+
+\begin{lstlisting}
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.2.1.js"/>
+		<script>
+			$(document).ready(function() {		
+				$("a.lien").click(function() {
+					$("p.text").toggle(150);
+				});
+			});
+		</script>
+	</head>
+	<body>
+
+		<a href="#" class="lien">anim: toggle()</a>
+
+	<p class="text" style="border:1px solid black; color: green;">
+		<br>Teste avec JQuery<br><br></p>
+		
+	</body>
+</html>
+\end{lstlisting}
+
+L'exemple ci-dessus montre comment utiliser importer la librairie JQuery et ensuite d'appeler la méthode \texttt{toggle()} qui cache ou affiche les liens référencés respectivement s'ils sont visibles ou cachés. Cette méthode est appelée lorsqu'un click est détecté et c'est la méthode \texttt{click()} qui le fait. Ces deux méthodes sont toutes les deux issues de la librairie JQuery.
+
+\subsection{Librairie}
+comme expliqué au chapitre \ref{install}, l'appel à un simple fichier suffit pour pouvoir utiliser la librairie et à l'instar d'un langage comme Java, JQuery ne possède actuellement qu'une seule librairie. Néanmoins, il est possible de catégoriser les différentes méthodes afin de pouvoir mieux s'y retrouver lors d'une recherche.\\
+
+C'est exactement qui a été fait dans la documentation officielle disponible à l'adresse \url{http://ww} et très bien repris par une documentation française
+
+\subsubsection{Fonctions essentielles}
+\subsubsection{Les Sélecteurs}
+\subsubsection{Attributs}
+\subsubsection{Parcours}
+\subsubsection{Manipulation}
+\subsubsection{CSS}
+\subsubsection{Evènements}
+\subsubsection{Effets}
+\subsubsection{AJAX}
+\subsubsection{Fonctions diverses}
+\subsubsection{UI}
 
 \subsection{Compatibilité avec les navigateurs}
 % http://docs.jquery.com/Browser_Compatibility
