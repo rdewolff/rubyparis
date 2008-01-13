@@ -289,7 +289,7 @@ $("img").each(function(i){
 });
 \end{lstlisting}
 
-Le code ci-dessus créé un objet jQuery contenant tous les éléments \texttt{img} de la page web, les parcoure et ajoute la source de l'image.\\
+Le code ci-dessus créé un objet jQuery contenant tous les éléments \texttt{img} de la page web, les parcourt et ajoute la source de l'image.\\
 
 Code de test:
 \begin{lstlisting}
@@ -324,9 +324,51 @@ Résultat:
 \end{lstlisting}
 
 \subsubsection{Parcours}
+Cet ensemble est divisé en deux types de fonctions:
+\begin{itemize}
+	\item filtre;
+	\item recherche.\\
+\end{itemize}
 
+Le premier type de la liste permet, comme son nom l'indique, de faire un filtrage sur l'objet jQuery, ce qui veut dire effectuer un tri parmi l'objet. L'exemple qui suit parcourt tout l'objet et retourne tous les éléments appartenant à la classe \texttt{selected}.
+
+\begin{lstlisting}
+$("p").filter(".selected")
+\end{lstlisting}
+
+Code de test:
+\begin{lstlisting}
+<p class="selected">Hello</p><p>How are you?</p>
+\end{lstlisting}
+
+Résultat:
+\begin{lstlisting}
+[ <p class="selected">Hello</p> ]
+\end{lstlisting}
+
+Le deuxième type de la liste permet d'effectuer des recherches dans l'objet jQuery. L'exemple suivant permet de rechercher tous les enfants de chaque \texttt{div}.
+
+\begin{lstlisting}
+$("div").children()
+\end{lstlisting}
+
+
+Code de test:
+\begin{lstlisting}
+<p>Hello</p><div>Hello Again</div><p>And Again</p>
+\end{lstlisting}
+
+
+Résultat:
+\begin{lstlisting}
+[Hello Again]
+\end{lstlisting}
 
 \subsubsection{Manipulation}
+Les fonctions de type manipulation permettent de changer, remplacer, supprimer ou copier le contenu. Permettent également l'insertion au milieu, avant, après, autour.\\
+
+L'exemple suivant p
+
 \subsubsection{CSS}
 \subsubsection{Evénements}
 \subsubsection{Effets}
