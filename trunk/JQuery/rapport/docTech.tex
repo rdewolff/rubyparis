@@ -18,7 +18,7 @@
 \newcommand{\branchetag}{WEB}
 \newcommand{\branche}{Technologies web}
 % \newcommand{\labonummer}{}
-\newcommand{\laboname}{JQuery}
+\newcommand{\laboname}{jQuery}
 \newcommand{\auteurOne}{Romain de Wolff}
 \newcommand{\auteurTwo}{Bruno da Silva}
 \newcommand{\promo}{IL2008}
@@ -124,13 +124,13 @@
 
 
 \newpage
-\section{Qu'est-ce que JQuery?}
-JQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations...
+\section{Qu'est-ce que jQuery?}
+jQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations...
 La vocation première de ce Framework est de gagner du temps dans le développement des applications: "write less, do more".
 
 \newpage
 \section{JavaScript et DOM}
-Avant de commencer à proprement parler de JQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille JQuery. Un brève description de JavaScript et de DOM est donc nécessaire, par contre, il a été jugé inutile de présenter le HTML.
+Avant de commencer à proprement parler de jQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille jQuery. Un brève description de JavaScript et de DOM est donc nécessaire, par contre, il a été jugé inutile de présenter le HTML.
 
 \subsection{Introduction}
 A la base, le HTML est un langage totalement statique, ce qui convient pour afficher des informations statiques, mais qui devient très vite limitatif lorsqu'un contenu dynamique est désiré. C'est pour pallier à ce besoin que le Dynamic HTML (DHTML) est apparut et c'est là que l'utilisation de DOM et JavaScript devient utile.
@@ -224,15 +224,16 @@ Maintenant ce qui concerne le DOM:
 
 \newpage
 \renewcommand{\labelitemi}{$\bullet$}
-\section{Au coeur de JQuery}
+\section{Au coeur de jQuery}
 \subsection{Moteur}
+-Travaille sur un objet jQuery.
 
 \subsection{Installation \& Utilisation}\label{install}
-Il est très facile d'installer JQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
+Il est très facile d'installer jQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
 \begin{lstlisting}
 	<script src="lib/jquery.js" type="text/javascript\"/>
 \end{lstlisting}
-dans le champ \emph{head} d'un document HTML. L'attribut \texttt{src="lib/jquery.js"} correspond au chemin vers la librairie JQuery, qui dans cet exemple est placée dans un répertoire \texttt{lib} se trouvant dans le même répertoire que le fichier HTML.\\
+dans le champ \emph{head} d'un document HTML. L'attribut \texttt{src="lib/jquery.js"} correspond au chemin vers la librairie jQuery, qui dans cet exemple est placée dans un répertoire \texttt{lib} se trouvant dans le même répertoire que le fichier HTML.\\
 
 Une fois ceci fait, la libraire est prête à être utilisée en appelant simplement les méthodes existantes de la librairie.
 
@@ -253,20 +254,51 @@ Une fois ceci fait, la libraire est prête à être utilisée en appelant simple
 		<a href="#" class="lien">anim: toggle()</a>
 
 	<p class="text" style="border:1px solid black; color: green;">
-		<br>Teste avec JQuery<br><br></p>
+		<br>Teste avec jQuery<br><br></p>
 		
 	</body>
 </html>
 \end{lstlisting}
 
-L'exemple ci-dessus montre comment utiliser importer la librairie JQuery et ensuite d'appeler la méthode \texttt{toggle()} qui cache ou affiche les liens référencés respectivement s'ils sont visibles ou cachés. Cette méthode est appelée lorsqu'un click est détecté et c'est la méthode \texttt{click()} qui le fait. Ces deux méthodes sont toutes les deux issues de la librairie JQuery.
+L'exemple ci-dessus montre comment utiliser importer la librairie jQuery et ensuite d'appeler la méthode \texttt{toggle()} qui cache ou affiche les liens référencés respectivement s'ils sont visibles ou cachés. Cette méthode est appelée lorsqu'un click est détecté et c'est la méthode \texttt{click()} qui le fait. Ces deux méthodes sont toutes les deux issues de la librairie jQuery.
 
 \subsection{Librairie}
-comme expliqué au chapitre \ref{install}, l'appel à un simple fichier suffit pour pouvoir utiliser la librairie et à l'instar d'un langage comme Java, JQuery ne possède actuellement qu'une seule librairie. Néanmoins, il est possible de catégoriser les différentes méthodes afin de pouvoir mieux s'y retrouver lors d'une recherche.\\
+Comme expliqué au chapitre \ref{install}, l'appel à un simple fichier suffit pour pouvoir utiliser la librairie et à l'instar d'un langage comme Java, jQuery ne possède actuellement qu'une seule librairie. Néanmoins, il est possible de catégoriser les différentes méthodes afin de pouvoir mieux s'y retrouver lors d'une recherche.\\
 
-C'est exactement qui a été fait dans la documentation officielle disponible à l'adresse \url{http://ww} et très bien repris par une documentation française
+C'est exactement qui a été fait dans la documentation officielle et par l'excellente traduction française respectivement disponibles aux adresses \url{http://docs.jquery.com/Main_Page} et \url{http://jquery.developpeur-web2.com/}.\\
+
+C'est donc également par catégories que la librairie sera décrite dans ce document. Néanmoins, cette description est faite dans le but d'informer de certaines possibilités existantes et ne sera pas exhaustive. Donc pour des informations plus précises, il faut se référer aux deux sites cités ci-dessus.
 
 \subsubsection{Fonctions essentielles}
+Cette partie de la librairie met à disposition ce que les concepteurs ont estimé être les fonctions de base pour pouvoir faire du jQuery. En effet, c'est là qu'il est possible de trouver les fonctions construisant un objet jQuery et ensuite d'exécuter dessus certaines opérations:
+
+\begin{itemize}
+	\item parcourir tous les éléments de l'objet et appliquer un traitement dessus;
+	\item chercher des éléments par position;
+	\item trouver la position d'un élément;
+	\item savoir combien de combien d'éléments est composé l'objet;
+\end{itemize}
+
+Voici un petit exemple pour mieux illustrer cela:
+
+\begin{lstlisting}
+$("img").each(function(i){
+	this.src = "test" +  i +  ".jpg";
+});
+\end{lstlisting}
+Le code ci-dessus créé un objet jQuery contenant tous les éléments \texttt{img} de la page web, les parcoure et ajoute la source de l'image  
+
+Code de test:
+\begin{lstlisting}
+<img/><img/>
+\end{lstlisting}
+
+Résultat:
+\begin{lstlisting}
+<img src="test0.jpg"/><img src="test1.jpg"/>
+\end{lstlisting}
+
+
 \subsubsection{Les Sélecteurs}
 \subsubsection{Attributs}
 \subsubsection{Parcours}
@@ -280,7 +312,7 @@ C'est exactement qui a été fait dans la documentation officielle disponible à
 
 \subsection{Compatibilité avec les navigateurs}
 % http://docs.jquery.com/Browser_Compatibility
-La version actuelle de JQuery est supportée par les navigateurs suivants:
+La version actuelle de jQuery est supportée par les navigateurs suivants:
 
 \begin{itemize}
 	\item {Firefox 1.5+;}
@@ -299,7 +331,7 @@ Par contre, certains problèmes ont été reportés sur les suivantes versions:
 	\item {Konqueror.\\}
 \end{itemize}
 
-En général, JQuery fonctionne avec Konqueror et Firefox 1.0.x, mais il peut se produire certains bugs depuis que les tests ne sont pas fait aussi régulièrement qu'avec les versions plus récentes.\\
+En général, jQuery fonctionne avec Konqueror et Firefox 1.0.x, mais il peut se produire certains bugs depuis que les tests ne sont pas fait aussi régulièrement qu'avec les versions plus récentes.\\
 
 Pour des renseignements plus précis sur la compatibilité d'un navigateur en particulier, il existe un très bon test à l'adresse \url{http://jquery.com/test/}.
 
