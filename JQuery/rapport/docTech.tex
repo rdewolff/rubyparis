@@ -128,6 +128,8 @@
 jQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations...
 La vocation première de ce Framework est de gagner du temps dans le développement des applications: "write less, do more".
 
+-Pourquoi jQuery?
+
 \newpage
 \section{JavaScript et DOM}
 Avant de commencer à proprement parler de jQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille jQuery. Un brève description de JavaScript et de DOM est donc nécessaire, par contre, il a été jugé inutile de présenter le HTML.
@@ -276,7 +278,7 @@ Cette partie de la librairie met à disposition ce que les concepteurs ont estim
 	\item parcourir tous les éléments de l'objet et appliquer un traitement dessus;
 	\item chercher des éléments par position;
 	\item trouver la position d'un élément;
-	\item savoir combien de combien d'éléments est composé l'objet;
+	\item savoir combien de combien d'éléments est composé l'objet.\\
 \end{itemize}
 
 Voici un petit exemple pour mieux illustrer cela:
@@ -286,25 +288,47 @@ $("img").each(function(i){
 	this.src = "test" +  i +  ".jpg";
 });
 \end{lstlisting}
-Le code ci-dessus créé un objet jQuery contenant tous les éléments \texttt{img} de la page web, les parcoure et ajoute la source de l'image  
+
+Le code ci-dessus créé un objet jQuery contenant tous les éléments \texttt{img} de la page web, les parcoure et ajoute la source de l'image.\\
 
 Code de test:
 \begin{lstlisting}
 <img/><img/>
 \end{lstlisting}
 
+
 Résultat:
 \begin{lstlisting}
 <img src="test0.jpg"/><img src="test1.jpg"/>
 \end{lstlisting}
 
-
-\subsubsection{Les Sélecteurs}
 \subsubsection{Attributs}
+Cette partie regroupe les fonctions permettant d'accéder aux attributs des balises HTML. Elles permettent entre autres d'ajouter, modifier ou supprimer la valeur de l'attribut. Elles permettent également d'insérer ou supprimer un attribut.\\
+
+Par exemple, le code qui suit permet d'ajouter l'attribut \texttt{src} avec la valeur \texttt{test.jpg} à la balise \texttt{img}.
+
+\begin{lstlisting}
+$("img").attr("src","test.jpg");
+\end{lstlisting}
+
+
+Code de test:
+\begin{lstlisting}
+<img/>
+\end{lstlisting}
+
+
+Résultat:
+\begin{lstlisting}
+<img src="test.jpg"/>
+\end{lstlisting}
+
 \subsubsection{Parcours}
+
+
 \subsubsection{Manipulation}
 \subsubsection{CSS}
-\subsubsection{Evènements}
+\subsubsection{Evénements}
 \subsubsection{Effets}
 \subsubsection{AJAX}
 \subsubsection{Fonctions diverses}
