@@ -404,8 +404,94 @@ Pour des renseignements plus précis sur la compatibilité d'un navigateur en pa
 \newpage
 \section{Comparatif}
 
+Nous allons comparer le travail a effectuer pour arriver au même résultat avec et sans jQuery. Pour se faire, nous avons repris un petit script disponible sur internet qui s'occupe de modifier les \texttt{checkbox} d'un formulaire. Nous allons l'analyser et ensuite le refaire à l'aide de jQuery. \\
+
+Trois boutons permettent d'effectuer une modification sur les cases à cocher. Le premier permet de les sélectionner, le deuxième d'enlever la sélection et finalement le troisième de l'inverser. \\
+
+\subsection{Version sans jQuery}
+
+Voici ce que donne le résultat avec l'utilisation de JavaScript sans s'aider de la librairie jQuery. \\
+
+Fichier \texttt{comparatif-js.html}, disponible sur \url{http://code.google.com/p/rubyparis/downloads}
+
+\lstinputlisting{exemple/comparatif-js.html}
+
+Le formulaire comporte donc trois boutons qui, chacun, possède un événement sur click. On appel la fonction \texttt{GereChkbox()} qui comporte deux paramètres. Le premier est le nom de l'objet dans lequel se trouve les cases à cocher. Le deuxième est un numéro qui permet de déterminer l'action à effectuer : 
+
+
+\begin{description}
+	\item[0] Tout décocher
+	\item[1] Tout cocher
+	\item[2] Inverser la sélection
+\end{description}
+
+La fonction \texttt{GereChkbox()} fonctionne de la manière suivante. Elle récupère l'élément contenant les cases à cocher grâce à la méthode \texttt{getElementById(conteneur)}. La méthode \texttt{firstChild()} permet de récupérer le premier objet contenu dans cet objet. Dans notre cas, une \emph{checkbox}. Avant d'appliquer un éventuel changement d'état à cet objet, nous vérifions qu'il s'agit bien d'un objet du type \emph{formulaire} et qu'il s'agit bien d'une case à cocher. Finalement, nous changeons l'état en fonction du bouton qui a été clické, en utilisant le numéro passé en paramètre dont nous avons parlé ci-dessus.
+
+\subsection{Version avec jQuery}
+
+Adaptons maintenant la version de notre exemple en utilisant jQuery. Nous allons reprendre le code HTML et supprimer quelques information inutiles comme l'appel de la fonction \texttt{GereChkbox()} ainsi que le \texttt{div} englobant les cases à cocher. \\
+
+Nous allons rajouter un attribut \texttt{id} aux boutons afin de pouvoir détecter lequel a été pressé. \\
+
+Puis, nous allons importer la librairie jQuery à l'aide de la commande citée en début de ce document. 
+
+\begin{lstlisting}
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+\end{lstlisting}
+
+Nous pouvons dès lors utiliser les fonctionnalités mise à disposition par la librairie jQuery pour simplifier et clarifier notre code. \\
+
+Notre code sera appelé une fois que le document a été chargé. Nous le plaçons donc dans une balise de script, après la ligne :
+
+\begin{lstlisting}
+$(document).ready(function() { <code ici> });
+\end{lstlisting}
+
+Il est très facile de définir une action global sur tout les éléments d'un certain type. Pour définir une fonction anonyme sur click de tout les boutton, nous utilisons cette ligne : \\
+
+\begin{lstlisting}
+$(":button").click( function(){..} );
+\end{lstlisting}
+
+Ensuite nous allons utiliser l'\texttt{id} du bouton clické pour savoir quelle action effectuer. Il faut donc stocker cette information dans une variable. Cela ce fait à l'aide de la ligne suivante : \\
+
+\begin{lstlisting}
+action = $(this).attr("id");
+\end{lstlisting}
+
+Le mot clé \texttt{this} fait référence à l'objet en cours d'utilisation. La méthode \texttt{attr("nomAttribut")} permet de récupérer la valeur d'un attribut. \\
+
+Nous allons maintenant parcourir toutes les cases à cocher à l'aide de la méthode \texttt{each()}. Pour se faire, jQuery retourne la liste d'objet d'un certain type (dans notre cas \texttt{checkbox}) à l'aide de \verb!$(":checkbox")!.  \\ 
+
+La ligne suivante permet donc de parcourir toutes les cases à cocher du document et de leur appliquer une fonction.
+
+\begin{lstlisting}
+$(":checkbox").each( function() {
+\end{lstlisting}
+
+Finalement, dans la fonction anonyme déclarée ci-dessus, nous allons mettre une instruction \texttt{switch} qui va utiliser la valeur de la variable \texttt{action} pour déterminer que faire.  \\
+
+Voici le code complet auquel on arrive en utilisant jQuery. \\
+
+Fichier \texttt{comparatif-jq.html}, disponible sur \url{http://code.google.com/p/rubyparis/downloads}
+
+\lstinputlisting{exemple/comparatif-jq.html}
+
+\subsection{Remarques}
+
+Il est évidemment possible d'utiliser d'autres méthodes pour y arriver. Mais celle que nous avons réalisé semble être un bon moyen d'effectuer la même action proprement.  \\
+
+Ce qui est agréable, c'est qu'en utilisant jQuery, on a besoin de moins de méthode et autres vérifications pour arriver au même résultat. En effet, sans jQuery, on utilise 9 méthodes, dont distincte. \\
+
+En utilisant jQuery, on en utilise 4 en tout et pour tout. Le code produit par jQuery est beaucoup plus clair et concis. Il est aussi portable étant donné que jQuery supporte la majorité des navigateurs récent.
+
 \newpage
 \section{Conclusion}
+
+
+
+
 
 % \appendix
 % 
