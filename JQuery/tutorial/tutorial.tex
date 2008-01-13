@@ -130,9 +130,15 @@
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Connaissance d'HTML requise.
+Dans ce tutoriel nous allons découvrir ce qu'est jQuery et ce qu'il permet de faire. jQuery est une librairie JavaScript qui simplifie la vie au développement d'application web. Il supporte les navigateur web récent et se charge de la compatibilité.
 
-Les fichiers utilisés dans ce document sont disponibles à l'adresse: \\ \url{http://code.google.com/p/rubyparis/downloads/list}
+Nous partons du principe que les bases du HTML sont connues, ainsi qu'un peu d'expérience dans les langage de programmation. 
+
+Les fichiers utilisés dans ce document sont disponibles à l'adresse suivante: \\ \url{http://code.google.com/p/rubyparis/downloads}
+
+Tout d'abord, nous allons créer un premier exemple d'utilisation de jQuery. Puis nous allons voir comment fonctionne AJAX avec jQuery, ce qui est très simple à faire. Enfin, nous allons voir comment effectuer des animations avec jQuery.
+
+Ces quelques exemples devrait suffire pour vous donner envie de continuer d'utiliser jQuery dans vos projets relatif au web.
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +150,9 @@ Nous allons commencer par créer un exemple très simple pour se plonger directe
 
 \subsection{Création d'une page HTML basique}
 
-Pour commencer nous allons créer une page HTML basique de la forme suivante :
+Pour commencer nous allons créer une page HTML basique comportant des paragraphes et des liens. Le but n'est pas de faire une page HTML complexe, mais de montrer comment jQuery fonctionne. Vous allez voir c'est très simple.
+
+Voici le fichier source de la page HTML en question.
 
 \begin{lstlisting}
 <html>
@@ -165,6 +173,8 @@ Pour commencer nous allons créer une page HTML basique de la forme suivante :
 Pour utiliser la librairie jQuery, nous allons devoir spécifier où se trouve ses sources. On peut, à choix, télécharger le fichier \emph{*.js} où alors mettre le chemin complet de son emplacement sur le site de jQuery. \\
 
 Pour ce faire on rajoute une section \texttt{head} entre la section \texttt{html} et \texttt{body} qui va contenir le lien vers le fichier JavaScript (\texttt{*.js}) qui contient la librairie de jQuery.
+
+
 
 \begin{lstlisting}
 <head>
@@ -279,6 +289,11 @@ jQuery('p[a]')
 
 Tous les paragraphes qui contienne un ou plusieurs liens.
 
+\subsection{Code source de l'exemple}
+
+Voilà le code source du fichier \texttt{basic.html} disponible sur le site \url{http://code.google.com/p/rubyparis/downloads}.
+
+\lstinputlisting{demo/basic.html}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
