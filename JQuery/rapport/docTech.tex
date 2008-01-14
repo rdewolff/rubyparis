@@ -46,6 +46,7 @@
   %   global,if,otherwise,persistent,return,switch,try,while},
   keywords={script, document, function},
   basicstyle=\ttfamily\small,
+  % basicstyle=\scriptsize,
   keywordstyle=\color{blue},
   commentstyle=\color{dkgreen},
   stringstyle=\color{red},
@@ -63,7 +64,7 @@
   framexrightmargin=10pt,
   framexbottommargin=7pt,
   framextopmargin=7pt,
-  linewidth=350pt, % largeur de la ligne de code affichée
+  linewidth=335pt, % largeur de la ligne de code affichée
   xleftmargin=10pt, % espace avant le debut du cadre
   aboveskip=20pt
 }
@@ -121,24 +122,27 @@
 \pagestyle{fancy}
 \pagenumbering{arabic}
 \section{Introduction}
+Dans le cadre du cours de Technologies Web, il nous a été demandé d'étudier et présenter une technologie actuelle. Notre but étant de découvrir de nouvelles technologies, il allait parfaitement dans le sens du travail demandé. Par contre, nous n'avions aucune idée de quoi choisir.\\
+
+En parcourant un peut le Web et en lisant quelques articles et commentaires sur les nouvelles technologies, jQuery a attiré notre attention et nous a donné envie de nous y plonger. 
 
 \section{Qu'est-ce que jQuery?}\label{jQuery}
-jQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations, etc...
-La vocation première de ce Framework n'est pas d'innover, mais de permettre un gain de temps non négligeable dans le développement des sites Web.\\
+jQuery est un framework développé en javascript qui permet notamment de manipuler aisément DOM, d'utiliser AJAX, de créer des animations, etc...
+La vocation première de ce “framework” n'est pas d'innover, mais de permettre un gain de temps non négligeable dans le développement des sites Web et de le rendre portable aisément.\\
 
 On ne peut donc pas véritablement dire que jQuery vient combler un besoin, mais simplement simplifier le travail des développeurs utilisant le JavaScript en leur mettant à disposition une série de méthodes qui nécessiteraient plusieurs lignes de code pour être réalisées.
 
 \newpage
 \section{JavaScript et DOM}
-Avant de commencer à proprement parler de jQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille jQuery. Un brève description de JavaScript et de DOM est donc nécessaire, par contre, il a été jugé inutile de présenter le HTML.
+Avant de commencer à proprement parler de jQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille jQuery. Un brève description de JavaScript et de DOM est donc nécessaire.
 
 \subsection{Introduction}
-A la base, le HTML est un langage totalement statique, ce qui convient pour afficher des informations statiques, mais qui devient très vite limitatif lorsqu'un contenu dynamique est désiré. C'est pour pallier à ce besoin que le Dynamic HTML (DHTML) est apparut et c'est là que l'utilisation de DOM et JavaScript devient utile.
+A la base, le HTML est un langage totalement statique, ce qui convient pour afficher des informations simples, mais qui devient très vite limitatif lorsqu'un contenu dynamique est désiré. C'est pour pallier à ce besoin que le Dynamic HTML (DHTML) est apparut et c'est là que l'utilisation de DOM et JavaScript devient utile.
 
 \subsection{DOM}
 % http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html
 % http://fr.wikipedia.org/wiki/Document_Object_Model
-Le modèle objet de document (DOM), contrairement à ce que beaucoup de personnes croient, n'est pas un langage, mais une interface de programmation d'application (API) essentiellement utilisé pour des documents HTML valides et XML bien-formés. Ce modèle (DOM), créé en 1998 par le W3C pour , définit la structure logique d'un document et la manière d'y accéder et de le manipuler. Le terme “document” est définit au un sens large par la spécification, ce qui permet par exemple à XML de stocker n'importe quel type de données sous forme de documents et ensuite de les gérer avec DOM.\\
+Le modèle objet de document (DOM), contrairement à ce que beaucoup de personnes croient, n'est pas un langage, mais une interface de programmation d'application (API) essentiellement utilisé pour des documents HTML valides et XML bien-formés. Ce modèle (DOM), créé en 1998 par le W3C, définit la structure logique d'un document et la manière d'y accéder et de le manipuler. Le terme “document” est définit au sens large par la spécification, ce qui permet par exemple à XML de stocker n'importe quel type de données sous forme de documents et ensuite de les gérer avec DOM.\\
 
 L'API DOM permet donc de construire des documents, naviguer dans leur structure ainsi qu'ajouter, modifier ou supprimer des éléments et leur contenu. Il est ainsi possible d'accéder, modifier, supprimer ou ajouter, à quelques exceptions près, tout le contenu des documents HTML et XML.\\
 
@@ -171,14 +175,14 @@ qui illustré sous forme graphique ressemble à la figure \ref{dom1}.
 	\end{center}
 \end{figure}
 
-On remarque que le code HTML est structure sous forme d'un arbre et que c'est très proche de la structure du code en elle-même. Ce n'est toutefois pas DOM qui spécifie cette structure en arbre, il se limite tout simplement à reproduire la structure du langage l'utilisant, qui dans ce cas est le HTML.
+On remarque que le code HTML est structure sous forme d'un arbre et qu'il est identique à la structure du code. Ce n'est toutefois pas DOM qui spécifie cette structure en arbre, il se limite tout simplement à reproduire la structure du langage l'utilisant, qui dans ce cas est le HTML.
 
 \subsection{JavaScript}
 % http://fr.wikipedia.org/wiki/Javascript
 % http://www.commentcamarche.net/javascript/jsintro.php3
-JavaScript est un “langage de scripting objet” développé par Brendan Eich, aujourd'hui l'un des leaders du projet Mozilla, en 1995 chez Netscape Communications Corp. Et contrairement à ce que beaucoup de monde croit, il n'a rien à voir avec le java. Néanmoins, il possède une syntaxe similaire à ce dernier et C++ dans un souci de limiter le nombre de nouveaux concepts nécessaires à l'apprentissage du langage.\\
+JavaScript est un “langage de scripting objet” développé par Brendan Eich, aujourd'hui l'un des leaders du projet Mozilla, en 1995 chez Netscape Communications Corp. Et contrairement à ce que beaucoup de monde croit, il n'a rien à voir avec le Java. Néanmoins, il possède une syntaxe similaire à ce dernier et C++ dans un souci de limiter le nombre de nouveaux concepts nécessaires à l'apprentissage du langage.\\
 
-C'est un langage essentiellement orienté Web, qui au niveau historique se trouve être le premier langage de script pour le Web. Il a notamment permis d'apporter des améliorations au HTML en permettant d'exécuter des commandes du côté client, c'est-à-dire au niveau du navigateur et non du serveur. Il est donc fortement lié au navigateur appelant la page web incorporant le script, mais en contrepartie, il ne nécessite pas de compilateur.\\
+C'est un langage essentiellement orienté Web, qui au niveau historique se trouve être le premier langage de script pour le Web. Il a notamment permis d'apporter des améliorations au HTML en permettant d'exécuter des commandes du côté client, c'est-à-dire au niveau du navigateur et non du serveur. Il est donc fortement lié au navigateur appelant la page web incorporant le script, mais ne il ne nécessite pas de compilateur.\\
 
 \begin{figure}[h]
 	\begin{center}
@@ -190,7 +194,7 @@ C'est un langage essentiellement orienté Web, qui au niveau historique se trouv
 
 La figure \ref{schema} représente la hiérarchie d'un objet d'un navigateur en JavaScript. Ce qui permet de bien comprendre ce qu'il faut chercher et ou chercher lors de la conception d'un script.
 
-\subsection{Qui fait quoi}
+\subsection{Qui fait quoi?}
 % http://developer.mozilla.org/fr/docs/Le_DOM_et_JavaScript
 % 
 Comme vu précédemment, le JavaScript en lui-même ne suffit pas pour accéder et modifier le contenu du code HTML. Voici donc un petit exemple qui permettra de différencier ce qui est du DOM et ce qui est du JavaScript.
@@ -216,7 +220,7 @@ Dans l'exemple qui précède, les parties JavaScript sont les suivantes:
 
 Maintenant ce qui concerne le DOM:
 \begin{description}
-	\item [\texttt{document.getElementsByTagName("a")}] {\texttt{document} est l'objet contenant tout ce qui se trouve sur la page. La méthode \texttt{getElementsByTagName()} renvoie une \emph{NodeList} (sorte de tableu spécifique au DOM contenant des noeuds) de toutes les balises correspondant au paramètre passé à la fonction, et ceci dans l'ordre d'apparition dans le document source. La variable \texttt{anchorsTag} est maintenant une \emph{NodeList}.}
+	\item [\texttt{document.getElementsByTagName("a")}] {\texttt{document} est l'objet contenant tout ce qui se trouve sur la page. La méthode \texttt{getElementsByTagName()} renvoie une \emph{NodeList} (sorte de tableau spécifique au DOM contenant des noeuds) de toutes les balises correspondant au paramètre passé à la fonction, et ceci dans l'ordre d'apparition dans le document source. La variable \texttt{anchorsTag} est maintenant une \emph{NodeList}.}
 	\item [\texttt{anchorTags.length}] {C'est la propriété \texttt{length} de l'interface \emph{NodeList}. Elle rend un entier contenant le nombre de noeuds présents dans \texttt{anchorTags}.}
 	\item [\texttt{alert}] {\texttt{alert()} est une méthode DOM qui affiche une boite de dialogue avec une chaîne de caractères passée en paramètres.}
 	\item [\texttt{anchorTags[i].href}] {Permet d'accéder à la propriété \texttt{href} du i\up{ème} noeud.}
@@ -226,14 +230,16 @@ Maintenant ce qui concerne le DOM:
 \renewcommand{\labelitemi}{$\bullet$}
 \section{Au coeur de jQuery}
 \subsection{Moteur}
-La librairie jQuery est, comme mentionné au chapitre \ref{jQuery}, tout simplement du JavaScript. En effet, c'est une simple couche pardessus le JavaScript. Elle opère donc sur des objets de type DOM appelés jQuery.
+La librairie jQuery est, comme mentionné au chapitre \ref{jQuery}, tout simplement du JavaScript. En effet, c'est une simple librairie JavaScript, ce qui permet l'intégration du code JavaScript “classique” en toute transparence.\\
 
+La base de ce “framework” est le “\$”, en effet il est utilisé pour créer l'objet jQuery sur lequel travaille la librairie. Ils sont de type DOM, ce qui rend facile la navigation dans l'objet et l'accès aux diverses propriétés.\\
 
+jQuery permet également la navigation par Xpath et l'ajout de plugins.
 
-\subsection{Installation \& Utilisation}\label{install}
-Il est très facile d'installer jQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
+\subsection{Utilisation}\label{install}
+Il est très facile d'utiliser jQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
 \begin{lstlisting}
-	<script src="lib/jquery.js" type="text/javascript\"/>
+	<script src="lib/jquery.js" type="text/javascript"/>
 \end{lstlisting}
 dans le champ \emph{head} d'un document HTML. L'attribut \texttt{src="lib/jquery.js"} correspond au chemin vers la librairie jQuery, qui dans cet exemple est placée dans un répertoire \texttt{lib} se trouvant dans le même répertoire que le fichier HTML.\\
 
@@ -262,7 +268,12 @@ Une fois ceci fait, la libraire est prête à être utilisée en appelant simple
 </html>
 \end{lstlisting}
 
-L'exemple ci-dessus montre comment utiliser importer la librairie jQuery et ensuite d'appeler la méthode \texttt{toggle()} qui cache ou affiche les liens référencés respectivement s'ils sont visibles ou cachés. Cette méthode est appelée lorsqu'un click est détecté et c'est la méthode \texttt{click()} qui le fait. Ces deux méthodes sont toutes les deux issues de la librairie jQuery.
+L'exemple ci-dessus montre comment utiliser importer la librairie jQuery et ensuite d'appeler la méthode \texttt{toggle()} qui cache ou affiche les liens référencés respectivement s'ils sont visibles ou cachés. Cette méthode est appelée lorsqu'un click est détecté et c'est la méthode \texttt{click()} qui le fait. Ces deux méthodes sont toutes les deux issues de la librairie jQuery. On note également l'utilisation du “\$” bien propre à jQuery.\\
+
+Il est également possible de spécifier la source de la libraire comme étant directement le lien internet.
+\begin{lstlisting}
+	<script src="http://code.jQuery.com/jQuery-1.1.3.1.pack.js" type="text/javascript"/>
+\end{lstlisting}
 
 \subsection{Librairie}
 Comme expliqué au chapitre \ref{install}, l'appel à un simple fichier suffit pour pouvoir utiliser la librairie et à l'instar d'un langage comme Java, jQuery ne possède actuellement qu'une seule librairie. Néanmoins, il est possible de catégoriser les différentes méthodes afin de pouvoir mieux s'y retrouver lors d'une recherche.\\
@@ -278,7 +289,7 @@ Cette partie de la librairie met à disposition ce que les concepteurs ont estim
 	\item parcourir tous les éléments de l'objet et appliquer un traitement dessus;
 	\item chercher des éléments par position;
 	\item trouver la position d'un élément;
-	\item savoir combien de combien d'éléments est composé l'objet.\\
+	\item savoir de combien d'éléments est composé l'objet.\\
 \end{itemize}
 
 Voici un petit exemple pour mieux illustrer cela:
@@ -297,7 +308,7 @@ Code de test:
 \end{lstlisting}
 
 
-Résultat:
+Résultat obtenu:
 \begin{lstlisting}
 <img src="test0.jpg"/><img src="test1.jpg"/>
 \end{lstlisting}
@@ -318,7 +329,7 @@ Code de test:
 \end{lstlisting}
 
 
-Résultat:
+Résultat obtenu:
 \begin{lstlisting}
 <img src="test.jpg"/>
 \end{lstlisting}
@@ -333,7 +344,7 @@ Cet ensemble est divisé en deux types de fonctions:
 Le premier type de la liste permet, comme son nom l'indique, de faire un filtrage sur l'objet jQuery, ce qui veut dire effectuer un tri parmi l'objet. L'exemple qui suit parcourt tout l'objet et retourne tous les éléments appartenant à la classe \texttt{selected}.
 
 \begin{lstlisting}
-$("p").filter(".selected")
+$("p").filter(".selected");
 \end{lstlisting}
 
 Code de test:
@@ -349,7 +360,7 @@ Résultat:
 Le deuxième type de la liste permet d'effectuer des recherches dans l'objet jQuery. L'exemple suivant permet de rechercher tous les enfants de chaque \texttt{div}.
 
 \begin{lstlisting}
-$("div").children()
+$("div").children();
 \end{lstlisting}
 
 
@@ -359,7 +370,7 @@ Code de test:
 \end{lstlisting}
 
 
-Résultat:
+Résultat obtenu:
 \begin{lstlisting}
 [Hello Again]
 \end{lstlisting}
@@ -377,7 +388,7 @@ Code de test:
 <p>I would like to say: </p><b>Hello</b>
 \end{lstlisting}
 
-Résultat:
+Résultat obtenu:
 \begin{lstlisting}
 <p>I would like to say: <b>Hello</b></p
 \end{lstlisting}
@@ -385,7 +396,7 @@ Résultat:
 \subsubsection{CSS}
 Les fonctions de type CSS permettent d'accéder aux propriétés d'un style CSS. En effet, il est possible d'ajouter et modifier un style CSS.\\
 
-L'exemple qui suit le montre comment ajouter un style CSS:
+L'exemple qui suit montre comment ajouter un style CSS:
 \begin{lstlisting}
 $("p").css("left",30);
 \end{lstlisting}
@@ -395,7 +406,7 @@ Code de test:
 <p>Test Paragraph.</p>
 \end{lstlisting}
 
-Résultat:
+Résultat obtenu:
 \begin{lstlisting}
 <p style="left:30px;">Test Paragraph.</p>
 \end{lstlisting}
@@ -429,15 +440,13 @@ $("p").hover(
 
 
 \subsubsection{Effets}
-Cette partie de la librairie regroupe tous les méthodes permettant de réaliser des effets sur certains événements. Il devient donc très facile de faire une page Web avec de jolis effets uniquement avec quelques fonctions comme le démontre l'exemple qui suit.
+Cette partie de la librairie regroupe toutes les méthodes permettant de réaliser des effets sur certains événements. Il devient donc très facile de faire une page Web avec des effets attirants uniquement avec quelques fonctions comme le démontre l'exemple qui suit.
 
 \begin{lstlisting}
 $("p").slideToggle(1000);
 \end{lstlisting}
 
-Juste avec la commande qui précède, il est possible de cacher un paragraphe s'il est visible et de l'afficher s'il est invisible. Et ceci avec un effet de glissement du texte vers le haut pour le cacher et l'effet inverse pour l'afficher. La valeur \texttt{1000} correspond à la durée de l'animation en millisecondes.
-
-\subsubsection{UI}
+La commande qui précède, rend possible de cacher un paragraphe s'il est visible et de l'afficher s'il est invisible. Et ceci avec un effet de glissement du texte vers le haut pour le cacher et l'effet inverse pour l'afficher. La valeur \texttt{1000} correspond à la durée de l'animation en millisecondes.
 
 \subsection{Compatibilité avec les navigateurs}
 % http://docs.jquery.com/Browser_Compatibility
@@ -462,7 +471,7 @@ Par contre, certains problèmes ont été reportés sur les suivantes versions:
 
 En général, jQuery fonctionne avec Konqueror et Firefox 1.0.x, mais il peut se produire certains bugs depuis que les tests ne sont pas fait aussi régulièrement qu'avec les versions plus récentes.\\
 
-Pour des renseignements plus précis sur la compatibilité d'un navigateur en particulier, il existe un très bon test à l'adresse \url{http://jquery.com/test/}.
+Pour des renseignements plus précis sur la compatibilité d'un navigateur en particulier, il existe un très bon test de compatibilité à l'adresse \url{http://jquery.com/test/}.
 
 \newpage
 \section{Comparatif}
@@ -533,7 +542,7 @@ La ligne suivante permet donc de parcourir toutes les cases à cocher du documen
 $(":checkbox").each( function() {
 \end{lstlisting}
 
-Finalement, dans la fonction anonyme déclarée ci-dessus, nous allons mettre une instruction \texttt{switch} qui va utiliser la valeur de la variable \texttt{action} pour déterminer que faire.  \\
+Finalement, dans la fonction anonyme déclarée ci-dessus, nous allons mettre une instruction \texttt{switch} qui va utiliser la valeur de la variable \texttt{action} pour déterminer que faire.\\
 
 Voici le code complet auquel on arrive en utilisant jQuery. \\
 
@@ -545,25 +554,25 @@ Fichier \texttt{comparatif-jq.html}, disponible sur \url{http://code.google.com/
 
 Il est évidemment possible d'utiliser d'autres méthodes pour y arriver. Mais celle que nous avons réalisé semble être un bon moyen d'effectuer la même action proprement.  \\
 
-Ce qui est agréable, c'est qu'en utilisant jQuery, on a besoin de moins de méthode et autres vérifications pour arriver au même résultat. En effet, sans jQuery, on utilise 9 méthodes, dont distincte. \\
+Ce qui est agréable, c'est qu'en utilisant jQuery, on a besoin de moins de méthodes et autres vérifications pour arriver au même résultat. En effet, sans jQuery, on utilise 9 méthodes, dont 5 distinctes. \\
 
 En utilisant jQuery, on en utilise 4 en tout et pour tout. Le code produit par jQuery est beaucoup plus clair et concis. Il est aussi portable étant donné que jQuery supporte la majorité des navigateurs récent.
 
 \newpage
 \section{Conclusion}
 
-
-
-
-
-% \appendix
-% 
-% \newpage
-% \section{CACMIndexer.java}
-% \lstinputlisting{../src/rim/cacm/CACMIndexer.java}
-% 
-% \newpage
-% \section{CACMRetriever.java}
-% \lstinputlisting{../src/rim/cacm/CACMRetriever.java}
+\newpage
+\section{Références}
+\small
+\begin{description}
+	\item[\url{http://jquery.com/}] {Site officiel de jQuery.}
+	\item[\url{http://www.jquery.info/}] {Site francophone sur jQuery.}
+	\item[\url{http://docs.jquery.com/Tutorials}] {Tutoriels officiels.}
+	\item[\url{http://www.gotapi.com/html}] {Description de l'API jQuery ainsi que HTML. Très utile comme référence rapide et disponibles pour une grande variété de langages courants.}
+	\item[\url{http://developer.mozilla.org/fr/docs/Le_DOM_et_JavaScript}] {Explication du DOM et JavaScript.}
+	\item[\url{http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html}] {Documentation DOM.}
+	\item[\url{http://fr.wikipedia.org/wiki/Document_Object_Model}] {Documentation DOM.}
+	\item[\url{http://fr.wikipedia.org/wiki/Javascript}] {Documentation JavaScript.}
+\end{description}
 
 \end{document}
