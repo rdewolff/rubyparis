@@ -122,13 +122,11 @@
 \pagenumbering{arabic}
 \section{Introduction}
 
+\section{Qu'est-ce que jQuery?}\label{jQuery}
+jQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations, etc...
+La vocation première de ce Framework n'est pas d'innover, mais de permettre un gain de temps non négligeable dans le développement des sites Web.\\
 
-\newpage
-\section{Qu'est-ce que jQuery?}
-jQuery est un framework développé en javascript qui permet notamment de manipuler aisément la DOM, d'utiliser AJAX, de créer des animations...
-La vocation première de ce Framework est de gagner du temps dans le développement des applications: "write less, do more".
-
--Pourquoi jQuery?
+On ne peut donc pas véritablement dire que jQuery vient combler un besoin, mais simplement simplifier le travail des développeurs utilisant le JavaScript en leur mettant à disposition une série de méthodes qui nécessiteraient plusieurs lignes de code pour être réalisées.
 
 \newpage
 \section{JavaScript et DOM}
@@ -228,7 +226,9 @@ Maintenant ce qui concerne le DOM:
 \renewcommand{\labelitemi}{$\bullet$}
 \section{Au coeur de jQuery}
 \subsection{Moteur}
--Travaille sur un objet jQuery.
+La librairie jQuery est, comme mentionné au chapitre \ref{jQuery}, tout simplement du JavaScript. En effet, c'est une simple couche pardessus le JavaScript. Elle opère donc sur des objets de type DOM appelés jQuery.
+
+
 
 \subsection{Installation \& Utilisation}\label{install}
 Il est très facile d'installer jQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
@@ -367,13 +367,76 @@ Résultat:
 \subsubsection{Manipulation}
 Les fonctions de type manipulation permettent de changer, remplacer, supprimer ou copier le contenu. Permettent également l'insertion au milieu, avant, après, autour.\\
 
-L'exemple suivant p
+L'exemple suivant montre comment appondre du texte à un texte déjà existant:
+\begin{lstlisting}
+$("p").append( $("b") );
+\end{lstlisting}
+
+Code de test:
+\begin{lstlisting}
+<p>I would like to say: </p><b>Hello</b>
+\end{lstlisting}
+
+Résultat:
+\begin{lstlisting}
+<p>I would like to say: <b>Hello</b></p
+\end{lstlisting}
 
 \subsubsection{CSS}
+Les fonctions de type CSS permettent d'accéder aux propriétés d'un style CSS. En effet, il est possible d'ajouter et modifier un style CSS.\\
+
+L'exemple qui suit le montre comment ajouter un style CSS:
+\begin{lstlisting}
+$("p").css("left",30);
+\end{lstlisting}
+
+Code de test:
+\begin{lstlisting}
+<p>Test Paragraph.</p>
+\end{lstlisting}
+
+Résultat:
+\begin{lstlisting}
+<p style="left:30px;">Test Paragraph.</p>
+\end{lstlisting}
+
+Il existe également les fonctions \texttt{height} et \texttt{width} qui permettent d'accéder respectivement, de manière très simple,  à la hauteur et la largeur d'un style CSS.
+
 \subsubsection{Evénements}
+Les événements sont des méthodes qui permettent de détecter les actions de l'utilisateur sur la page Web, telles que:
+\begin{itemize}
+	\item {le click de souris;}
+	\item {le double-click de souris;}
+	\item {lorsque le curseur passe sur un élément;}
+	\item {lorsqu'un événement obtient le focus;}
+	\item {lorsqu'une touche du clavier est pressée;}
+	\item {lorsque la taille d'un élément est modifiée;}
+	\item {etc...\\}
+\end{itemize}
+
+Pour mieux illustrer cela, voici un exemple qui appond du texte à une chaîne de caractères lorsque la souris passe dessus et l'enlève lorsque la souris n'est plus dessus:
+
+\begin{lstlisting}
+$("p").hover(
+	function () {
+		$(this).append($("<span> ***</span>"));
+	}, 
+	function () {
+		$(this).find("span:last").remove();
+	}
+);
+\end{lstlisting}
+
+
 \subsubsection{Effets}
-\subsubsection{AJAX}
-\subsubsection{Fonctions diverses}
+Cette partie de la librairie regroupe tous les méthodes permettant de réaliser des effets sur certains événements. Il devient donc très facile de faire une page Web avec de jolis effets uniquement avec quelques fonctions comme le démontre l'exemple qui suit.
+
+\begin{lstlisting}
+$("p").slideToggle(1000);
+\end{lstlisting}
+
+Juste avec la commande qui précède, il est possible de cacher un paragraphe s'il est visible et de l'afficher s'il est invisible. Et ceci avec un effet de glissement du texte vers le haut pour le cacher et l'effet inverse pour l'afficher. La valeur \texttt{1000} correspond à la durée de l'animation en millisecondes.
+
 \subsubsection{UI}
 
 \subsection{Compatibilité avec les navigateurs}
