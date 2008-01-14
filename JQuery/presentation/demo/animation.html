@@ -1,0 +1,34 @@
+<html>
+<head>
+<script type="text/javascript" 
+	src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
+</head>
+<script>
+	$(document).ready(function() {		
+		$("a.lien1").click(function() {
+			$("p.text").toggle(150);
+		});
+
+		$("a.lien2").click(function() {
+			p = $("p.text");
+		    p[ p.is(':visible') ? 'fadeOut' : 'fadeIn' ](800);
+		    return false;
+		});	
+		
+		$("a.lien3").click( function() {
+			$("p.").slideToggle(300); 
+		});
+	});
+</script>
+<body>
+	
+	<a href="#" class="lien1">anim1: toggle()</a> | 
+	<a href="#" class="lien2">anim2: fadeIn() et fadeOut()</a> | 
+	<a href="#" class="lien3">anim3: slideToggle()</a>
+	
+<p class="text" style="border:1px solid black; color: green;">
+	<br>Quelques animations avec JQuery<br><br></p>
+
+
+</body>
+</html>
