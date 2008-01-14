@@ -211,15 +211,15 @@ window.onload = function(){ ... }
 
 \subsection{Que ce passe-t-il?}
 
-On a utilisé une classe HTML nommée \texttt{lorem} qui contient le texte qui disparaît. Le liens portant l'identifiant \texttt{clickme} permet de faire apparaître ou disparaître le texte. 
+On a utilisé une classe HTML nommée \texttt{lorem} qui contient le texte qui disparaît. Le lien portant l'identifiant \texttt{clickme} permet de faire apparaître ou disparaître le texte. 
 
-En définissant la fonction \texttt{toggle} sur click d'un lien, celui fait apparaître et  disparaître les éléments identifié grâce à la balise : 
+En définissant la fonction \texttt{toggle} sur click d'un lien, cela fait apparaître et  disparaître les éléments identifiés grâce à la balise : 
 
 \begin{lstlisting}
 $("p.lorem").toggle(100);
 \end{lstlisting}
 
-On voit que \textbf{jQuery} permet d'une manière très simple d'accéder aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
+On voit que \textbf{jQuery} permet d'accéder, d'une manière très simple, aux objet d'un document HTML, et ce, sans se soucier du navigateur utilisé.
 
 \begin{lstlisting}
 <script>
@@ -241,7 +241,7 @@ Pour revenir sur les étapes effectuées, voilà en trois lignes ce que l'on a f
 	\item Ajouter une fonction sur un événement
 \end{itemize}
 
-Une liste exhaustives des événement est disponibles sur le site \url{http://www.gotapi.com}.
+Une liste exhaustive des événements est disponibles sur le site \url{http://www.gotapi.com}.
 
 \subsection{Sélectionner d'autres éléments}
 
@@ -275,7 +275,7 @@ Tous les champs de formulaire comportant \texttt{name="email"}
 jQuery('table.orders tr:odd')
 \end{lstlisting}
 
-Les lignes numérotée de tables “étrange” comportant la classe \texttt{orders}
+Les lignes numérotées de tables “étrange” comportant la classe \texttt{orders}
 
 \begin{lstlisting}
 jQuery('a[@href^="http://"]')
@@ -287,7 +287,7 @@ Tous les liens externes (liens qui commencent par \verb!http://!).
 jQuery('p[a]')
 \end{lstlisting}
 
-Tous les paragraphes qui contienne un ou plusieurs liens.
+Tous les paragraphes qui contiennent un ou plusieurs liens.
 
 \subsection{Code source de l'exemple}
 
@@ -300,24 +300,24 @@ Voilà le code source du fichier \texttt{basic.html} disponible sur le site \url
 \section{AJAX}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-AJAX permet d'exécuter des requêtes sur d'autre pages sans recharger tout le document en cours. Il permett donc de transférer des données ou de pré-charger des données. jQuery permet de faire du AJAX simple de manière extrêmement facile, et permet de rendre les choses complexe tout à fait faisables. 
+AJAX permet d'exécuter des requêtes sur d'autre pages sans recharger tout le document en cours. Il permet donc de transférer ou de pré-charger des données. jQuery permet de faire du AJAX simple de manière extrêmement facile, et permet de rendre les choses complexes tout à fait faisables. 
 
 Voici quelques exemples de l'utilisation d'AJAX à l'aide de jQuery.
 
 \subsection{Charger des données dans une zone}
 
-Une utilisation classique de Ajax est de charger un bout de code HTML à l'intérieur d'une zone d'une page.
+Une utilisation classique d'Ajax est le chargement d'un bout de code HTML à l'intérieur d'une zone d'une page.
 
-Pour faire ceci à l'aide de jQuery, il suffit de sélectionner l'élément désiré et d'utiliser la fonction \texttt{load()}, comme montré dans l'exemple ci dessous 
+Pour faire ceci à l'aide de jQuery, il suffit de sélectionner l'élément désiré et d'utiliser la fonction \texttt{load()}, comme montré dans l'exemple ci dessous. 
 
 \begin{lstlisting}
 $('#stats').load('stats.html');
 \end{lstlisting}
 
 
-\subsection{Passer des paramètres a une page}
+\subsection{Passer des paramètres à une page}
 
-Très souvent on veut simplement passer des paramètres a une page sur le serveur. Comme vous vous y attendez, ceci se fait de manière extrêmement simple à l'aide de jQuery. 
+Très souvent on veut simplement passer des paramètres à une page sur le serveur. Comme vous vous y attendez, ceci se fait de manière extrêmement simple à l'aide de jQuery. 
 
 On a le choix entre \texttt{\$.post()} et \texttt{\$.get()} en fonction de la méthode dont on a besoin. On peut ensuite spécifier optionnellement un objet comportant les données ainsi qu'une fonction appelée une fois l'opération terminée (fonction de type \emph{callback}).
 
@@ -330,13 +330,13 @@ $.post('save.cgi', {
 });
 \end{lstlisting}
                                    
-\subsection{Instruction complexes en AJAX rendu simple}
+\subsection{Instructions complexes en AJAX rendues simples}
 
-Si l'on désire vraiment effectuer des opérations complexes en AJAX, il faut utiliser la fonction \texttt{\$.ajax()}. On spécifie le type de données utilisée (\texttt{xml, html, script ou json}) et jQuery va préparer les résultats de la fonction de retour automatiquement afin de pouvoir l'utiliser tout de suite. 
+Si l'on désire vraiment effectuer des opérations complexes en AJAX, il faut utiliser la fonction \texttt{\$.ajax()}. On spécifie le type de données utilisé (\texttt{xml, html, script ou json}) et jQuery va préparer les résultats de la fonction de retour automatiquement afin de pouvoir l'utiliser tout de suite. 
 
-On peut aussi spécifier \texttt{beforeSend}, \texttt{error}, \texttt{success} ou encore \texttt{complete} qui permet de mieux gérer ce qu'il se passe durant l'utilisation d'AJAX. Pour par exemple dire à l'utilisateur que la transaction a commencée et l'avertir quand elle est terminée.
+On peut aussi spécifier \texttt{beforeSend}, \texttt{error}, \texttt{success} ou encore \texttt{complete} qui permet de mieux gérer ce qu'il se passe durant l'utilisation d'AJAX. Pour par exemple dire à l'utilisateur que la transaction a commencé et l'avertir quand elle est terminée.
 
-D'autre paramètre sont disponible, comme \texttt{timeout} qui permet de limiter le temps d'exécution d'une requête en AJAX.
+D'autres paramètres sont disponibles, comme \texttt{timeout} qui permet de limiter le temps d'exécution d'une requête en AJAX.
 
 Voici un exemple d'utilisation d'AJAX. 
 
@@ -355,9 +355,9 @@ $.ajax({
 });
 \end{lstlisting}
 
-On peut ensuite imaginer d'utiliser encore jQuery pour traiter les données XML reçues et les afficher. Pour ce faire, on va utiliser le même principe que pour les fichiers HTML. Cela rends facile de parcourir un fichier XML et d'en afficher le contenu dans un fichier HTML.
+On peut ensuite imaginer utiliser jQuery pour traiter les données XML reçues et les afficher. Pour ce faire, on va utiliser le même principe que pour les fichiers HTML. Cela rend facile le parcours d'un fichier XML et l'affichage du contenu dans un fichier HTML.
 
-L'exemple suivant montre comment utiliser le paramètre \texttt{sucess} pour appeler une fonction d'affichage de notre XML une fois la transaction correctement effectuées.
+L'exemple suivant montre comment utiliser le paramètre \texttt{sucess} pour appeler une fonction d'affichage de notre XML une fois la transaction correctement effectuée.
 
 \begin{lstlisting}
 success: function(xml){
@@ -376,9 +376,9 @@ success: function(xml){
 \section{Animations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-On peut utiliser jQuery afin de créer des animation simplement. Certaines sont prédéfinies, d'autre peuvent être facilement créées. A la base des animation dans jQuery, il existe la fonction \texttt{animate()} qui permet de modifier n'importe quelle valeur numérique dans le temps. On peut par exemple facilement animer un changement de hauteur, de positions, de couleur ou de transparence. On peut aussi spécifier la vitesse de l'animation en millisecondes, ou à l'aide des vitesses prédéfinies: \texttt{slow}, \texttt{normal} ou \texttt{fast}.
+On peut utiliser jQuery afin de créer des animation simplement. Certaines sont prédéfinies, d'autres peuvent être facilement créées. A la base des animation dans jQuery, il existe la fonction \texttt{animate()} qui permet de modifier n'importe quelle valeur numérique dans le temps. On peut par exemple facilement animer un changement de hauteur, de position, de couleur ou de transparence. On peut aussi spécifier la vitesse de l'animation en millisecondes, ou à l'aide des vitesses prédéfinies: \texttt{slow}, \texttt{normal} ou \texttt{fast}.
 
-Ci-dessous un exemple qui change la hauteur et la largeur d'un élément en même temps. On remarque qu'il n'y a pas de valeur de départ, les valeurs de départ sont prise à partir de la taille courante de l'élément modifié. On y a ajouté une fonction qui va afficher une alerte lorsque l'animation est terminée.
+Ci-dessous un exemple qui change la hauteur et la largeur d'un élément en même temps. On remarque qu'il n'y a pas de valeur de départ, les valeurs de départ sont prises à partir de la taille courante de l'élément modifié. On y a ajouté une fonction qui va afficher une alerte lorsque l'animation est terminée.
 
 \begin{lstlisting}
 $('#grossi').animate({ height: 500, width: 500 }, "slow", function(){
@@ -386,7 +386,7 @@ $('#grossi').animate({ height: 500, width: 500 }, "slow", function(){
 });
 \end{lstlisting}
 
-jQuery met à disposition des animations qui sont celles utilisées les plus fréquemment. On peut par exemple utiliser \texttt{show()} et \texttt{hide()} pour respectivement afficher ou cacher un élément; soit instantanément, soit à une vitesses spécifiée. On peut aussi utiliser les méthodes \texttt{fadeIn()} et \texttt{fadeOut()} ou \texttt{slideDown()} et \texttt{slideUp()} en fonction des effet que l'on désire. 
+jQuery met à disposition des animations qui sont celles utilisées les plus fréquem-ment. On peut par exemple utiliser \texttt{show()} et \texttt{hide()} pour respectivement afficher ou cacher un élément; soit instantanément, soit à une vitesse spécifiée. On peut aussi utiliser les méthodes \texttt{fadeIn()} et \texttt{fadeOut()} ou \texttt{slideDown()} et \texttt{slideUp()} en fonction des effets que l'on désire. 
 
 
 Voici un exemple qui fait par exemple apparaître un menu de navigation
@@ -397,7 +397,7 @@ $('#navigation').slideDown('fast');
 
 \subsection{Exemple complet}
 
-Voici un exemple complet. Nous allons créer une page HTML comportant 3 liens ainsi qu'un paragraphe. Chaque liens effectuera une animation différentes pour faire apparaître le paragraphe en question.
+Voici un exemple complet. Nous allons créer une page HTML comportant 3 liens ainsi qu'un paragraphe. Chaque lien effectuera une animation différente pour faire apparaître le paragraphe en question.
 
 Voilà à quoi ressemble cette page HTML
 
@@ -415,9 +415,9 @@ Voilà à quoi ressemble cette page HTML
 </html>
 \end{lstlisting}
 
-Ensuite, nous allons ajouter les animation à l'aide de jQuery. Chaque liens effectuera une action différentes sur le paragraphe identifié par \texttt{class="text"}.
+Ensuite, nous allons ajouter les animation à l'aide de jQuery. Chaque liens effectuera une action différente sur le paragraphe identifié par \texttt{class="text"}.
 
-Pour cela, il faut commencer par ajouter un liens vers la librairie jQuery comme fait au début de ce document. Ce liens doit se situer dans l'en-tête du fichier HTML.
+Pour cela, il faut commencer par ajouter un lien vers la librairie jQuery comme fait au début de ce document. Ce lien doit se situer dans l'en-tête du fichier HTML.
 
 \begin{lstlisting}
 <head>
@@ -426,7 +426,7 @@ Pour cela, il faut commencer par ajouter un liens vers la librairie jQuery comme
 </head>
 \end{lstlisting}
 
-Ensuite nous pouvons ajouter les actions sur les différents éléments de notre page HTML. Nous allons commencer par définir l'action global; l'action effectuée quand le document HTML est chargé. 
+Ensuite nous pouvons ajouter les actions sur les différents éléments de notre page HTML. Nous allons commencer par définir l'action globale; l'action effectuée lorsque le document HTML est chargé. 
 
 \begin{lstlisting}
 <script>
@@ -436,7 +436,7 @@ Ensuite nous pouvons ajouter les actions sur les différents éléments de notre
 </script>
 \end{lstlisting}
 
-Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire, nous allons utiliser la fonction \texttt{click()} sur les liens, déjà utilisée précédemment. Dans la fonction click, nous passons en paramètre une fonction anonyme qui va se charger d'effectuer le changement d'affichage (cacher ou afficher).
+Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire, nous allons utiliser la fonction \texttt{click()} sur les liens, déjà utilisée précédemment. Dans la fonction \texttt{click}, nous passons en paramètre une fonction anonyme qui va se charger d'effectuer le changement d'affichage (cacher ou afficher).
 
 \begin{lstlisting}
 <script>
@@ -449,11 +449,11 @@ Maintenant il nous faut définir les actions sur les 3 liens HTML. Pour ce faire
 </script>
 \end{lstlisting}
 
-Voilà qui est fait pour le premier lien! Ouvrons le fichier HTML dans notre navigateur, et vérifions que cela fonctionne. En cliquant sur le premier lien depuis la gauche, on devrait voir disparaître le paragraphe d'en dessous. Et cliquant à nouveau, celui-ci réapparaît. En ci peu de lignes, c'est magique!
+Voilà qui est fait pour le premier lien! Ouvrons le fichier HTML dans notre navigateur, et vérifions que cela fonctionne. En cliquant sur le premier lien depuis la gauche, on devrait voir disparaître le paragraphe d'en dessous. Et cliquant à nouveau, celui-ci réapparaît. En si peu de lignes, c'est magique!
 
-Continuons avec le lien suivant. Le deuxième est un peu plus compliqué. En effet la fonction \texttt{toggleFade()} n'existe pas. Nous allons donc utiliser la propriété \texttt{visible} de l'objet courant afin de déterminer si il faut afficher ou cacher le paragraphe. 
+Continuons avec le lien suivant. Le deuxième est un peu plus compliqué. En effet la fonction \texttt{toggleFade()} n'existe pas. Nous allons donc utiliser la propriété \texttt{visible} de l'objet courant afin de déterminer s'il faut afficher ou cacher le paragraphe. 
 
-Pour faire cela, nous allons créer une variable \texttt{p} à partir de l'objet \texttt{p.text}. Ensuite, nous allons vérifier si l'objet \texttt{p} est visible et exécuter la fonction \texttt{fadeOut()} si c'est le cas, et \texttt{fadeIn()} sinon. Les crochets “[” et “]” permettent de reconstruire la fonction appelée sur un objet à l'aide d'une chaîne de caractère. Nous utiliserons le seul opérateur ternaire \texttt{cond ? vrai:faux} qui permet de créer une condition \texttt{if} sur une seule ligne. Ensuite nous ajoutons les parenthèses avec l'éventuel paramètre, ici 800, qui représente les 800 ms que durera l'animation.
+Pour  ce faire, nous allons créer une variable \texttt{p} à partir de l'objet \texttt{p.text}. Ensuite, nous allons vérifier si l'objet \texttt{p} est visible et exécuter la fonction \texttt{fadeOut()} si c'est le cas, et \texttt{fadeIn()} sinon. Les crochets “[” et “]” permettent de reconstruire la fonction appelée sur un objet à l'aide d'une chaîne de caractères. Nous utiliserons le seul opérateur ternaire \texttt{cond ? vrai:faux} qui permet de créer une condition \texttt{if} sur une seule ligne. Ensuite nous ajoutons les parenthèses avec l'éventuel paramètre, ici 800, qui représente les 800 ms que durera l'animation.
 
 Voilà ce que cela donne: 
 
@@ -472,9 +472,9 @@ Voilà ce que cela donne:
 </script>
 \end{lstlisting}
 
-Il ne reste plus qu'a ajouter le 3\up{ème} lien. La seule différence avec le premier lien c'est qu'il utilise non pas la fonction \texttt{toggle()} mais la fonction \texttt{slideToggle()}.
+Il ne reste plus qu'à ajouter le 3\up{ème} lien. La seule différence avec le premier lien c'est qu'il utilise non pas la fonction \texttt{toggle()} mais la fonction \texttt{slideToggle()}.
 
-Ajoutons cela et testons a nouveau le fichier HTML. Tous les liens devrait faire soit apparaître, soit disparaître le paragraphe situé en dessous!
+Ajoutons cela et testons à nouveau le fichier HTML. Tous les liens devraient faire soit apparaître, soit disparaître le paragraphe situé en dessous!
 
 Voilà le fichier \texttt{animation.html} complet: 
 
@@ -485,11 +485,10 @@ Voilà le fichier \texttt{animation.html} complet:
 \section{Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Nous voilà arriver au bout de ce tutoriel. Espérons que nous avons pus vous montrer que jQuery n'est pas une simple nouvelle librairie JavaScript comme il en existe déjà beaucoup. Mais les fonctionnalité mise à disposition sont vraiment bien faites et permette de gagner un temps précieux.
+Nous voilà arrivés au bout de ce tutoriel. Espérons que nous avons pu vous montrer que jQuery n'est pas une simple nouvelle librairie JavaScript comme il en existe déjà beaucoup. Mais les fonctionnalités mise à disposition sont vraiment bien faites et permettent de gagner un temps précieux.
 
- 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ressources}
+\section{Références}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Voici les liens qui nous ont aidé et inspiré pour la création de ce tutoriel.
