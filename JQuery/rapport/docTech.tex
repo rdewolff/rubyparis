@@ -476,7 +476,7 @@ Pour des renseignements plus précis sur la compatibilité d'un navigateur en pa
 \newpage
 \section{Comparatif}
 
-Nous allons comparer le travail a effectuer pour arriver au même résultat avec et sans jQuery. Pour se faire, nous avons repris un petit script disponible sur internet qui s'occupe de modifier les \texttt{checkbox} d'un formulaire. Nous allons l'analyser et ensuite le refaire à l'aide de jQuery. \\
+Nous allons comparer le travail à effectuer pour arriver au même résultat avec et sans jQuery. Pour ce faire, nous avons repris un petit script disponible sur internet qui s'occupe de modifier les \texttt{checkbox} d'un formulaire. Nous allons l'analyser et ensuite le refaire à l'aide de jQuery. \\
 
 Trois boutons permettent d'effectuer une modification sur les cases à cocher. Le premier permet de les sélectionner, le deuxième d'enlever la sélection et finalement le troisième de l'inverser. \\
 
@@ -488,7 +488,7 @@ Fichier \texttt{comparatif-js.html}, disponible sur \url{http://code.google.com/
 
 \lstinputlisting{exemple/comparatif-js.html}
 
-Le formulaire comporte donc trois boutons qui, chacun, possède un événement sur click. On appel la fonction \texttt{GereChkbox()} qui comporte deux paramètres. Le premier est le nom de l'objet dans lequel se trouve les cases à cocher. Le deuxième est un numéro qui permet de déterminer l'action à effectuer : 
+Le formulaire comporte donc trois boutons qui, chacun, possèdent un événement sur click. On appelle la fonction \texttt{GereChkbox()} qui comporte deux paramètres. Le premier est le nom de l'objet dans lequel se trouvent les cases à cocher. Le deuxième est un numéro qui permet de déterminer l'action à effectuer : 
 
 
 \begin{description}
@@ -512,7 +512,7 @@ Puis, nous allons importer la librairie jQuery à l'aide de la commande citée e
 	src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
 \end{lstlisting}
 
-Nous pouvons dès lors utiliser les fonctionnalités mise à disposition par la librairie jQuery pour simplifier et clarifier notre code. \\
+Nous pouvons dès lors utiliser les fonctionnalités mises à disposition par la librairie jQuery pour simplifier et clarifier notre code. \\
 
 Notre code sera appelé une fois que le document a été chargé. Nous le plaçons donc dans une balise de script, après la ligne :
 
@@ -520,13 +520,13 @@ Notre code sera appelé une fois que le document a été chargé. Nous le plaço
 $(document).ready(function() { <code ici> });
 \end{lstlisting}
 
-Il est très facile de définir une action global sur tout les éléments d'un certain type. Pour définir une fonction anonyme sur click de tout les boutton, nous utilisons cette ligne : \\
+Il est très facile de définir une action globale sur tous les éléments d'un certain type. Pour définir une fonction anonyme sur click de tout les boutons, nous utilisons cette ligne :
 
 \begin{lstlisting}
 $(":button").click( function(){..} );
 \end{lstlisting}
 
-Ensuite nous allons utiliser l'\texttt{id} du bouton clické pour savoir quelle action effectuer. Il faut donc stocker cette information dans une variable. Cela ce fait à l'aide de la ligne suivante : \\
+Ensuite nous allons utiliser l'\texttt{id} du bouton clické pour savoir quelle action effectuer. Il faut donc stocker cette information dans une variable. Cela se fait à l'aide de la ligne suivante :
 
 \begin{lstlisting}
 action = $(this).attr("id");
@@ -534,7 +534,7 @@ action = $(this).attr("id");
 
 Le mot clé \texttt{this} fait référence à l'objet en cours d'utilisation. La méthode \texttt{attr("nomAttribut")} permet de récupérer la valeur d'un attribut. \\
 
-Nous allons maintenant parcourir toutes les cases à cocher à l'aide de la méthode \texttt{each()}. Pour se faire, jQuery retourne la liste d'objet d'un certain type (dans notre cas \texttt{checkbox}) à l'aide de \verb!$(":checkbox")!.  \\ 
+Nous allons maintenant parcourir toutes les cases à cocher à l'aide de la méthode \texttt{each()}. Pour ce faire, jQuery retourne la liste d'objet d'un certain type (dans notre cas \texttt{checkbox}) à l'aide de \verb!$(":checkbox")!.  \\ 
 
 La ligne suivante permet donc de parcourir toutes les cases à cocher du document et de leur appliquer une fonction.
 
@@ -556,7 +556,7 @@ Il est évidemment possible d'utiliser d'autres méthodes pour y arriver. Mais c
 
 Ce qui est agréable, c'est qu'en utilisant jQuery, on a besoin de moins de méthodes et autres vérifications pour arriver au même résultat. En effet, sans jQuery, on utilise 9 méthodes, dont 5 distinctes. \\
 
-En utilisant jQuery, on en utilise 4 en tout et pour tout. Le code produit par jQuery est beaucoup plus clair et concis. Il est aussi portable étant donné que jQuery supporte la majorité des navigateurs récent.
+En utilisant jQuery, on en utilise 4 en tout et pour tout. Le code produit par jQuery est beaucoup plus clair et concis. Il est aussi portable étant donné que jQuery supporte la majorité des navigateurs récents.
 
 \newpage
 \section{Conclusion}
