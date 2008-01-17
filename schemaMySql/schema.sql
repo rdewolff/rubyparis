@@ -6,18 +6,18 @@
 
 -- ICI!!!!!!! Eventuellement créer tables club et selection nationale
 
-DROP DATABASE IF EXISTS `rubyparis`;
-CREATE DATABASE `rubyparis` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `rubyparis`;
+DROP DATABASE IF EXISTS `rubyparis_development`;
+CREATE DATABASE `rubyparis_development` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `rubyparis_development`;
 
 
-CREATE TABLE `Entraineur` (
+CREATE TABLE `entraineur` (
 	`idEntraineur` int unsigned NOT NULL auto_increment,
 	PRIMARY KEY (`idEntraineur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Equipe` (
+CREATE TABLE `equipe` (
 	`idEquipe` int unsigned NOT NULL auto_increment,
 	`entraineur` int unsigned NOT NULL,
 	`nom` varchar(32) NOT NULL,
@@ -25,23 +25,23 @@ CREATE TABLE `Equipe` (
 	`url` varchar(32) NOT NULL,
 	`stade` varchar(32) NOT NULL,
 	PRIMARY KEY (`idEquipe`),
-	FOREIGN KEY (`entraineur`) REFERENCES `Entraineur`(`idEntraineur`)
+	FOREIGN KEY (`entraineur`) REFERENCES `entraineur`(`idEntraineur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Arbitre` (
+CREATE TABLE `arbitre` (
 	`idArbitre` int unsigned NOT NULL auto_increment,
 	PRIMARY KEY (`idArbitre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Administrateur` (
+CREATE TABLE `administrateur` (
 	`idAdministrateur` int unsigned NOT NULL auto_increment,
 	PRIMARY KEY (`idAdministrateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Competition` (
+CREATE TABLE `competition` (
 	`idCompetition` int unsigned NOT NULL auto_increment,
 	`administrateur` int unsigned NOT NULL,
 	`nom` varchar(32) NOT NULL,
@@ -49,11 +49,11 @@ CREATE TABLE `Competition` (
 	`dateDebut` date NOT NULL,
 	`dateFin` date NOT NULL,
 	PRIMARY KEY (`idCompetition`),
-	FOREIGN KEY (`administrateur`) REFERENCES `Administrateur`(`idAdministrateur`)
+	FOREIGN KEY (`administrateur`) REFERENCES `administrateur`(`idAdministrateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Groupe` (
+CREATE TABLE `groupe` (
 	`idGroupe` int unsigned NOT NULL auto_increment,
 	`competition` int unsigned NOT NULL,
 	`nbEquipe` int unsigned NOT NULL,
@@ -61,13 +61,13 @@ CREATE TABLE `Groupe` (
 	`suivant` int unsigned DEFAULT NULL,
 	`precedant` int unsigned DEFAULT NULL,
 	PRIMARY KEY (`idGroupe`),
-	FOREIGN KEY (`competition`) REFERENCES `Competition`(`idCompetition`),
-	FOREIGN KEY (`suivant`) REFERENCES `Groupe`(`idGroupe`),
-	FOREIGN KEY (`precedant`) REFERENCES `Groupe`(`idGroupe`)
+	FOREIGN KEY (`competition`) REFERENCES `competition`(`idCompetition`),
+	FOREIGN KEY (`suivant`) REFERENCES `groupe`(`idGroupe`),
+	FOREIGN KEY (`precedant`) REFERENCES `groupe`(`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Match` (
+CREATE TABLE `match` (
 	`idMatch` int unsigned NOT NULL auto_increment,
 	`groupe` int unsigned NOT NULL,
 	`equipeA` int unsigned NOT NULL,
@@ -79,66 +79,66 @@ CREATE TABLE `Match` (
 	`heure` time NULL,
 	`lieu` varchar(32) NULL,
 	PRIMARY KEY (`idMatch`),
-	FOREIGN KEY (`groupe`) REFERENCES `Groupe`(`idGroupe`),
-	FOREIGN KEY (`equipeA`) REFERENCES `Equipe`(`idEquipe`),
-	FOREIGN KEY (`equipeB`) REFERENCES `Equipe`(`idEquipe`),
-	FOREIGN KEY (`arbitre`) REFERENCES `Arbitre`(`idArbitre`)
+	FOREIGN KEY (`groupe`) REFERENCES `groupe`(`idGroupe`),
+	FOREIGN KEY (`equipeA`) REFERENCES `equipe`(`idEquipe`),
+	FOREIGN KEY (`equipeB`) REFERENCES `equipe`(`idEquipe`),
+	FOREIGN KEY (`arbitre`) REFERENCES `arbitre`(`idArbitre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Position` (
+CREATE TABLE `position` (
 	`idPosition` int unsigned NOT NULL auto_increment,
 	`position` varchar(16),
 	PRIMARY KEY (`idPosition`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Joueur` (
+CREATE TABLE `joueur` (
 	`idJoueur` int unsigned NOT NULL auto_increment,
 	`club` int unsigned NOT NULL,
 	`selection` int unsigned NULL,
 	`position` int unsigned NOT NULL,
 	PRIMARY KEY (`idJoueur`),
-	FOREIGN KEY (`club`) REFERENCES `Equipe`(`idEquipe`),
-	FOREIGN KEY (`selection`) REFERENCES `Equipe`(`idEquipe`),
-	FOREIGN KEY (`position`) REFERENCES `Position`(`idPosition`)
+	FOREIGN KEY (`club`) REFERENCES `equipe`(`idEquipe`),
+	FOREIGN KEY (`selection`) REFERENCES `equipe`(`idEquipe`),
+	FOREIGN KEY (`position`) REFERENCES `position`(`idPosition`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Parieur` (
+CREATE TABLE `parieur` (
 	`idParieur` int unsigned NOT NULL auto_increment,
 	PRIMARY KEY (`idParieur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `PariMatch` (
+CREATE TABLE `pariMatch` (
 	`parieur` int unsigned NOT NULL,
 	`match` int unsigned NOT NULL,
 	-- `idPari` int unsigned NOT NULL auto_increment,
 	PRIMARY KEY (`parieur`,`match`),
-	FOREIGN KEY (`parieur`) REFERENCES `Parieur`(`idParieur`),
-	FOREIGN KEY (`match`) REFERENCES `Match`(`idMatch`)
+	FOREIGN KEY (`parieur`) REFERENCES `parieur`(`idParieur`),
+	FOREIGN KEY (`match`) REFERENCES `match`(`idMatch`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `PariCompetition` (
+CREATE TABLE `pariCompetition` (
 	`parieur` int unsigned NOT NULL,
 	`competition` int unsigned NOT NULL,
 	-- `idPari` int unsigned NOT NULL auto_increment,
 	PRIMARY KEY (`parieur`,`competition`),
-	FOREIGN KEY (`parieur`) REFERENCES `Parieur`(`idParieur`),
-	FOREIGN KEY (`competition`) REFERENCES `Competition`(`idCompetition`)
+	FOREIGN KEY (`parieur`) REFERENCES `parieur`(`idParieur`),
+	FOREIGN KEY (`competition`) REFERENCES `competition`(`idCompetition`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Nationalite` (
+CREATE TABLE `nationalite` (
 	`idNationalite` int unsigned NOT NULL auto_increment,
 	`nationalite` varchar(32),
 	PRIMARY KEY (`idNationalite`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Sportif` (
+CREATE TABLE `sportif` (
 	`idSportif` int unsigned NOT NULL auto_increment,
 	`idArbitre` int unsigned NULL,
 	`idEntraineur` int unsigned NULL,
@@ -147,14 +147,14 @@ CREATE TABLE `Sportif` (
 	`taille` varchar(4) NOT NULL,
 	`nationalite` int unsigned NOT NULL,
 	PRIMARY KEY (`idSportif`),
-	FOREIGN KEY (`idArbitre`) REFERENCES `Arbitre`(`idArbitre`),
-	FOREIGN KEY (`idEntraineur`) REFERENCES `Entraineur`(`idEntraineur`),
-	FOREIGN KEY (`idJoueur`) REFERENCES `Joueur`(`idJoueur`),
-	FOREIGN KEY (`nationalite`) REFERENCES `Nationalite`(`idNationalite`)	
+	FOREIGN KEY (`idArbitre`) REFERENCES `arbitre`(`idArbitre`),
+	FOREIGN KEY (`idEntraineur`) REFERENCES `entraineur`(`idEntraineur`),
+	FOREIGN KEY (`idJoueur`) REFERENCES `joueur`(`idJoueur`),
+	FOREIGN KEY (`nationalite`) REFERENCES `nationalite`(`idNationalite`)	
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Utilisateur` (
+CREATE TABLE `utilisateurs` (
 	`idUtilisateur` int unsigned NOT NULL auto_increment,
 	`idAdministrateur` int unsigned NULL,
 	`idParieur` int unsigned NULL,
@@ -162,18 +162,18 @@ CREATE TABLE `Utilisateur` (
 	`password` varchar(40) NOT NULL,
 	`email` varchar(64) NOT NULL,
 	PRIMARY KEY (`idUtilisateur`),
-	FOREIGN KEY (`idAdministrateur`) REFERENCES `Administrateur`(`idAdministrateur`),
-	FOREIGN KEY (`idParieur`) REFERENCES `Parieur`(`idParieur`)
+	FOREIGN KEY (`idAdministrateur`) REFERENCES `administrateur`(`idAdministrateur`),
+	FOREIGN KEY (`idParieur`) REFERENCES `parieur`(`idParieur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `Personne` (
+CREATE TABLE `personne` (
 	`idPersonne` int unsigned NOT NULL auto_increment,
 	`idSportif` int unsigned NULL,
 	`idUtilisateur` int unsigned NULL,
 	`nom` varchar(32) NOT NULL,
 	`prenom` varchar(32) NOT NULL,
 	PRIMARY KEY (`idPersonne`),
-	FOREIGN KEY (`idSportif`) REFERENCES `Sportif`(`idSportif`),
-	FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur`(`idUtilisateur`)
+	FOREIGN KEY (`idSportif`) REFERENCES `sportif`(`idSportif`),
+	FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateurs`(`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
