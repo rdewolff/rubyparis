@@ -2,7 +2,7 @@
 development:
   adapter: mysql
   socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  database: rubyparis
+  database: rubyparis_development
   host: localhost
   username: root
   password: root
@@ -10,7 +10,7 @@ development:
 test:
   adapter: mysql
   socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  database: rubyparis
+  database: rubyparis_test
   host: localhost
   username: root
   password: root
@@ -18,7 +18,7 @@ test:
 production:
   adapter: mysql
   socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  database: rubyparis
+  database: rubyparis_production
   host: localhost
   username: root
   password: root
