@@ -3,7 +3,7 @@ class CreateAdministrateurs < ActiveRecord::Migration
     create_table "administrateurs" do |t|
       
     end
-    execute "alter table administrateur add constraint fk_utilisateur foreign key (id) references utilisateurs(id)"
+    execute "alter table administrateurs add foreign key (id) references utilisateurs(id) on delete cascade"
   end
 
   def self.down

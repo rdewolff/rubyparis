@@ -11,10 +11,10 @@ class CreateMatchs < ActiveRecord::Migration
       t.column "heure", :time
       t.column "lieu", :string, :limit => 30
     end
-    execute "alter table matchs add constraint fk_groupe foreign key (groupe_id) references groupes(id)"
-    execute "alter table matchs add constraint fk_equipeA foreign key (equipeA) references equipes(id)"
-    execute "alter table matchs add constraint fk_equipeB foreign key (equipeB) references equipes(id)"
-    execute "alter table matchs add constraint fk_arbitre foreign key (arbitre_id) references arbitres(id)"
+    execute "alter table matchs add foreign key (groupe_id) references groupes(id)"
+    execute "alter table matchs add foreign key (equipeA) references equipes(id)"
+    execute "alter table matchs add foreign key (equipeB) references equipes(id)"
+    execute "alter table matchs add foreign key (arbitre_id) references arbitres(id)"
   end
 
   def self.down

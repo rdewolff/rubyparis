@@ -1,4 +1,4 @@
-class CreateNationalites < ActiveRecord::Migration
+class CreateNations < ActiveRecord::Migration
   def self.up
     create_table "nations" do |t|
       t.column "pays", :string, :limit => 30, :null => false

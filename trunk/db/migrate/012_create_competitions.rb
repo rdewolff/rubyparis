@@ -7,7 +7,7 @@ class CreateCompetitions < ActiveRecord::Migration
       t.column "dateDebut", :date
       t.column "dateFin", :date
     end
-    execute "alter table competitions add constraint fk_administrateur foreign key (administrateur_id) references administrateur(id)"
+    execute "alter table competitions add foreign key (administrateur_id) references administrateurs(id)"
   end
 
   def self.down

@@ -7,8 +7,8 @@ class CreateGroupes < ActiveRecord::Migration
       t.column "termine", :bool, :null => false
       t.column "groupe_id", :int, :null => false
     end
-    execute "alter table groupes add constraint fk_competition foreign key (competition_id) references competitions(id)"
-    execute "alter table groupes add constraint fk_groupe foreign key (groupe_id) references groupes(id)"
+    execute "alter table groupes add foreign key (competition_id) references competitions(id) on delete cascade"
+    execute "alter table groupes add foreign key (groupe_id) references groupes(id)"
   end
 
   def self.down

@@ -3,7 +3,7 @@ class CreateParieurs < ActiveRecord::Migration
     create_table "parieurs" do |t|
       
     end
-    execute "alter table parieurs add constraint fk_utilisateur foreign key (id) references utilisateurs(id)"
+    execute "alter table parieurs add foreign key (id) references utilisateurs(id) on delete cascade"
   end
 
   def self.down
