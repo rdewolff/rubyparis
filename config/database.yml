@@ -2,23 +2,23 @@
 development:
   adapter: mysql
   socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  database: rubyparis_development
+  database: rubyparis
   host: localhost
   username: root
   password: root
 
-test:
-  adapter: mysql
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  database: rubyparis_test
-  host: localhost
-  username: root
-  password: root
+#test:
+#  adapter: mysql
+#  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+#  database: rubyparis_test
+#  host: localhost
+#  username: root
+#  password: root
 
-production:
-  adapter: mysql
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  database: rubyparis_production
-  host: localhost
-  username: root
-  password: root
+#production:
+#  adapter: mysql
+#  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+#  database: rubyparis_production
+#  host: localhost
+#  username: root
+#  password: root

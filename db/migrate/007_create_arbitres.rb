@@ -3,7 +3,7 @@ class CreateArbitres < ActiveRecord::Migration
     create_table "arbitres" do |t|
       
     end
-    execute "alter table arbitres add constraint fk_sportif foreign key (id) references sportifs(id)"
+    execute "alter table arbitres add foreign key (id) references sportifs(id) on delete cascade"
   end
 
   def self.down
