@@ -4,20 +4,22 @@
 
 <p><label for="matchs_competition">Competition</label><br/>
 <%= @competitions = Competition.find :all, :order => "nom asc"
-collection_select(:match, :competition_id, @competitions, :id, :nom) %></p>
+collection_select(:util, :competition_id, @competitions, :id, :nom) %></p>
 
-<p><label for="matchs_Groupe">Groupe</label><br/>
+<p><label for="matchs_groupe">Groupe</label><br/>
 <%= @groupes = Groupe.find :all, :order => "nom asc"
-collection_select(:competition, :groupe_id, @groupes, :id, :nom) %></p>
+collection_select(:matchs, :groupe_id, @groupes, :id, :nom) %></p>
 
-<p><label for="matchs_equipeA">Equipe visitée</label><br/>
-<%= text_field 'matchs', 'equipeA'  %></p>
+<p><label for="matchs_equipeA">Equipe locale</label><br/>
+<%= @equipes = Equipe.find :all, :order => "nom asc"
+collection_select(:matchs, :equipeA, @equipes, :id, :nom) %></p>
 
 <p><label for="matchs_equipeB">Equipe visitante</label><br/>
-<%= text_field 'matchs', 'equipeB'  %></p>
+<%= @equipes = Equipe.find :all, :order => "nom asc"
+collection_select(:matchs, :equipeB, @equipes, :id, :nom) %></p>
 
 <p><label for="matchs_date">Date</label><br/>
-<%= date_select 'matchs', 'date'  %></p>
+<%= date_select 'matchs', 'date',:order => [:day,:month,:year] %></p>
 
 <p><label for="matchs_heure">Heure</label><br/>
 <%= time_select 'matchs', 'heure'  %></p>

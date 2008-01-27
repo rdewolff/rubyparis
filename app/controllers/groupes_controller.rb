@@ -1,4 +1,10 @@
 class GroupesController < ApplicationController
+  before_filter :load_data
+  
+  def load_data
+    nombres=[1, 2, 3, 4]
+  end
+  
   def index
     list
     render :action => 'list'
@@ -21,7 +27,7 @@ class GroupesController < ApplicationController
   end
 
   def create
-    @groupe = Groupe.new(params[:groupe])
+    @groupe = Groupe.new(params[:groupes])
     if @groupe.save
       flash[:notice] = 'Groupe was successfully created.'
       redirect_to :action => 'list'
@@ -36,7 +42,7 @@ class GroupesController < ApplicationController
 
   def update
     @groupe = Groupe.find(params[:id])
-    if @groupe.update_attributes(params[:groupe])
+    if @groupe.update_attributes(params[:groupes])
       flash[:notice] = 'Groupe was successfully updated.'
       redirect_to :action => 'show', :id => @groupe
     else
