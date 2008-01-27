@@ -1,5 +1,3 @@
-
-
 body {
 	margin: 0;
 	padding: 0;
@@ -14,7 +12,7 @@ h1, h2, h3 {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 1.8em;
 }
 
 h2 {
@@ -75,7 +73,7 @@ input, textarea, .myForms, select{
 
 #logo {
 	width: 750px;
-	height: 65px;
+	height: 50px; /* test : 65 normally */
 	margin: 0 auto;
 }
 
@@ -86,13 +84,13 @@ input, textarea, .myForms, select{
 
 #logo h1 {
 	float: left;
-	padding-top: 30px;
+	padding-top: 20px; /* test */
 }
 
 #logo p {
 	float: right;
-	padding-top: 39px;
-	font-size: 1.2em;
+	padding-top: 28px;
+	font-size: 1.1em;
 }
 
 #logo a {
@@ -147,7 +145,7 @@ input, textarea, .myForms, select{
 }
 
 #page-bg {
-	padding: 11px 24px;
+   padding: 11px 24px;
 	background: url(../images/img03.jpg) no-repeat;
 }
 
