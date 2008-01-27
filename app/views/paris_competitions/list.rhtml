@@ -1,0 +1,27 @@
+<h1>Listing paris_competitions</h1>
+
+<table>
+  <tr>
+  <% for column in ParisCompetition.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for paris_competition in @paris_competitions %>
+  <tr>
+  <% for column in ParisCompetition.content_columns %>
+    <td><%=h paris_competition.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => paris_competition %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => paris_competition %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => paris_competition }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @paris_competition_pages.current.previous } if @paris_competition_pages.current.previous %>
+<%= link_to 'Next page', { :page => @paris_competition_pages.current.next } if @paris_competition_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New paris_competition', :action => 'new' %>

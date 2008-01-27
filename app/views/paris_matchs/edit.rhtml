@@ -1,0 +1,9 @@
+<h1>Editing paris_match</h1>
+
+<% form_tag :action => 'update', :id => @paris_match do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @paris_match %> |
+<%= link_to 'Back', :action => 'list' %>
