@@ -1,0 +1,27 @@
+<h1>Listing entraineurs</h1>
+
+<table>
+  <tr>
+  <% for column in Entraineur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for entraineur in @entraineurs %>
+  <tr>
+  <% for column in Entraineur.content_columns %>
+    <td><%=h entraineur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => entraineur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => entraineur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => entraineur }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @entraineur_pages.current.previous } if @entraineur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @entraineur_pages.current.next } if @entraineur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New entraineur', :action => 'new' %>

@@ -1,0 +1,27 @@
+<h1>Listing matchs</h1>
+
+<table>
+  <tr>
+  <% for column in Match.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for match in @matchs %>
+  <tr>
+  <% for column in Match.content_columns %>
+    <td><%=h match.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => match %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => match %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => match }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @match_pages.current.previous } if @match_pages.current.previous %>
+<%= link_to 'Next page', { :page => @match_pages.current.next } if @match_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New match', :action => 'new' %>

@@ -1,0 +1,18 @@
+<%= error_messages_for 'matchs' %>
+
+<!--[form:matchs]-->
+<p><label for="matchs_equipeA">Equipe visitée</label><br/>
+<%= text_field 'matchs', 'equipeA'  %></p>
+
+<p><label for="matchs_equipeB">Equipe visitante</label><br/>
+<%= text_field 'matchs', 'equipeB'  %></p>
+
+<p><label for="matchs_date">Date</label><br/>
+<%= date_select 'matchs', 'date'  %></p>
+
+<p><label for="matchs_heure">Heure</label><br/>
+<%= time_select 'matchs', 'heure'  %></p>
+
+<p><label for="matchs_lieu">Lieu</label><br/>
+<%= text_field 'matchs', 'lieu'  %></p>
+<!--[eoform:matchs]-->
