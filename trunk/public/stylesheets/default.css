@@ -41,7 +41,7 @@ a img {
 }
 /* div, evite que le texte depasse sur le reste des contenus */
 div {
-	overflow : auto;
+	/* overflow : auto; */
 }
 img.left {
 	float: left;
@@ -73,7 +73,7 @@ input, textarea, .myForms, select{
 
 #logo {
 	width: 750px;
-	height: 50px; /* test : 65 normally */
+	height: 65px; /* test : 65 normally */
 	margin: 0 auto;
 }
 
@@ -84,12 +84,12 @@ input, textarea, .myForms, select{
 
 #logo h1 {
 	float: left;
-	padding-top: 20px; /* test */
+	padding-top: 35px;
 }
 
 #logo p {
 	float: right;
-	padding-top: 28px;
+	padding-top: 49px;
 	font-size: 1.1em;
 }
 
@@ -258,4 +258,33 @@ input, textarea, .myForms, select{
 
 #footer a {
 	color: #666666;
+}
+
+/* AJAX */
+
+.suggestionsBox {
+    position: relative;
+    left: 30px;
+    margin: 10px 0px 0px 0px;
+    width: 200px;
+    background-color: #212427;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border: 2px solid #000;
+    color: #fff;
+}
+
+.suggestionList {
+    margin: 0px;
+    padding: 0px;
+}
+
+.suggestionList li {
+    margin: 0px 0px 3px 0px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.suggestionList li:hover {
+    background-color: #659CD8;
 }

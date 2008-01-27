@@ -30,4 +30,5 @@ class RubyparisController < ApplicationController
     end
     render :action => 'index'
   end
+  
 end

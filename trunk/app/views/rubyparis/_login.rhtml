@@ -8,7 +8,7 @@
 <% end -%>
 
 <% if session[:user] -%> 
-<div id="notice"><%= "Salut" %></div> 
+<div id="notice"><%= "Vous êtes encore identifié " + session[:user].login + "!" %></div> 
 <% else -%>
 <h1>Login</h1>
 <p><label for="utilisateur_login">Nom d'utilisateur:</label><br/>
@@ -17,4 +17,5 @@
 <%= password_field 'utilisateur', 'password', :size => 15  %></p>
 <%= submit_tag 'login' %>
 <% end -%>
+
 <!--[eologin:rubyparis]-->
