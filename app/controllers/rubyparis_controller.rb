@@ -15,7 +15,7 @@ class RubyparisController < ApplicationController
     
     if @utilisateur2 and @hashpw.authenticate(@utilisateur2.password,@utilisateur.password)
       session[:user] = @utilisateur2
-      redirect_to session[:initial_uri]
+     # redirect_to session[:initial_uri]
       
       
       #@parieur = Parieur.find_by_id(@utilisateur2.id)
@@ -28,6 +28,6 @@ class RubyparisController < ApplicationController
     else
       flash[:notice] = "Login incorrect!"
     end
-#    render :action => 'index'
+    render :action => 'index'
   end
 end
