@@ -1,0 +1,2 @@
+module VentraineursHelper
+end

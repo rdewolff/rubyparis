@@ -1,0 +1,8 @@
+<% for column in Varbitre.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @varbitre.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @varbitre %> |
+<%= link_to 'Back', :action => 'list' %>

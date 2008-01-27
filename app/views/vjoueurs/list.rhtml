@@ -1,0 +1,27 @@
+<h1>Listing vjoueurs</h1>
+
+<table>
+  <tr>
+  <% for column in Vjoueur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for vjoueur in @vjoueurs %>
+  <tr>
+  <% for column in Vjoueur.content_columns %>
+    <td><%=h vjoueur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => vjoueur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => vjoueur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => vjoueur }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @vjoueur_pages.current.previous } if @vjoueur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @vjoueur_pages.current.next } if @vjoueur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New vjoueur', :action => 'new' %>

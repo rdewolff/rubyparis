@@ -1,0 +1,21 @@
+<%= error_messages_for 'ventraineur' %>
+
+<!--[form:ventraineur]-->
+<p><label for="ventraineur_nom">Nom</label><br/>
+<%= text_field 'ventraineur', 'nom'  %></p>
+
+<p><label for="ventraineur_prenom">Prenom</label><br/>
+<%= text_field 'ventraineur', 'prenom'  %></p>
+
+<p><label for="ventraineur_dateNaissance">Date de naissance</label><br/>
+<%= date_select 'ventraineur', 'dateNaissance'  %></p>
+
+<p><label for="ventraineur_taille">Taille</label><br/>
+<%= text_field 'ventraineur', 'taille'  %></p>
+
+<p><label for="ventraineur_pays">Pays</label><br/>
+<%= @nations = Nation.find :all, :order => "pays asc"
+collection_select(:ventraineur, :pays, @nations, :id, :pays) %></p>
+
+<!--[eoform:ventraineur]-->
+
