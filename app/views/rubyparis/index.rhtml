@@ -1,15 +1,8 @@
-<html>
-<head>
-	<%= stylesheet_link_tag "rubyParis" %>
-</head>
-
-<body>
-<div id="login" style="float:left; width: 150px">
+ 
+<%= render :partial => '/rubyparis/header' %>
 	
 	<% form_tag :action => 'login' do %>
 	<%= render :partial => 'login' %>
 	<% end %>
-</div>
 
-</body>
-</html>
+<%= render :partial => '/rubyparis/footer' %>

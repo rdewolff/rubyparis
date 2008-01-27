@@ -21,7 +21,7 @@ class NationsController < ApplicationController
   end
 
   def create
-    @nation = Nation.new(params[:nation])
+    @nation = Nation.new(params[:nations])
     if @nation.save
       flash[:notice] = 'Nation was successfully created.'
       redirect_to :action => 'list'
@@ -36,7 +36,7 @@ class NationsController < ApplicationController
 
   def update
     @nation = Nation.find(params[:id])
-    if @nation.update_attributes(params[:nation])
+    if @nation.update_attributes(params[:nations])
       flash[:notice] = 'Nation was successfully updated.'
       redirect_to :action => 'show', :id => @nation
     else
