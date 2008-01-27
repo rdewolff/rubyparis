@@ -1,0 +1,27 @@
+<h1>Listing vparieurs</h1>
+
+<table>
+  <tr>
+  <% for column in Vparieur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for vparieur in @vparieurs %>
+  <tr>
+  <% for column in Vparieur.content_columns %>
+    <td><%=h vparieur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => vparieur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => vparieur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => vparieur }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @vparieur_pages.current.previous } if @vparieur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @vparieur_pages.current.next } if @vparieur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New vparieur', :action => 'new' %>

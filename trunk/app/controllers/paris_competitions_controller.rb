@@ -1,4 +1,12 @@
 class ParisCompetitionsController < ApplicationController
+  before_filter :load_data
+  
+  compet = 0
+  
+  def load_data
+    compet = params['compet']
+  end
+  
   def index
     list
     render :action => 'list'

@@ -9,7 +9,7 @@ class NationsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @nation_pages, @nations = paginate :nations, :per_page => 10
+    @nation_pages, @nations = paginate :nations, :per_page => 10, :order => "pays asc"
   end
 
   def show

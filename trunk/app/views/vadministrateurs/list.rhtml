@@ -1,0 +1,31 @@
+<h1>Listing vadministrateurs</h1>
+
+<table>
+  <tr>
+  <% for column in Vadministrateur.content_columns %>
+  	<% if not column.human_name == 'Password' %>
+    <th><%= column.human_name %></th>
+	<% end %>
+  <% end %>
+  </tr>
+  
+<% for vadministrateur in @vadministrateurs %>
+  <tr>
+  <% for column in Vadministrateur.content_columns %>
+  	<% if not column.human_name == 'Password' %>
+    	<td><%=h vadministrateur.send(column.name) %></td>
+	<% end %>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => vadministrateur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => vadministrateur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => vadministrateur }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @vadministrateur_pages.current.previous } if @vadministrateur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @vadministrateur_pages.current.next } if @vadministrateur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New vadministrateur', :action => 'new' %>
