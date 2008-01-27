@@ -2,6 +2,7 @@ class CreateGroupes < ActiveRecord::Migration
   def self.up
     create_table "groupes" do |t|
       t.column "competition_id", :int, :null => false
+      t.column "nom", :string, :limit => 25, :null => false
       t.column "nbEquipe", :int, :null => false
       t.column "allerRetour", :bool, :null => false
       t.column "termine", :bool, :null => false

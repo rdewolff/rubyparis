@@ -3,6 +3,7 @@ class CreateParisMatchs < ActiveRecord::Migration
     create_table("paris_matchs", id => false) do |t|
       t.column "parieur", :int, :null => false
       t.column "match_id", :int, :null => false
+      t.column "resultat", :int, :null => false
     end
     execute "alter table paris_matchs add foreign key (parieur) references parieurs(id) on delete cascade"
     execute "alter table paris_matchs add foreign key (match_id) references matchs(id)"
