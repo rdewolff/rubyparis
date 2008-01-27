@@ -2,15 +2,16 @@
 
 <!--[form:groupes]-->
 
+<p><label for="groupes_nom">Nom</label><br/>
+<%= text_field 'groupes', 'nom'  %></p>
+
 <p><label for="groupess_competition">Competition</label><br/>
 <%= @competitions = Competition.find :all, :order => "nom asc"
-collection_select(:groupe, :competition_id, @competitions, :id, :nom) %></p>
+collection_select(:groupes, :competition_id, @competitions, :id, :nom) %></p>
 
-
-
-
-<p><label for="groupes_nbEquipe">Nombre d'équipes</label><br/>
-<%= text_field 'groupes', 'nbEquipe'  %></p>
+<p><label for="groupes_competition">Nombre d'équipes</label><br/>
+<%=select (:groupes, :nbEquipe, [[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],
+[11,11],[12,12],[13,13],[14,14],[15,15],[16,16],[17,17],[18,18],[19,19],[20,20]])%>
 
 <p><label for="groupes_allerRetour">Aller-retour</label><br/>
 <select id="groupes_allerRetour" name="groupes[allerRetour]"><option value="false">False</option><option value="true">True</option></select></p>
