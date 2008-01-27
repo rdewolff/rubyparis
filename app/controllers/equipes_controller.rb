@@ -44,8 +44,16 @@ class EquipesController < ApplicationController
     end
   end
 
+  
   def destroy
     Equipe.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+  
+  # effichage d'equipe en fonction du nom
+  def eq
+    @equipes = Equipe.find(:all, :conditions => "nom LIKE '%#{params[:eq]}%'")
+  end
+  
+  
 end

@@ -1,6 +1,28 @@
+      <br/><br/>
+	   
+		<div>
+      <form methode="get" action="/equipes/eq">
+         <div>
+            <h3>Chercher une équipe :</h3> 
+            <input type="text" size="30" value="" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" name="eq" />
+				<input type="submit" value="Afficher">
+         </div>
+         
+         <div class="suggestionsBox" id="suggestions" style="display: none;">
+				<img src="/images/fleche.png" style="position: relative; top: -12px; left: 30px;" alt="" />
+            <div class="suggestionList" id="autoSuggestionsList">
+               &nbsp;
+            </div>
+         </div>
+      </form>
       </div>
+		
+
+		
+		</div>
       <!-- fin contenu -->
-      
+
+		
       <!-- start sidebar -->
       <div id="sidebar">
          <ul>
