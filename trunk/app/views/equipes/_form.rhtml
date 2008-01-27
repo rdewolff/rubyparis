@@ -18,7 +18,7 @@ collection_select(:equipe, :pays, @nations, :id, :pays) %></p>
 <select id="equipe_selection" name="equipe[selection]"><option value="false" selected>False</option><option value="true">True</option></select></p>
 
 <p><label for="equipe_pays">Entraineur</label><br/>
-<%= @entraineurs = Nation.find_by_sql("SELECT id, CONCAT(nom, ' ', prenom) AS 'entraineur' FROM personnes WHERE id in (SELECT id FROM entraineurs) ORDER BY nom,prenom")
+<%= @entraineurs = Personne.find_by_sql("SELECT id, CONCAT(nom, ' ', prenom) AS 'entraineur' FROM personnes WHERE id in (SELECT id FROM entraineurs) ORDER BY nom,prenom")
 collection_select(:equipe, :entraineur_id, @entraineurs, :id, :entraineur) %></p>
 
 <!--[eoform:equipe]-->

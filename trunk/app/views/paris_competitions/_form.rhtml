@@ -1,0 +1,8 @@
+<%= error_messages_for 'paris_competition' %>
+
+<!--[form:paris_competition]-->
+<p><label for="paris_competitions_resultat">Vainqueur</label><br/>
+<%= @equipes = Equipe.find_by_sql("SELECT * FROM equipes WHERE id IN (SELECT equipeA FROM matchs WHERE groupe_id IN (SELECT id FROM groupes WHERE competition_id = " + compet + ")) OR id IN (SELECT equipeB FROM matchs WHERE groupe_id IN (SELECT id FROM groupes WHERE competition_id = " + compet + "))")
+collection_select(:paris_competitions, :resultat, @equipes, :id, :nom) %></p>
+<!--[eoform:paris_competition]-->
+
