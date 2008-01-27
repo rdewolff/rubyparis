@@ -1,0 +1,19 @@
+<%= error_messages_for 'utilisateur' %>
+
+<!--[login:rubyparis]-->
+
+<% if @flash[:notice] -%> 
+<div id="notice"><%= @flash[:notice] %></div>
+<% end -%>
+
+<% if session[:user] -%> 
+<div id="notice"><%= "Salut" %></div> 
+<% else -%>
+<h1>Login</h1>
+<p><label for="utilisateur_login">Nom d'utilisateur:</label><br/>
+<%= text_field 'utilisateur', 'login', :size => 15  %></p>
+<p><label for="utilisateur_password">Mot de passe:</label><br/>
+<%= password_field 'utilisateur', 'password', :size => 15  %></p>
+<%= submit_tag 'login' %>
+<% end -%>
+<!--[eologin:rubyparis]-->

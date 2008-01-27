@@ -1,0 +1,27 @@
+<h1>Listing joueurs</h1>
+
+<table>
+  <tr>
+  <% for column in Joueur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for joueur in @joueurs %>
+  <tr>
+  <% for column in Joueur.content_columns %>
+    <td><%=h joueur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => joueur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => joueur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => joueur }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @joueur_pages.current.previous } if @joueur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @joueur_pages.current.next } if @joueur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New joueur', :action => 'new' %>

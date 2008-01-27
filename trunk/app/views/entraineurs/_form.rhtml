@@ -1,0 +1,26 @@
+<%= error_messages_for 'personnes','sportifs','entraineurs' %>
+
+<!--[form:personnes]-->
+<p><label for="personnes_nom">Nom</label><br/>
+<%= text_field 'personnes', 'nom'  %></p>
+
+<p><label for="personnes_prenom">Prenom</label><br/>
+<%= text_field 'personnes', 'prenom'  %></p>
+<!--[eoform:personnes]-->
+
+<!--[form:sportifs]-->
+<p><label for="sportifs_dateNaissance">Date de naissance</label><br/>
+<%= date_select 'sportifs', 'dateNaissance', :order => [:day,:month,:year], :start_year => 1920  %></p>
+
+<p><label for="sportifs_taille">Taille</label><br/>
+<%= text_field 'sportifs', 'taille'  %></p>
+
+<p><label for="sportifs_pays">Pays</label><br/>
+<%= @nations = Nation.find :all, :order => "pays asc"
+collection_select(:sportifs, :pays, @nations, :id, :pays) %></p>
+<!--[eoform:sportifs]-->
+
+
+<!--[form:entraineurs]-->
+<!--[eoform:entraineurs]-->
+

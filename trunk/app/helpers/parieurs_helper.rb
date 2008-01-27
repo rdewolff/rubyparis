@@ -1,0 +1,2 @@
+module ParieursHelper
+end

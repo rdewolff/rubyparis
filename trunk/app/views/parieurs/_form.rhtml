@@ -1,0 +1,23 @@
+<%= error_messages_for 'personne','utilisateur','parieurs' %>
+
+<!--[form:personnes]-->
+<p><label for="personnes_nom">Nom</label><br/>
+<%= text_field 'personnes', 'nom'  %></p>
+
+<p><label for="personnes_prenom">Prenom</label><br/>
+<%= text_field 'personnes', 'prenom'  %></p>
+<!--[eoform:personnes]-->
+
+<!--[form:utilisateur]-->
+<p><label for="utilisateurs_login">Login</label><br/>
+<%= text_field 'utilisateurs', 'login'  %></p>
+
+<p><label for="utilisateurs_password">Password</label><br/>
+<%= password_field 'utilisateurs', 'password'  %></p>
+
+<p><label for="utilisateurs_email">Email</label><br/>
+<%= text_field 'utilisateurs', 'email'  %></p>
+<!--[eoform:utilisateur]-->
+
+<!--[form:parieurs]-->
+<!--[eoform:parieurs]-->
