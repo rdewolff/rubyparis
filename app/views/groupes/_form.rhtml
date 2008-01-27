@@ -1,10 +1,18 @@
 <%= error_messages_for 'groupes' %>
 
 <!--[form:groupes]-->
-<p><label for="groupes_nbEquipe">Nbequipe</label><br/>
+
+<p><label for="groupess_competition">Competition</label><br/>
+<%= @competitions = Competition.find :all, :order => "nom asc"
+collection_select(:groupe, :competition_id, @competitions, :id, :nom) %></p>
+
+
+
+
+<p><label for="groupes_nbEquipe">Nombre d'équipes</label><br/>
 <%= text_field 'groupes', 'nbEquipe'  %></p>
 
-<p><label for="groupes_allerRetour">Allerretour</label><br/>
+<p><label for="groupes_allerRetour">Aller-retour</label><br/>
 <select id="groupes_allerRetour" name="groupes[allerRetour]"><option value="false">False</option><option value="true">True</option></select></p>
 
 <!--[eoform:groupes]-->
