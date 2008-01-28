@@ -52,7 +52,8 @@ class EquipesController < ApplicationController
   
   # effichage d'equipe en fonction du nom
   def eq
-    @equipes = Equipe.find(:all, :conditions => "nom LIKE '%#{params[:eq]}%'")
+    @equipe = Equipe.find(:all, :conditions => "nom LIKE '%#{params[:eq]}%'")
+    @ventraineur = Ventraineur.find(:all, :conditions => "id='%#{@equipe[0].entraineur_id}%'")
   end
   
   
