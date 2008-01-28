@@ -4,5 +4,12 @@
 </p>
 <% end %>
 
+<%= "<b>Entraineur</b> : #{@equipe.entraineur.sportif.personne.nom }" %>
+ 
+<br/>
+
+<%= "<b>Joueurs:</b> #{@equipe.joueur}" %>
+
+
 <%= link_to 'Edit', :action => 'edit', :id => @equipe %> |
 <%= link_to 'Back', :action => 'list' %>
