@@ -55,7 +55,6 @@ class VadministrateursController < ApplicationController
   end
 
   def update
-    
     @vadministrateur = Vadministrateur.new(params[:vadministrateur])
     @personne = Personne.find(params[:id])
     @utilisateur = Utilisateur.find(params[:id])

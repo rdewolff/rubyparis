@@ -7,22 +7,28 @@
 <p><label for="vjoueur_prenom">Prenom</label><br/>
 <%= text_field 'vjoueur', 'prenom'  %></p>
 
-<p><label for="vjoueur_dateNaissance">Datenaissance</label><br/>
-<%= date_select 'vjoueur', 'dateNaissance'  %></p>
+<p><label for="vjoueur_dateNaissance">Date de naissance</label><br/>
+<%= date_select 'vjoueur', 'dateNaissance', :order => [:day,:month,:year], :start_year => 1920 %></p>
 
 <p><label for="vjoueur_taille">Taille</label><br/>
 <%= text_field 'vjoueur', 'taille'  %></p>
 
 <p><label for="vjoueur_pays">Pays</label><br/>
-<%= text_field 'vjoueur', 'pays'  %></p>
+<%= @nations = Nation.find :all, :order => "pays asc"
+collection_select(:vjoueur, :pays, @nations, :id, :pays) %></p>
 
 <p><label for="vjoueur_position">Position</label><br/>
-<%= text_field 'vjoueur', 'position'  %></p>
+<%= @positions = Position.find( :all,:order => "position asc")
+collection_select(:vjoueur, :position, @positions, :id, :position) %></p>
 
 <p><label for="vjoueur_club">Club</label><br/>
-<%= text_field 'vjoueur', 'club'  %></p>
+<%= @clubs = Equipe.find( :all, :conditions => "selection = 0", :order => "nom asc")
+collection_select(:vjoueur, :club, @clubs, :id, :nom) %></p>
 
-<p><label for="vjoueur_selection">Selection</label><br/>
-<%= text_field 'vjoueur', 'selection'  %></p>
+<p><%= check_box("selection", {}, {}, "oui", "non") %>
+<label for="vjoueur_selection">Selection Nationale</label></p>
+
 <!--[eoform:vjoueur]-->
 
+
+<!--check_box(:variable, :attribute, options, on_value, off_value)-->

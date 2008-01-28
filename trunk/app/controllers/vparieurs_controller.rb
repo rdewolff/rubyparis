@@ -22,9 +22,28 @@ class VparieursController < ApplicationController
 
   def create
     @vparieur = Vparieur.new(params[:vparieur])
-    if @vparieur.save
-      flash[:notice] = 'Vparieur was successfully created.'
-      redirect_to :action => 'list'
+    
+    @personne = Personne.new(:nom => @vparieur.nom, :prenom => @vparieur.prenom)
+    @utilisateur = Utilisateur.new(:login => @vparieur.login,
+      :password => @vparieur.password, :email => @vparieur.email)
+    @parieur = Parieur.new
+    
+    if @personne.save
+      @utilisateur.id = @personne.id
+      @parieur.id = @utilisateur.id
+      
+      @hashpw = Hashpw.new
+      @utilisateur.password = @hashpw.encrypt(@utilisateur.password)
+      
+      if @utilisateur.save && @parieur.save
+        flash[:notice] = 'Parieur was successfully created.'
+        redirect_to :action => 'list'
+      else
+        render :action => 'new'
+        
+        Personne.delete(@personne.id)
+      end
+      
     else
       render :action => 'new'
     end
@@ -35,10 +54,15 @@ class VparieursController < ApplicationController
   end
 
   def update
-    @vparieur = Vparieur.find(params[:id])
-    if @vparieur.update_attributes(params[:vparieur])
-      flash[:notice] = 'Vparieur was successfully updated.'
-      redirect_to :action => 'show', :id => @vparieur
+    @vparieur = Vparieur.new(params[:vparieur])
+    @personne = Personne.find(params[:id])
+    @utilisateur = Utilisateur.find(params[:id])
+    
+    if @personne.update_attributes(:nom => @vparieur.nom,:prenom => @vparieur.prenom) &&
+        @utilisateur.update_attributes(:login => @vparieur.login,
+          :email => @vparieur.email)
+      flash[:notice] = 'Parieur was successfully updated.'
+      redirect_to :action => 'show', :id => @personne.id
     else
       render :action => 'edit'
     end

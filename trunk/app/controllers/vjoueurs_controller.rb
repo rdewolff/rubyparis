@@ -22,9 +22,25 @@ class VjoueursController < ApplicationController
 
   def create
     @vjoueur = Vjoueur.new(params[:vjoueur])
-    if @vjoueur.save
-      flash[:notice] = 'Vjoueur was successfully created.'
-      redirect_to :action => 'list'
+    
+    @personne = Personne.new(:nom => @vjoueur.nom, :prenom => @vjoueur.prenom)
+    @sportif = Sportif.new(:dateNaissance => @vjoueur.dateNaissance,
+      :taille => @vjoueur.taille,:pays => @vjoueur.pays)
+    @joueur = Joueur.new(:position_id => @vjoueur.position,
+      :club => @vjoueur.club, :selection => params[:selection] == "oui")
+    
+    if @personne.save
+      @sportif.id = @personne.id
+      @joueur.id = @sportif.id
+      
+      if @sportif.save && @joueur.save
+        flash[:notice] = 'Joueur was successfully created.'
+        redirect_to :action => 'list'
+      else
+        Personne.delete(@personne.id)
+        render :action => 'new'
+      end
+      
     else
       render :action => 'new'
     end
@@ -35,17 +51,23 @@ class VjoueursController < ApplicationController
   end
 
   def update
-    @vjoueur = Vjoueur.find(params[:id])
-    if @vjoueur.update_attributes(params[:vjoueur])
-      flash[:notice] = 'Vjoueur was successfully updated.'
-      redirect_to :action => 'show', :id => @vjoueur
+    @vjoueur = Vjoueur.new(params[:ventraineur])
+    
+    @personne = Personne.find(params[:id])
+    @sportif = Sportif.find(params[:id])
+    
+    if @personne.update_attributes(:nom => @vjoueur.nom,:prenom => @vjoueur.prenom) &&
+        @sportif.update_attributes(:dateNaissance => @vjoueur.dateNaissance,
+          :taille => @vjoueur.taille,:pays => @vjoueur.pays)
+      flash[:notice] = 'Joueur was successfully updated.'
+      redirect_to :action => 'show', :id => @personne.id
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    Vjoueur.find(params[:id]).destroy
+    Personne.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
 end
