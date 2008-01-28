@@ -4,4 +4,5 @@ class AjaxController < ApplicationController
     @equipes = Equipe.find(:all, :conditions => "nom LIKE '%#{params[:eq]}%'")
   end
   
+  
 end
