@@ -1,8 +1,22 @@
+<!-- 
 <% for column in Competition.content_columns %>
 <p>
   <b><%= column.human_name %>:</b> <%=h @competition.send(column.name) %>
 </p>
 <% end %>
+-->
+
+<h2><%= @competition.nom %></h2>
+
+Groupes
+<!-- affichage des groups, 2 groupe par ligne -->
+
+
+<br/>
+<br/>
+
+
+
 
 <%= link_to 'Edit', :action => 'edit', :id => @competition %> |
 <%= link_to 'Back', :action => 'list' %>

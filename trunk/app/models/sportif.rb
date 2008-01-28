@@ -1,4 +1,4 @@
 class Sportif < ActiveRecord::Base
-  belongs_to :personnes
-  has_one :entraineurs
+  belongs_to :personne, :foreign_key => "id"
+  has_one :entraineur
 end

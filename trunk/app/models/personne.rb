@@ -1,3 +1,3 @@
 class Personne < ActiveRecord::Base
-  has_one :sportifs
+  has_one :sportif
 end

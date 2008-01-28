@@ -8,7 +8,7 @@ Name       : Blogsmith
 Description: A two-column, fixed-width blog design.
 Version    : 1.0
 Released   : 20071001
-Modifis    : Romain de Wolff & Bruno da Silva
+Modifs     : Romain de Wolff & Bruno da Silva
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,7 +19,8 @@ Modifis    : Romain de Wolff & Bruno da Silva
   <%= stylesheet_link_tag "default", :media => "screen" %>
   <%= javascript_include_tag "prototype" %>
   <%= javascript_include_tag "jquery" %>
-<script type="text/javascript">
+  <script type="text/javascript">
+  	// fonction pour AJAX en utilisant la librairie jQuery et ROR
    function lookup(inputString) {
       if(inputString.length == 0) {
          $('#suggestions').hide();
@@ -37,7 +38,7 @@ Modifis    : Romain de Wolff & Bruno da Silva
       $('#inputString').val(thisValue);
       setTimeout("$('#suggestions').hide();", 200);
    }
-</script>
+  </script>
 </head>
 <body>
 <!-- start header -->
@@ -48,8 +49,8 @@ Modifis    : Romain de Wolff & Bruno da Silva
 <div id="menu">
    <ul>
       <li class="current_page_item"><%= link_to "home", :home_url %></li>
-      <li><a href="#">Compétitions</a></li>
-      <li><a href="#">Equipes</a></li>
+      <li><%= link_to "Compétitions", :controller => 'competitions', :action => 'list' %></li>
+      <li><%= link_to "Equipes", :controller => 'equipes', :action => 'list' %></li>
       <li><a href="#">A propos</a></li>
       <li><a href="#">Contactez-nous</a></li>
    </ul>
@@ -58,7 +59,9 @@ Modifis    : Romain de Wolff & Bruno da Silva
 <!-- start page -->
 <div id="page">
    <div id="page-bg">
-   	
+   	<div>
+   Administration : 
+</div>
 		<% if request.request_uri == "/home" %>
 		
       <div id="latest-post"> <img src="/images/img04.png" alt="" width="140" height="140" class="right" />

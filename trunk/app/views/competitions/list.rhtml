@@ -1,5 +1,32 @@
-<h1>Listing competitions</h1>
+<h1>Listes des compétitions</h1>
 
+<% for competition in @competitions %>
+<table>
+	<tr><td><h2><%= competition.nom %></h2></td></tr>
+	
+	<tr>
+		<td valign=top><%= competition.description %></td> 
+		
+		<td class="date">
+			Début: <%= competition.dateDebut %> <br/>
+		   Fin : <%= competition.dateFin %> <br/>
+		</td>
+	
+	</tr>
+	
+	<tr>
+	<td> Action : 
+		<%= link_to 'Afficher', :action => 'show', :id => competition %>
+	   <%= link_to 'Editer', :action => 'edit', :id => competition %>
+	   <%= link_to 'Effacer', { :action => 'destroy', :id => competition }, :confirm => 'Are you sure?', :method => :post %>
+	</td>	
+   </tr>
+	<tr><tr height='20px'></tr></tr>
+</table>
+<% end %>
+
+
+<!-- 
 <table>
   <tr>
   <% for column in Competition.content_columns %>
@@ -23,5 +50,11 @@
 <%= link_to 'Next page', { :page => @competition_pages.current.next } if @competition_pages.current.next %> 
 
 <br />
+-->
 
-<%= link_to 'New competition', :action => 'new' %>
+<br/>
+
+<%= link_to 'Créer une nouvelle compétition', :action => 'new' %>
+
+
+

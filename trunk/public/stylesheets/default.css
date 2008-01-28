@@ -288,3 +288,9 @@ input, textarea, .myForms, select{
 .suggestionList li:hover {
     background-color: #659CD8;
 }
+
+/* ROR Contents */
+
+.date {
+	color: green;
+}

@@ -1,4 +1,5 @@
 class Entraineur < ActiveRecord::Base
-  belongs_to :sportifs
-  
+  has_one :equipe
+  belongs_to :sportif, :foreign_key => "id"
+  # acts_as_list :scope => :parent_id # hiérarchise! ^^
 end
