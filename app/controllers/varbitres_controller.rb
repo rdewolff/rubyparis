@@ -22,9 +22,25 @@ class VarbitresController < ApplicationController
 
   def create
     @varbitre = Varbitre.new(params[:varbitre])
-    if @varbitre.save
-      flash[:notice] = 'Varbitre was successfully created.'
-      redirect_to :action => 'list'
+    
+    @personne = Personne.new(:nom => @varbitre.nom, :prenom => @varbitre.prenom)
+    @sportif = Sportif.new(:dateNaissance => @varbitre.dateNaissance,
+      :taille => @ventraineur.taille,:pays => @varbitre.pays)
+    @arbitre = Arbitre.new
+    
+    if @personne.save
+      @sportif.id = @personne.id
+      @varbitre.id = @sportif.id
+      
+      if @sportif.save && @varbitre.save
+        flash[:notice] = 'Arbitre was successfully created.'
+        redirect_to :action => 'list'
+      else
+        render :action => 'new'
+        
+        Personne.delete(@personne.id)
+      end
+      
     else
       render :action => 'new'
     end
@@ -35,10 +51,16 @@ class VarbitresController < ApplicationController
   end
 
   def update
-    @varbitre = Varbitre.find(params[:id])
-    if @varbitre.update_attributes(params[:varbitre])
-      flash[:notice] = 'Varbitre was successfully updated.'
-      redirect_to :action => 'show', :id => @varbitre
+    @varbitre = Varbitre.new(params[:ventraineur])
+    
+    @personne = Personne.find(params[:id])
+    @sportif = Sportif.find(params[:id])
+    
+    if @personne.update_attributes(:nom => @varbitre.nom,:prenom => @varbitre.prenom) &&
+        @sportif.update_attributes(:dateNaissance => @varbitre.dateNaissance,
+          :taille => @varbitre.taille,:pays => @varbitre.pays)
+      flash[:notice] = 'Arbitre was successfully updated.'
+      redirect_to :action => 'show', :id => @personne.id
     else
       render :action => 'edit'
     end

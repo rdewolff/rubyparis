@@ -8,7 +8,7 @@
 <%= text_field 'ventraineur', 'prenom'  %></p>
 
 <p><label for="ventraineur_dateNaissance">Date de naissance</label><br/>
-<%= date_select 'ventraineur', 'dateNaissance'  %></p>
+<%= date_select 'ventraineur', 'dateNaissance', :order => [:day,:month,:year], :start_year => 1920 %></p>
 
 <p><label for="ventraineur_taille">Taille</label><br/>
 <%= text_field 'ventraineur', 'taille'  %></p>

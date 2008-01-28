@@ -1,8 +1,17 @@
 <%= error_messages_for 'equipe' %>
 
 <!--[form:equipe]-->
-<p><label for="equipe_nom">Nom</label><br/>
-<%= text_field 'equipe', 'nom'  %></p>
+
+<input id="sel" name="selec" type="checkbox" value="yes" onclick="new function(){
+	alert(this.getElementsById('sel'));
+	if (this.getElementsById('sel')[0].checked)
+		alert('check');
+	else
+		aler('uncheck');
+}"/>
+
+<p class="nomJoueur"><label for="equipe_nom">Nom</label><br/>
+<%= text_field 'equipe', 'nom' %></p>
 
 <p><label for="equipe_pays">Pays</label><br/>
 <%= @nations = Nation.find :all, :order => "pays asc"
