@@ -8,23 +8,12 @@ class RubyparisController < ApplicationController
     @hashpw = Hashpw.new
     @utilisateur = Utilisateur.new(params[:utilisateur])
     
-    puts @utilisateur.login
-    puts session[:initial_uri]
-    @utilisateur2 = Utilisateur.find(:first, :conditions => ["login = ?", @utilisateur.login])
+    @utilisateur = Utilisateur.find(:first, :conditions => ["login = ?", @utilisateur.login])
     
     
-    if @utilisateur2 and @hashpw.authenticate(@utilisateur2.password,@utilisateur.password)
-      session[:user] = @utilisateur2
-     # redirect_to session[:initial_uri]
-      
-      
-      #@parieur = Parieur.find_by_id(@utilisateur2.id)
-      #@admin = Administrateur.find_by_id(@utilisateur2.id)
-#      if @parieur
-#        session[:parieur] = @parieur
-#      elsif @admin
-#        session[:admin] = @admin
-#      end
+    if @utilisateur and @hashpw.authenticate(@utilisateur.password,@utilisateur.password)
+      session[:admin] = Administrateur.find(:first, :conditions => ["id = ?", @utilisateur.id])
+      session[:user] = @utilisateur
     else
       flash[:notice] = "Login incorrect!"
     end
