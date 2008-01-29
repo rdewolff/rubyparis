@@ -1,4 +1,6 @@
 class Equipe < ActiveRecord::Base
   belongs_to :entraineur
-  has_many   :joueur
+  belongs_to :nation, :foreign_key => "pays"
+  has_many :joueur
+  has_many :match
 end

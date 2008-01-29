@@ -25,14 +25,14 @@ class VarbitresController < ApplicationController
     
     @personne = Personne.new(:nom => @varbitre.nom, :prenom => @varbitre.prenom)
     @sportif = Sportif.new(:dateNaissance => @varbitre.dateNaissance,
-      :taille => @ventraineur.taille,:pays => @varbitre.pays)
+      :taille => @varbitre.taille,:pays => @varbitre.pays)
     @arbitre = Arbitre.new
     
     if @personne.save
       @sportif.id = @personne.id
-      @varbitre.id = @sportif.id
+      @arbitre.id = @sportif.id
       
-      if @sportif.save && @varbitre.save
+      if @sportif.save && @arbitre.save
         flash[:notice] = 'Arbitre was successfully created.'
         redirect_to :action => 'list'
       else

@@ -2,13 +2,7 @@
 
 <!--[form:equipe]-->
 
-<input id="sel" name="selec" type="checkbox" value="yes" onclick="new function(){
-	alert(this.getElementsById('sel'));
-	if (this.getElementsById('sel')[0].checked)
-		alert('check');
-	else
-		aler('uncheck');
-}"/>
+<input id="sel" name="selec" type="checkbox" value="yes" onclick="new function () {$('.nomJoueur').slideToggle(5);}"/>
 
 <p class="nomJoueur"><label for="equipe_nom">Nom</label><br/>
 <%= text_field 'equipe', 'nom' %></p>
