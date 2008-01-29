@@ -160,7 +160,7 @@ input, textarea, .myForms, select{
 
 #content {
 	float: left;
-	width: 420px;
+	/* width: 420px; */
 	padding: 20px 0 0 20px;
 }
 
