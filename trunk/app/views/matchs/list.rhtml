@@ -10,9 +10,14 @@
   
 <% for match in @matchs %>
   <tr>
-  <% for column in Match.content_columns %>
-    <td><%=h match.send(column.name) %></td>
-  <% end %>
+    <td><%= match.equipea.nom%> vs</td>
+    <td><%= match.equipeb.nom%></td>
+    <td><%= match.scoreA%> - </td>
+    <td><%= match.scoreB%></td>
+    <td><%= match.date%></td>
+	 <td><%= match.heure%></td>
+    <td><%= match.lieu%></td>
+	 
     <td><%= link_to 'Show', :action => 'show', :id => match %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => match %></td>
     <td><%= link_to 'Destroy', { :action => 'destroy', :id => match }, :confirm => 'Are you sure?', :method => :post %></td>

@@ -19,11 +19,11 @@ class MatchsController < ApplicationController
   def new
     @match = Match.new
   end
-
+  
   def create
     @match = Match.new(params[:match])
     if @match.save
-      flash[:notice] = 'Match was successfully created.'
+      flash[:notice] = 'Match was successfully created.' + @match.equipea.nom + @match.equipeb.nom
       redirect_to :action => 'list'
     else
       render :action => 'new'
