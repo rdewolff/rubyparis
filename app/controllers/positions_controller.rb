@@ -21,9 +21,9 @@ class PositionsController < ApplicationController
   end
 
   def create
-    @position = Position.new(params[:positions])
+    @position = Position.new(params[:position])
     if @position.save
-      flash[:notice] = 'Position was successfully created.'
+      flash[:notice] = "La position '" + @position.position + "' a été créée avec succès!"
       redirect_to :action => 'list'
     else
       render :action => 'new'

@@ -23,7 +23,7 @@ class EquipesController < ApplicationController
   def create
     @equipe = Equipe.new(params[:equipe])
     if @equipe.save
-      flash[:notice] = 'Equipe was successfully created.'
+      flash[:notice] = "L'équipe '" + @equipe.nom + "' a été créé avec succès!"
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -37,7 +37,7 @@ class EquipesController < ApplicationController
   def update
     @equipe = Equipe.find(params[:id])
     if @equipe.update_attributes(params[:equipe])
-      flash[:notice] = 'Equipe was successfully updated.'
+      flash[:notice] = "L'équipe '" + @equipe.nom + "' a été mise à jour avec succès!"
       redirect_to :action => 'show', :id => @equipe
     else
       render :action => 'edit'

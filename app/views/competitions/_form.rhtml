@@ -2,20 +2,20 @@
 
 <!--[form:competitions]-->
 <p><label for="competitions_nom">Nom</label><br/>
-<%= text_field 'competitions', 'nom'  %></p>
+<%= text_field 'competition', 'nom'  %></p>
 
 <p><label for="competitions_description">Description</label><br/>
-<%= text_area 'competitions', 'description'  %></p>
+<%= text_area 'competition', 'description'  %></p>
 
 <p><label for="competitions_dateDebut">Date de début</label><br/>
-<%= date_select 'competitions', 'dateDebut', :order => [:day,:month,:year]  %></p>
+<%= date_select 'competition', 'dateDebut', :order => [:day,:month,:year]  %></p>
 
 <p><label for="competitions_dateFin">Date de fin</label><br/>
-<%= date_select 'competitions', 'dateFin', :order => [:day,:month,:year]  %></p>
+<%= date_select 'competition', 'dateFin', :order => [:day,:month,:year]  %></p>
 
 <p><label for="competitions_administrateur">Administrateur</label><br/>
 <%= @administrateurs = Administrateur.find_by_sql("SELECT * FROM utilisateurs WHERE id in (SELECT id FROM administrateurs) ORDER BY login")
-collection_select(:competitions, :administrateur_id, @administrateurs, :id, :login) %></p>
+collection_select(:competition, :administrateur_id, @administrateurs, :id, :login) %></p>
 
 <!--[eoform:competitions]-->
 

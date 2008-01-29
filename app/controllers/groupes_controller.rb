@@ -27,9 +27,9 @@ class GroupesController < ApplicationController
   end
 
   def create
-    @groupe = Groupe.new(params[:groupes])
+    @groupe = Groupe.new(params[:groupe])
     if @groupe.save
-      flash[:notice] = 'Groupe was successfully created.'
+      flash[:notice] = "Le groupe '" + @groupe.nom + "' a été créé avec succès!"
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -42,8 +42,8 @@ class GroupesController < ApplicationController
 
   def update
     @groupe = Groupe.find(params[:id])
-    if @groupe.update_attributes(params[:groupes])
-      flash[:notice] = 'Groupe was successfully updated.'
+    if @groupe.update_attributes(params[:groupe])
+      flash[:notice] = "Le groupe '" + @groupe.nom + "' a été mis à jour avec succès!"
       redirect_to :action => 'show', :id => @groupe
     else
       render :action => 'edit'

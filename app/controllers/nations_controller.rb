@@ -21,12 +21,12 @@ class NationsController < ApplicationController
   end
 
   def create
-    @nation = Nation.new(params[:nations])
+    @nation = Nation.new(params[:nation])
     if @nation.save
       @equipe = Equipe.new(:nom => @nation.pays,
         :pays => @nation.id, :selection => 1)
       if @equipe.save
-        flash[:notice] = 'Pays et selection nationale créés.'
+        flash[:notice] = 'Pays et selection nationale créés avec succès.'
         redirect_to :action => 'list'
       else
         render :action => 'new'
@@ -44,7 +44,7 @@ class NationsController < ApplicationController
     @nation = Nation.find(params[:id])
     @equipe = Equipe.find(:first, :conditions => ["pays = ? and selection = 1", @nation.id])
     
-    if @nation.update_attributes(params[:nations]) && @equipe.update_attributes(:nom => @nation.pays)
+    if @nation.update_attributes(params[:nation]) && @equipe.update_attributes(:nom => @nation.pays)
       flash[:notice] = 'Pays et selection nationale modifiés avec succès.'
       redirect_to :action => 'show', :id => @nation
     else

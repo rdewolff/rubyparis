@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   
   before_filter :load_data
   def load_data
+    #tableau de pages ne nécessitant pas d'authentification
     @pagesNoLogin = Array.new
-
-    @pagesNoLogin = ["/parieurs/new", "lol2"]
+    @pagesNoLogin = ["/parieurs/new", "/competitions/list"]
   end
   
   def authenticate

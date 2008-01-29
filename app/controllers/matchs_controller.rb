@@ -23,7 +23,7 @@ class MatchsController < ApplicationController
   def create
     @match = Match.new(params[:match])
     if @match.save
-      flash[:notice] = 'Match was successfully created.' + @match.equipea.nom + @match.equipeb.nom
+      flash[:notice] = "Le match '" +@match.equipea.nom + " vs " + @match.equipeb.nom + "' a été créé avec succès."
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -37,18 +37,13 @@ class MatchsController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update_attributes(params[:match])
-      flash[:notice] = 'Match was successfully updated.'
+      flash[:notice] = "Le match '" +@match.equipea.nom + " vs " + @match.equipeb.nom + "' a été modifié avec succès."
       redirect_to :action => 'show', :id => @match
     else
       render :action => 'edit'
     end
   end
 
-  def prochains_matchs
-    @match_pages, @matchs = paginate :matchs, :per_page => 10
-    render( :layout => false) # n'affiche pas le layout
-  end
-  
   def destroy
     Match.find(params[:id]).destroy
     redirect_to :action => 'list'
