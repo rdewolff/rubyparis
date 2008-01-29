@@ -22,7 +22,7 @@ class RubyparisController < ApplicationController
   
   def logout
     reset_session
-    redirect_to :action => "home"
+    redirect_to :home_url
   end
   
 end
