@@ -8,26 +8,26 @@ collection_select(:util, :competition_id, @competitions, :id, :nom) %></p>
 
 <p><label for="matchs_groupe">Groupe</label><br/>
 <%= @groupes = Groupe.find :all, :order => "nom asc"
-collection_select(:matchs, :groupe_id, @groupes, :id, :nom) %></p>
+collection_select(:match, :groupe_id, @groupes, :id, :nom) %></p>
 
 <p><label for="matchs_equipeA">Equipe locale</label><br/>
 <%= @equipes = Equipe.find :all, :order => "nom asc"
-collection_select(:matchs, :equipeA, @equipes, :id, :nom) %></p>
+collection_select(:match, :equipeA, @equipes, :id, :nom) %></p>
 
 <p><label for="matchs_equipeB">Equipe visitante</label><br/>
 <%= @equipes = Equipe.find :all, :order => "nom asc"
-collection_select(:matchs, :equipeB, @equipes, :id, :nom) %></p>
+collection_select(:match, :equipeB, @equipes, :id, :nom) %></p>
 
 <p><label for="matchs_arbitre">Arbitre</label><br/>
 <%= @arbitres = Personne.find_by_sql("SELECT id, CONCAT(nom, ' ', prenom) AS 'arbitre' FROM personnes WHERE id in (SELECT id FROM arbitres) ORDER BY nom,prenom")
-collection_select(:matchs, :arbitre_id, @arbitres, :id, :arbitre) %></p>
+collection_select(:match, :arbitre_id, @arbitres, :id, :arbitre) %></p>
 
 <p><label for="matchs_date">Date</label><br/>
-<%= date_select 'matchs', 'date',:order => [:day,:month,:year] %></p>
+<%= date_select 'match', 'date',:order => [:day,:month,:year] %></p>
 
 <p><label for="matchs_heure">Heure</label><br/>
-<%= time_select 'matchs', 'heure'  %></p>
+<%= time_select 'match', 'heure'  %></p>
 
 <p><label for="matchs_lieu">Lieu</label><br/>
-<%= text_field 'matchs', 'lieu'  %></p>
+<%= text_field 'match', 'lieu'  %></p>
 <!--[eoform:matchs]-->

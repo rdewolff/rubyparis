@@ -1,4 +1,5 @@
 class Competition < ActiveRecord::Base
-  has_one :administrateur
-  
+  belongs_to :administrateur
+  has_many :groupe
+  has_and_belongs_to_many :parieur
 end
