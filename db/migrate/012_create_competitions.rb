@@ -3,7 +3,7 @@ class CreateCompetitions < ActiveRecord::Migration
     create_table "competitions" do |t|
       t.column "administrateur_id", :int, :null => false
       t.column "nom", :string, :limit => 50, :null => false
-      t.column "description", :string, :limit => 100, :null => false
+      t.column "description", :text, :null => false
       t.column "dateDebut", :date
       t.column "dateFin", :date
     end

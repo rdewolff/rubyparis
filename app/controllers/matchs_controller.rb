@@ -44,6 +44,11 @@ class MatchsController < ApplicationController
     end
   end
 
+  def prochains_matchs
+    @match_pages, @matchs = paginate :matchs, :per_page => 10
+    render( :layout => false) # n'affiche pas le layout
+  end
+  
   def destroy
     Match.find(params[:id]).destroy
     redirect_to :action => 'list'

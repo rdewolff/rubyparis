@@ -48,20 +48,36 @@ Modifs     : Romain de Wolff & Bruno da Silva
 </div>
 <div id="menu">
    <ul>
-      <li class="current_page_item"><%= link_to "home", :home_url %></li>
+      <li class="current_page_item"><%= link_to "Home", :home_url %></li>
       <li><%= link_to "Compétitions", :controller => 'competitions', :action => 'list' %></li>
       <li><%= link_to "Equipes", :controller => 'equipes', :action => 'list' %></li>
-      <li><a href="#">A propos</a></li>
-      <li><a href="#">Contactez-nous</a></li>
+		<li>
+			<% if session[:user] %>
+         <%= link_to "Logout", :controller => 'rubyparis', :action => 'logout' %>
+			<% else %>
+			<%= link_to "S'identifier", :controller => 'rubyparis', :action => 'login' %>
+			<%= link_to "Créer un compte", :controller => 'rubyparis', :action => 'login' %>
+			<% end %>
+		</li>
    </ul>
 </div>
 <!-- end header -->
 <!-- start page -->
 <div id="page">
    <div id="page-bg">
-   	<div>
-   Administration : 
-</div>
+      <% if session[:admin] %>
+     	<div>Admin :: 
+		    <%= link_to "Joueurs", :controller => 'vjoueurs', :action => 'list' %> | 
+			 <%= link_to "Entraineurs", :controller => 'ventraineurs', :action => 'list' %> | 
+			 <%= link_to "Arbitres", :controller => 'varbitres', :action => 'list' %> | 
+			 <%= link_to "Equipes", :controller => 'equipes', :action => 'list' %> | 
+			 <%= link_to "Nations", :controller => 'nations', :action => 'list' %> | 
+			 <%= link_to "Compétitions", :controller => 'competitions', :action => 'list' %> | 
+			 <%= link_to "Groupes", :controller => 'groupes', :action => 'list' %> | 
+			 <%= link_to "Matchs", :controller => 'matchs', :action => 'list' %> | 
+			 <%= link_to "Résultats", :controller => 'matchs', :action => 'list' %>
+      </div>
+		<% end %>
 		<% if request.request_uri == "/home" %>
 		
       <div id="latest-post"> <img src="/images/img04.png" alt="" width="140" height="140" class="right" />

@@ -30,13 +30,16 @@
             <li>
                <h2>Prochains matchs</h2>
                <ul>
+               	
+               <%= render_component( :controller => "matchs", :action => "prochains_matchs") %>
+               	
                   <li><a href="#">AS Roma vs AC Milan</a></li>
                   <li><a href="#">Manchester vs Liverpool</a></li>
                   <li><a href="#">FC Sion vs Grasshoper</a></li>
                </ul>
             </li>
             <li>
-               <h2>Compétitions terminées</h2>
+               <h2>Compétitions</h2>
                <ul>
                   <li><a href="#">September</a> (23)</li>
                   <li><a href="#">August</a> (31)</li>
