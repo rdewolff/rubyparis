@@ -21,7 +21,7 @@ class CompetitionsController < ApplicationController
   end
 
   def create
-    @competition = Competition.new(params[:competitions])
+    @competition = Competition.new(params[:competition])
     if @competition.save
       flash[:notice] = 'Competition was successfully created.'
       redirect_to :action => 'list'

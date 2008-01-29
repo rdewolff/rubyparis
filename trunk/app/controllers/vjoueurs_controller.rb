@@ -51,7 +51,7 @@ class VjoueursController < ApplicationController
   end
 
   def update
-    @vjoueur = Vjoueur.new(params[:ventraineur])
+    @vjoueur = Vjoueur.new(params[:vjoueur])
     
     @personne = Personne.find(params[:id])
     @sportif = Sportif.find(params[:id])

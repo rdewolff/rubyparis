@@ -24,9 +24,9 @@ class AdministrateursController < ApplicationController
   end
 
   def create
-    @personne = Personne.new(params[:personnes])
-    @utilisateur = Utilisateur.new(params[:utilisateurs])
-    @administrateur = Administrateur.new(params[:administrateurs])
+    @personne = Personne.new(params[:personne])
+    @utilisateur = Utilisateur.new(params[:utilisateur])
+    @administrateur = Administrateur.new(params[:administrateur])
     
     if @personne.save
       @utilisateur.id = @personne.id
