@@ -1,4 +1,6 @@
 class ParieursController < ApplicationController
+  before_filter :authenticate
+  
   def index
     list
     render :action => 'list'
