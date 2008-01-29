@@ -20,4 +20,9 @@ class RubyparisController < ApplicationController
     render :action => 'index'
   end
   
+  def logout
+    reset_session
+    redirect_to :action => "home"
+  end
+  
 end
