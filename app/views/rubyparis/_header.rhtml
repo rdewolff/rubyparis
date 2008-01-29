@@ -55,8 +55,8 @@ Modifs     : Romain de Wolff & Bruno da Silva
 			<% if session[:user] %>
          <%= link_to "Logout", :controller => 'rubyparis', :action => 'logout' %>
 			<% else %>
-			<%= link_to "S'identifier", :controller => 'rubyparis', :action => 'login' %>
-			<%= link_to "Créer un compte", :controller => 'rubyparis', :action => 'login' %>
+			<%= link_to "S'identifier", :controller => 'rubyparis' %>
+			<%= link_to "Créer un compte", :controller => 'vparieurs', :action => 'new' %>
 			<% end %>
 		</li>
    </ul>

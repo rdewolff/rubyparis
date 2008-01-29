@@ -1,0 +1,146 @@
+\documentclass[10pt,a4paper,titlepage]{article}
+\usepackage[utf8]{inputenc}     % encodage des characteres en utf8
+\usepackage[francais]{babel} % pour la table des matières en français 
+
+\usepackage{url} % pour les liens internet
+\usepackage[colorlinks=true,linkcolor=black,bookmarks=true,bookmarksopen=true]{hyperref} % rendre les liens clickable
+\usepackage{fancyhdr}	 
+\usepackage{listings} 
+\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
+
+\usepackage[dvips]{graphicx}
+\usepackage{epstopdf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Info sur le labo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\branchetag}{WEB}
+\newcommand{\branche}{Technologies web}
+% \newcommand{\labonummer}{}
+\newcommand{\laboname}{RubyParis}
+\newcommand{\auteurOne}{Romain de Wolff}
+\newcommand{\auteurTwo}{Bruno da Silva}
+\newcommand{\promo}{IL2008}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pour l'utilisation de code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings} 
+%\lstset{language=Java, breaklines, fontadjust, inputencoding=utf8, basicstyle=\small, numbers=left, numberstyle=\tiny, tabsize=2}
+
+\usepackage{courier}
+\usepackage{color}
+
+% color definitions
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightblue}{rgb}{0.92,0.92,1}
+
+\lstset{language=Html,
+  %keywords={break,case,catch,continue,else,elseif,end,for,function,
+  %   global,if,otherwise,persistent,return,switch,try,while},
+  keywords={script, document, function},
+  basicstyle=\ttfamily\small,
+  % basicstyle=\scriptsize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{red},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=10pt,
+  backgroundcolor=\color{lightblue},
+  tabsize=2,
+  linewidth=0pt,
+  showspaces=false,
+  showstringspaces=false,
+  frame=single,
+  framexleftmargin=10pt,
+  framexrightmargin=10pt,
+  framexbottommargin=7pt,
+  framextopmargin=7pt,
+  linewidth=335pt, % largeur de la ligne de code affichée
+  xleftmargin=10pt, % espace avant le debut du cadre
+  aboveskip=20pt
+}
+
+
+\pagestyle{fancy} % defini nos propre header & footer
+\fancyhf{} % delete current header and footer 
+\fancyhead[L]{\branchetag}
+\fancyhead[C]{\laboname}
+\fancyhead[R]{\auteurOne \\ \auteurTwo} 
+\fancyfoot[L]{\includegraphics[width=3cm]{img/logo-HEIG-VD.jpg}}
+\fancyfoot[R]{\bfseries\thepage}
+
+\renewcommand{\headrulewidth}{0.5pt} 
+\renewcommand{\footrulewidth}{0.1pt} 
+\addtolength{\footskip}{10.0pt} % space for the rule 
+\fancypagestyle{plain}{
+	\fancyhead{} % get rid of headers on plain pages 
+	\fancyfoot{}
+	\renewcommand{\headrulewidth}{0pt} % and the line 
+	\renewcommand{\footrulewidth}{0pt} % and the line 
+}
+
+\author{\auteurOne, \auteurTwo}
+\title{\branchetag : \laboname}
+\date{\today}
+
+\begin{document}
+\pagenumbering{Roman}
+\pagestyle{headings}
+\begin{titlepage}
+	\begin{center}
+	\includegraphics{img/logo-HEIG-VD.jpg}\\
+		\vspace{3cm}
+		\LARGE \branche %Laboratoire No %\labonummer \\
+		\vspace{3cm}\\
+		\Huge \laboname \\
+		\vspace{3cm}
+
+		\Large \textsc{Documentation du projet} \\
+		\vspace{3cm}
+
+		\large \auteurOne \\
+		\auteurTwo \\	
+		\vspace{10pt}
+		\normalsize \textsc{\promo} \\
+
+		\vspace{2cm}
+		\today
+	\end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+% -----------------------------------------------------------------------------
+\section{Introduction}
+% -----------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------
+\subsection{Remarques}
+% -----------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------
+\section{Conclusion}
+% -----------------------------------------------------------------------------
+
+\newpage
+\section{Références}
+\small
+\begin{description}
+	\item[\url{http://wiki.rubyonrails.org/rails/pages/Scaffolding+Extensions+Tutorial}] Tutoriel pour utilisation de plusieurs clé étrangère dans la même table
+	\item[\url{http://jquery.com/}] {Site officiel de jQuery.}
+	\item[\url{http://www.jquery.info/}] {Site francophone sur jQuery.}
+\end{description}
+
+\end{document}
