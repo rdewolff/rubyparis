@@ -43,7 +43,8 @@ class MatchsController < ApplicationController
       render :action => 'edit'
     end
   end
-
+  
+  # selectionne les prochains match
   def destroy
     Match.find(params[:id]).destroy
     redirect_to :action => 'list'
