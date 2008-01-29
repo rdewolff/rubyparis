@@ -294,3 +294,9 @@ input, textarea, .myForms, select{
 .date {
 	color: green;
 }
+
+/* tableaux */
+
+td {
+	padding: 3px 3px 3px 3px;
+}

@@ -67,7 +67,8 @@ Modifs     : Romain de Wolff & Bruno da Silva
    <div id="page-bg">
       <% if session[:admin] %>
      	<div>Admin :: 
-		    <%= link_to "Joueurs", :controller => 'vjoueurs', :action => 'list' %> | 
+		    <%= link_to "Joueurs", :controller => 'vjoueurs', :action => 'list' %> |
+			 <%= link_to "Position", :controller => 'positions', :action => 'list' %> |  
 			 <%= link_to "Entraineurs", :controller => 'ventraineurs', :action => 'list' %> | 
 			 <%= link_to "Arbitres", :controller => 'varbitres', :action => 'list' %> | 
 			 <%= link_to "Equipes", :controller => 'equipes', :action => 'list' %> | 
