@@ -1,4 +1,4 @@
-<h1>Listing vparieurs</h1>
+<h1>Liste des parieurs</h1>
 
 <table>
   <tr>
@@ -19,9 +19,9 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @vparieur_pages.current.previous } if @vparieur_pages.current.previous %>
-<%= link_to 'Next page', { :page => @vparieur_pages.current.next } if @vparieur_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @vparieur_pages.current.previous } if @vparieur_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @vparieur_pages.current.next } if @vparieur_pages.current.next %> 
 
 <br />
 
-<%= link_to 'New vparieur', :action => 'new' %>
+<%= link_to 'Nouveau parieur', :action => 'new' %>

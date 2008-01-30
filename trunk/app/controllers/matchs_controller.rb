@@ -23,7 +23,7 @@ class MatchsController < ApplicationController
   def create
     @match = Match.new(params[:match])
     if @match.save
-      flash[:notice] = "Le match '" +@match.equipea.nom + " vs " + @match.equipeb.nom + "' a été créé avec succès."
+      flash[:notice] = "Le match '" + @match.equipea.nom + " vs " + @match.equipeb.nom + "' a été créé avec succès."
       redirect_to :action => 'list'
     else
       render :action => 'new'
@@ -37,7 +37,7 @@ class MatchsController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update_attributes(params[:match])
-      flash[:notice] = "Le match '" +@match.equipea.nom + " vs " + @match.equipeb.nom + "' a été modifié avec succès."
+      flash[:notice] = "Le match '" + @match.equipea.nom + " vs " + @match.equipeb.nom + "' a été modifié avec succès."
       redirect_to :action => 'show', :id => @match
     else
       render :action => 'edit'

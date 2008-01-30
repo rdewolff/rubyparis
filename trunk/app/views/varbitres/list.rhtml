@@ -1,4 +1,4 @@
-<h1>Listing varbitres</h1>
+<h1>Liste des arbitres</h1>
 
 <table>
   <tr>
@@ -14,14 +14,14 @@
   <% end %>
     <td><%= link_to 'Show', :action => 'show', :id => varbitre %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => varbitre %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => varbitre }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => varbitre }, :confirm => 'Etes vous sur?', :method => :post %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @varbitre_pages.current.previous } if @varbitre_pages.current.previous %>
-<%= link_to 'Next page', { :page => @varbitre_pages.current.next } if @varbitre_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @varbitre_pages.current.previous } if @varbitre_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @varbitre_pages.current.next } if @varbitre_pages.current.next %> 
 
 <br />
 
-<%= link_to 'New varbitre', :action => 'new' %>
+<%= link_to 'Nouvel arbitre', :action => 'new' %>

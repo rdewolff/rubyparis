@@ -1,4 +1,4 @@
-<h1>Listing Entraineur</h1>
+<h1>Liste des entraineurs</h1>
 
 <table>
   <tr>
@@ -19,9 +19,9 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @ventraineur_pages.current.previous } if @ventraineur_pages.current.previous %>
-<%= link_to 'Next page', { :page => @ventraineur_pages.current.next } if @ventraineur_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @ventraineur_pages.current.previous } if @ventraineur_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @ventraineur_pages.current.next } if @ventraineur_pages.current.next %> 
 
 <br />
 
-<%= link_to 'New ventraineur', :action => 'new' %>
+<%= link_to 'Ajouter', :action => 'new' %>

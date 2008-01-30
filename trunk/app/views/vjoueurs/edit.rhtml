@@ -1,9 +1,9 @@
-<h1>Edition Joueur</h1>
+<h1>Edition d'un joueur</h1>
 
 <% form_tag :action => 'update', :id => @vjoueur do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @vjoueur %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Afficher', :action => 'show', :id => @vjoueur %> |
+<%= link_to 'Retour', :action => 'list' %>

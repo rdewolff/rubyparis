@@ -12,15 +12,15 @@
   <% for column in Equipe.content_columns %>
     <td><%=h equipe.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => equipe %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => equipe %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => equipe }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => equipe %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => equipe %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => equipe }, :confirm => 'Are you sure?', :method => :post %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @equipe_pages.current.previous } if @equipe_pages.current.previous %>
-<%= link_to 'Next page', { :page => @equipe_pages.current.next } if @equipe_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @equipe_pages.current.previous } if @equipe_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @equipe_pages.current.next } if @equipe_pages.current.next %> 
 
 <br />
 

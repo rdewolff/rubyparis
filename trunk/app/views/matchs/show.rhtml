@@ -1,10 +1,13 @@
 
-<% for column in Match.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @match.send(column.name) %>
+	<h2><%= @match.equipea.nom + " " + (@match.scoreA || " ") + " - " + (@match.scoreB || " ")  + " " + @match.equipeb.nom%></h2><br>
+	<b>Competition: <%= @match.groupe.competition.nom %></b><br>
+	<b>Groupe: <%= @match.groupe.nom %></b><br>
+	<b>Lieu: <%= @match.lieu %></b><br>
+	<b>Date: <%= @match.date.strftime("%y-%m-%d") %></b><br>
+	<b>Heure: <%= @match.heure %></b><br>
 </p>
-<% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @match %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Modifier', :action => 'edit', :id => @match %> |
+<%= link_to 'Retour', :action => 'list' %>
 
