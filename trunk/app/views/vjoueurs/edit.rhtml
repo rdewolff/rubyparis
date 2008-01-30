@@ -1,8 +1,8 @@
-<h1>Edition d'un joueur</h1>
+<h1>Modification d'un joueur</h1>
 
 <% form_tag :action => 'update', :id => @vjoueur do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Modifier' %>
 <% end %>
 
 <%= link_to 'Afficher', :action => 'show', :id => @vjoueur %> |

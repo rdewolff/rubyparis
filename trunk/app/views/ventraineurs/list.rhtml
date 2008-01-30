@@ -12,9 +12,11 @@
   <% for column in Ventraineur.content_columns %>
     <td><%=h ventraineur.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => ventraineur %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => ventraineur %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => ventraineur }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => ventraineur %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => ventraineur %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => ventraineur },
+		:confirm => ("Etes vous sur de vouloir effacer '" + ventraineur.prenom + " " + ventraineur.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>

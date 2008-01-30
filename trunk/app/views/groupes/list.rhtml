@@ -14,7 +14,9 @@
   <% end %>
     <td><%= link_to 'Afficher', :action => 'show', :id => groupe %></td>
     <td><%= link_to 'Modifer', :action => 'edit', :id => groupe %></td>
-    <td><%= link_to 'Effacer', { :action => 'destroy', :id => groupe }, :confirm => 'Etes vous sur?', :method => :post %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => groupe },
+		:confirm => ("Etes vous sur de vouloir effacer '" + groupe.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>

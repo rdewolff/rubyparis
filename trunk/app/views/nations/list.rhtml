@@ -12,9 +12,11 @@
   <% for column in Nation.content_columns %>
     <td><%=h nation.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => nation %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => nation %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => nation }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => nation %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => nation %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => nation },
+		:confirm => ("Etes vous sur de vouloir effacer '" + nation.pays + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>
