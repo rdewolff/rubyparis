@@ -1,16 +1,21 @@
-<!-- 
-<% for column in Competition.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @competition.send(column.name) %>
-</p>
-<% end %>
--->
 
 <h2><%= @competition.nom %></h2>
 
-Groupes
-<!-- affichage des groups, 2 groupe par ligne -->
+<h3><%= @competition.groupe.size %> Groupes</h3>
 
+<!-- affichage des groups -->
+<table>
+<% for groupe in @competition.groupe %>
+   	<tr>
+   		<th colspan="2" align=center><%= groupe.nom %></th>
+		</tr>
+		
+			<% for match in groupe.match %>
+			<tr><td><%= match.equipea.nom %></td><td><%= match.equipeb.nom %></td></tr>
+			<% end %>
+		
+<% end %>
+</table>
 
 <br/>
 <br/>
