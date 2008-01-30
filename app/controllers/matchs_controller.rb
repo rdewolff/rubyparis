@@ -50,6 +50,16 @@ class MatchsController < ApplicationController
     render( :layout => false) # n'affiche pas le layout
   end
   
+  # selectionne les matchs terminé 
+  def resultats
+    @matchs = Match.find(:all, :conditions => ["date < ?", Date.today])
+  end
+  
+  def update_resultats
+    
+  end
+  
+  
   def destroy
     Match.find(params[:id]).destroy
     redirect_to :action => 'list'

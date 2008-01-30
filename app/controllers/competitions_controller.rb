@@ -9,7 +9,7 @@ class CompetitionsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @competition_pages, @competitions = paginate :competitions, :per_page => 10
+    @competition_pages, @competitions = paginate :competitions, :per_page => 20
   end
 
   def show
