@@ -79,8 +79,8 @@ Modifs     : Romain de Wolff & Bruno da Silva
 			 <%= link_to "Résultats", :controller => 'matchs', :action => 'list' %>
       </div>
 		<% end %>
-		<% if request.request_uri == "/home" %>
 		
+      <% if request.request_uri == "/home" || request.request_uri == "/" %>
       <div id="latest-post"> <img src="/images/img04.png" alt="" width="140" height="140" class="right" />
          <h1>Bienvenue!</h1>
          <p><strong>rubyParis</strong> est un site de paris sur des matchs de foot en ligne. Il a été développé en Ruby On Rails pour un projet en Technologie Web à l'école d'ingénieur d'Yverdon-les-Bains en Suisse. <br/><br/>

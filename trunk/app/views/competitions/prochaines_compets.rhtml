@@ -1,0 +1,5 @@
+<% for compet in @competitions %>
+  <li><%= link_to compet.nom, :controller => 'competitions', 
+                              :action => 'show', 
+                              :id => compet %></li>
+<% end %>

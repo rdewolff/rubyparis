@@ -8,7 +8,7 @@
 <% end -%>
 
 <% if session[:user] -%> 
-<div id="notice"><%= "Vous êtes encore identifié " + session[:user].login + "!" %></div> 
+<div id="notice"><%= "Bienvenue " + session[:user].personne.prenom + ' ' + session[:user].personne.nom + "!" %></div> 
 <% else -%>
 <h1>Login</h1>
 <p><label for="utilisateur_login">Nom d'utilisateur:</label><br/>
