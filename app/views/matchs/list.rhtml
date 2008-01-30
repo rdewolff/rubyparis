@@ -1,5 +1,5 @@
 
-<h1>Listing matchs</h1>
+<h1>Liste des matchs</h1>
 
 <table>
   <tr>
@@ -15,19 +15,19 @@
     <td><%= match.scoreA%> - </td>
     <td><%= match.scoreB%></td>
     <td><%= match.date%></td>
-	 <td><%= match.heure%></td>
+	<td><%= match.heure%></td>
     <td><%= match.lieu%></td>
 	 
-    <td><%= link_to 'Show', :action => 'show', :id => match %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => match %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => match }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => match %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => match %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => match }, :confirm => 'Etes vous sur?', :method => :post %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @match_pages.current.previous } if @match_pages.current.previous %>
-<%= link_to 'Next page', { :page => @match_pages.current.next } if @match_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @match_pages.current.previous } if @match_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @match_pages.current.next } if @match_pages.current.next %> 
 
 <br />
 
-<%= link_to 'New match', :action => 'new' %>
+<%= link_to 'Nouveau match', :action => 'new' %>

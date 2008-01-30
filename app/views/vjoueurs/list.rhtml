@@ -1,4 +1,4 @@
-<h1>Liste Joueurs</h1>
+<h1>Liste des joueurs</h1>
 
 <table>
   <tr>
@@ -19,8 +19,8 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @vjoueur_pages.current.previous } if @vjoueur_pages.current.previous %>
-<%= link_to 'Next page', { :page => @vjoueur_pages.current.next } if @vjoueur_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @vjoueur_pages.current.previous } if @vjoueur_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @vjoueur_pages.current.next } if @vjoueur_pages.current.next %> 
 
 <br />
 

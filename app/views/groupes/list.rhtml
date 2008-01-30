@@ -1,4 +1,4 @@
-<h1>Listing groupes</h1>
+<h1>Liste des groupes</h1>
 
 <table>
   <tr>
@@ -12,16 +12,16 @@
   <% for column in Groupe.content_columns %>
     <td><%=h groupe.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => groupe %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => groupe %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => groupe }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => groupe %></td>
+    <td><%= link_to 'Modifer', :action => 'edit', :id => groupe %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => groupe }, :confirm => 'Etes vous sur?', :method => :post %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @groupe_pages.current.previous } if @groupe_pages.current.previous %>
-<%= link_to 'Next page', { :page => @groupe_pages.current.next } if @groupe_pages.current.next %> 
+<%= link_to 'Page suivante', { :page => @groupe_pages.current.previous } if @groupe_pages.current.previous %>
+<%= link_to 'Page précédente', { :page => @groupe_pages.current.next } if @groupe_pages.current.next %> 
 
 <br />
 
-<%= link_to 'New groupe', :action => 'new' %>
+<%= link_to 'Nouveau groupe', :action => 'new' %>

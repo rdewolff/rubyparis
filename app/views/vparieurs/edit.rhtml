@@ -1,9 +1,9 @@
-<h1>Editing vparieur</h1>
+<h1>Modification d'un parieur</h1>
 
 <% form_tag :action => 'update', :id => @vparieur do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Modifier' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @vparieur %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Afficher', :action => 'show', :id => @vparieur %> |
+<%= link_to 'Retour', :action => 'list' %>

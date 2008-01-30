@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def load_data
     #tableau de pages ne nécessitant pas d'authentification
     @pagesNoLogin = Array.new
-    @pagesNoLogin = ["/parieurs/new", "/competitions/list"]
+    @pagesNoLogin = ["/parieurs/new", "/competitions/list", "/"]
   end
   
   def authenticate

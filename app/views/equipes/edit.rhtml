@@ -1,9 +1,9 @@
-<h1>Editing equipe</h1>
+<h1>Modification d'équipe</h1>
 
 <% form_tag :action => 'update', :id => @equipe do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Modifier' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @equipe %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Afficher', :action => 'show', :id => @equipe %> |
+<%= link_to 'Retour', :action => 'list' %>

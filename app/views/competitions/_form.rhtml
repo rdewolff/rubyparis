@@ -2,13 +2,13 @@
 
 <!--[form:competitions]-->
 <p><label for="competitions_nom">Nom</label><br/>
-<%= text_field 'competition', 'nom'  %></p>
+<%= text_field 'competition', 'nom', :value => @competition.nom %></p>
 
 <p><label for="competitions_description">Description</label><br/>
-<%= text_area 'competition', 'description'  %></p>
+<%= text_area 'competition', 'description', :value => @competition.description %></p>
 
 <p><label for="competitions_dateDebut">Date de début</label><br/>
-<%= date_select 'competition', 'dateDebut', :order => [:day,:month,:year]  %></p>
+<%= date_select 'competition', 'dateDebut', :order => [:day,:month,:year] %></p>
 
 <p><label for="competitions_dateFin">Date de fin</label><br/>
 <%= date_select 'competition', 'dateFin', :order => [:day,:month,:year]  %></p>
