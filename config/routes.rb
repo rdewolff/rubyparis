@@ -16,10 +16,13 @@ ActionController::Routing::Routes.draw do |map|
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   
+  # route par default qui arrive sur la "home page"
   map.connect "", :controller => 'rubyparis', :action => 'index'
   
+  # route vers la home, utilisée partout
   map.home '/home', :controller => 'rubyparis', :action => 'index'
       
+  # Settings
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.

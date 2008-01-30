@@ -48,17 +48,23 @@ Modifs     : Romain de Wolff & Bruno da Silva
 </div>
 <div id="menu">
    <ul>
-      <li class="current_page_item"><%= link_to "Home", :home_url %></li>
-      <li><%= link_to "Compétitions", :controller => 'competitions', :action => 'list' %></li>
-      <li><%= link_to "Equipes", :controller => 'equipes', :action => 'list' %></li>
-		<li>
+      <%= @params[:controller] == 'rubyparis' ? "<li class='current_page_item'>" : "<li>" %>
+		<%= (link_to "Home", :home_url) + '</li>' %> 
+
+      <%= @params[:controller] == 'competitions' ? "<li class='current_page_item'>" : "<li>" %>
+      <%= link_to "Compétitions", :controller => 'competitions', :action => 'list' %></li>
+      
+		<%= @params[:controller] == 'equipes' ? "<li class='current_page_item'>" : "<li>" %>
+      <%= link_to "Equipes", :controller => 'equipes', :action => 'list' %></li>
+		
+		<% # liens en fonction des droits de l'utilisateur %>
 			<% if session[:user] %>
-         <%= link_to "Logout", :controller => 'rubyparis', :action => 'logout' %>
+			   <li><%= link_to "Logout", :controller => 'rubyparis', :action => 'logout' %></li>
 			<% else %>
-			<%= link_to "S'identifier", :controller => 'rubyparis' %>
-			<%= link_to "Créer un compte", :controller => 'vparieurs', :action => 'new' %>
+			   <li><%= link_to "S'identifier", :controller => 'rubyparis' %></li>
+				<%= @params[:controller] == 'vparieurs' ? "<li class='current_page_item'>" : "<li>" %>
+			   <%= link_to "Créer un compte", :controller => 'vparieurs', :action => 'new' %></li>
 			<% end %>
-		</li>
    </ul>
 </div>
 <!-- end header -->
