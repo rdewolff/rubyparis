@@ -2,13 +2,11 @@
 
 <!--[form:matchs]-->
 
-<p><label for="matchs_competition">Competition</label><br/>
-<%= @competitions = Competition.find :all, :order => "nom asc"
-collection_select(:util, :competition_id, @competitions, :id, :nom) %></p>
 
-<p><label for="matchs_groupe">Groupe</label><br/>
-<%= @groupes = Groupe.find :all, :order => "nom asc"
-collection_select(:match, :groupe_id, @groupes, :id, :nom) %></p>
+<label for="matchs_groupe">Groupe: </label><br>
+<select name="match[groupe_id]">
+	<%= option_groups_from_collection_for_select(@maVar, :options, :type_name, :id,:name, @match.groupe_id) %>
+</select>
 
 <p><label for="matchs_equipeA">Equipe locale</label><br/>
 <%= @equipes = Equipe.find :all, :order => "nom asc"

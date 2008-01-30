@@ -1,28 +1,29 @@
+<table>
 <% for equipe in @equipe %>
-
-Nom : <%=equipe.nom%> 
-
-<br/>
-
-Pays : <%=equipe.pays%> 
-
-<br/>
-
-Stade : <%=equipe.stade%>
-
-<br/>
-
-URL : <%=equipe.url%>
-
-<br/> 
-
-Joueurs : <br/> 
+<tr>
+	<td width="50"><b>Nom :</b></td><td><%=equipe.nom%></td>
+</tr>
+<tr>
+	<td><b>Pays :</b></td><td><%=equipe.nation.pays%></td>
+</tr>
+<tr>
+	<td><b>Stade :</b></td><td><%=equipe.stade%></td>
+</tr>
+<tr>
+	<td><b>URL :</b></td><td><%=equipe.url%></td>
+</tr> 
+<tr>
+	<td colspan="2"><b>Joueurs :</b></td>
+</tr>
 
 <% for jou in equipe.joueur %>
-
-<%= jou.sportif.personne.nom + ' ' + jou.sportif.personne.prenom %> <br/>
-
+<tr>
+	<td>&nbsp;</td>
+	<td><%= jou.sportif.personne.prenom + ' ' + jou.sportif.personne.nom %></td>
+</tr>
 <% end %>
+
+</table>
 
 <br/><br/>
 

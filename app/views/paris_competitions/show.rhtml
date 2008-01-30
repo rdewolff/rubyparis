@@ -1,8 +1,0 @@
-<% for column in ParisCompetition.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @paris_competition.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @paris_competition %> |
-<%= link_to 'Back', :action => 'list' %>
