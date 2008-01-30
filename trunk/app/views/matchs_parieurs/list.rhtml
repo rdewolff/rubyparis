@@ -1,0 +1,27 @@
+<h1>Listing matchs_parieurs</h1>
+
+<table>
+  <tr>
+  <% for column in MatchsParieur.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for matchs_parieur in @matchs_parieurs %>
+  <tr>
+  <% for column in MatchsParieur.content_columns %>
+    <td><%=h matchs_parieur.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => matchs_parieur %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => matchs_parieur %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => matchs_parieur }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @matchs_parieur_pages.current.previous } if @matchs_parieur_pages.current.previous %>
+<%= link_to 'Next page', { :page => @matchs_parieur_pages.current.next } if @matchs_parieur_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New matchs_parieur', :action => 'new' %>

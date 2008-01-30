@@ -1,11 +1,32 @@
 
 <p>
-	<h2><%= @match.equipea.nom + " " + (@match.scoreA || " ") + " - " + (@match.scoreB || " ")  + " " + @match.equipeb.nom%></h2><br>
-	<b>Competition: <%= @match.groupe.competition.nom %></b><br>
-	<b>Groupe: <%= @match.groupe.nom %></b><br>
-	<b>Lieu: <%= @match.lieu %></b><br>
-	<b>Date: <%= @match.date.strftime("%y-%m-%d") %></b><br>
-	<b>Heure: <%= @match.heure %></b><br>
+	<table>
+		<tr>
+			<td colspan="2"><h2><%= @match.equipea.nom + " " + (@match.scoreA || " ").to_s
+				+ " - " + (@match.scoreB || " ").to_s + " " + @match.equipeb.nom%></h2></td>
+		</tr>
+		<tr>
+			<td width="50">Competition:</td>
+			<td><b><%= @match.groupe.competition.nom %></b></td>
+		</tr>
+		<tr>
+			<td>Groupe:</td>
+			<td><b></b><%= @match.groupe.nom %></b></td>
+		</tr>
+		<tr>
+			<td>Lieu:</td>
+			<td><b><%= @match.lieu %></b></td>
+		</tr>
+		<tr>
+			<td>Date:</td>
+			<td><b><%= @match.date.strftime("%d %B %G") %></b></td>
+		</tr>
+		<tr>
+			<td>Heure:</td>
+			<td><b><%= @match.heure.strftime("%I:%M") %></b></td>
+		</tr>
+	
+	</table>
 </p>
 
 <%= link_to 'Modifier', :action => 'edit', :id => @match %> |

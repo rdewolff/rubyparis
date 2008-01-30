@@ -1,18 +1,18 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'paris_competitions_controller'
+require 'matchs_parieurs_controller'
 
 # Re-raise errors caught by the controller.
-class ParisCompetitionsController; def rescue_action(e) raise e end; end
+class MatchsParieursController; def rescue_action(e) raise e end; end
 
-class ParisCompetitionsControllerTest < Test::Unit::TestCase
-  fixtures :paris_competitions
+class MatchsParieursControllerTest < Test::Unit::TestCase
+  fixtures :matchs_parieurs
 
   def setup
-    @controller = ParisCompetitionsController.new
+    @controller = MatchsParieursController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = paris_competitions(:first).id
+    @first_id = matchs_parieurs(:first).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class ParisCompetitionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:paris_competitions)
+    assert_not_nil assigns(:matchs_parieurs)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class ParisCompetitionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:paris_competition)
-    assert assigns(:paris_competition).valid?
+    assert_not_nil assigns(:matchs_parieur)
+    assert assigns(:matchs_parieur).valid?
   end
 
   def test_new
@@ -46,18 +46,18 @@ class ParisCompetitionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:paris_competition)
+    assert_not_nil assigns(:matchs_parieur)
   end
 
   def test_create
-    num_paris_competitions = ParisCompetition.count
+    num_matchs_parieurs = MatchsParieur.count
 
-    post :create, :paris_competition => {}
+    post :create, :matchs_parieur => {}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
 
-    assert_equal num_paris_competitions + 1, ParisCompetition.count
+    assert_equal num_matchs_parieurs + 1, MatchsParieur.count
   end
 
   def test_edit
@@ -66,8 +66,8 @@ class ParisCompetitionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:paris_competition)
-    assert assigns(:paris_competition).valid?
+    assert_not_nil assigns(:matchs_parieur)
+    assert assigns(:matchs_parieur).valid?
   end
 
   def test_update
@@ -78,7 +78,7 @@ class ParisCompetitionsControllerTest < Test::Unit::TestCase
 
   def test_destroy
     assert_nothing_raised {
-      ParisCompetition.find(@first_id)
+      MatchsParieur.find(@first_id)
     }
 
     post :destroy, :id => @first_id
@@ -86,7 +86,7 @@ class ParisCompetitionsControllerTest < Test::Unit::TestCase
     assert_redirected_to :action => 'list'
 
     assert_raise(ActiveRecord::RecordNotFound) {
-      ParisCompetition.find(@first_id)
+      MatchsParieur.find(@first_id)
     }
   end
 end

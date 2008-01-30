@@ -12,7 +12,7 @@
   <tr>
     <td><%= match.equipea.nom%> <%= match.scoreA%> - <%= match.scoreB%> <%= match.equipeb.nom%></td>
 
-    <td><%= match.date%></td>
+    <td><%= match.date.strftime("%d-%m-%y") %></td>
 	 <!-- <td><%= match.heure.to_s%></td> -->
     <td><%= match.lieu%></td>
 	 

@@ -15,13 +15,13 @@ Vous pouvez insérer les résultats des matchs déjà terminés.
   <tr>
     <td><%= match.equipea.nom%> - <%= match.equipeb.nom%></td>
 
-    <td><%= match.date%></td>
+    <td><%= match.date.strftime("%d-%m-%y") %></td>
     <td>
-    	<form name="<%=match.id%>" method="post" action="update_resultats">
-    		<%= text_field 'equipeA', 'nom', :size => 2 %> - 
-			<%= text_field 'equipeB', 'nom', :size => 2 %>
-			<input type="submit" value="Enregistrer">
-    	</form>
+    	<%= form_tag :action => 'update_resultats', :id => match.id %>
+    		<%= text_field 'match', 'scoreA', :size => 2, :value => match.scoreA %> - 
+			<%= text_field 'match', 'scoreB', :size => 2, :value => match.scoreB %>
+			<%= submit_tag "Enregistrer" %>
+    	<%= end_form_tag %>
     </td>
   </tr>
 <% end %>
