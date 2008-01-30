@@ -12,9 +12,11 @@
   <% for column in Vjoueur.content_columns %>
     <td><%=h vjoueur.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => vjoueur %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => vjoueur %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => vjoueur }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => vjoueur %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => vjoueur %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => vjoueur },
+		:confirm => ("Etes vous sur de vouloir effacer '" + vjoueur.prenom + " " + vjoueur.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>

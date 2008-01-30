@@ -12,9 +12,11 @@
   <% for column in Varbitre.content_columns %>
     <td><%=h varbitre.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => varbitre %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => varbitre %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => varbitre }, :confirm => 'Etes vous sur?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => varbitre %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => varbitre %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => varbitre },
+		:confirm => ("Etes vous sur de vouloir effacer '" + varbitre.prenom + " " + varbitre.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>

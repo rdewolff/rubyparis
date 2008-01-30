@@ -18,7 +18,9 @@
 	 
     <td><%= link_to 'Afficher', :action => 'show', :id => match %></td>
     <td><%= link_to 'Modifier', :action => 'edit', :id => match %></td>
-    <td><%= link_to 'Effacer', { :action => 'destroy', :id => match }, :confirm => 'Etes vous sur?', :method => :post %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => match },
+		:confirm => ("Etes vous sur de vouloir effacer '" + match.equipea.nom + " vs " + match.equipeb.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>

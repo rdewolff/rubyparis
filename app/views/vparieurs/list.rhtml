@@ -12,9 +12,11 @@
   <% for column in Vparieur.content_columns %>
     <td><%=h vparieur.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => vparieur %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => vparieur %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => vparieur }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => vparieur %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => vparieur %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => vparieur },
+		:confirm => ("Etes vous sur de vouloir effacer '" + vparieur.prenom + " " + vparieur.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>

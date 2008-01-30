@@ -15,7 +15,9 @@
 	<td> Action : 
 		<%= link_to 'Afficher', :action => 'show', :id => competition %>
 	   <%= link_to 'Modifier', :action => 'edit', :id => competition %>
-	   <%= link_to 'Effacer', { :action => 'destroy', :id => competition }, :confirm => 'Etes vous sur?', :method => :post %>
+	   <%= link_to 'Effacer', { :action => 'destroy', :id => competition },
+			:confirm => ("Etes vous sur de vouloir effacer '" + competition.nom + "'?"),
+			:method => :post %>
 	</td>	
    </tr>
 	<tr><tr height='20px'></tr></tr>

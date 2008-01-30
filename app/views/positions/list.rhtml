@@ -12,9 +12,10 @@
   <% for column in Position.content_columns %>
     <td><%=h position.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => position %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => position %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => position }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => position %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => position %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => position },
+		:confirm => ("Etes vous sur de vouloir effacer '" + position.position + "'?"), :method => :post %></td>
   </tr>
 <% end %>
 </table>

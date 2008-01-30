@@ -16,9 +16,11 @@
     	<td><%=h vadministrateur.send(column.name) %></td>
 	<% end %>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => vadministrateur %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => vadministrateur %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => vadministrateur }, :confirm => 'Are you sure?', :method => :post %></td>
+    <td><%= link_to 'Afficher', :action => 'show', :id => vadministrateur %></td>
+    <td><%= link_to 'Modifier', :action => 'edit', :id => vadministrateur %></td>
+    <td><%= link_to 'Effacer', { :action => 'destroy', :id => vadministrateur },
+		:confirm => ("Etes vous sur de vouloir effacer '" + vadministrateur.prenom + " " + vadministrateur.nom + "'?"),
+		:method => :post %></td>
   </tr>
 <% end %>
 </table>
