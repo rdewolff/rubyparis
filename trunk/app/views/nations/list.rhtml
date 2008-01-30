@@ -19,9 +19,9 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @nation_pages.current.previous } if @nation_pages.current.previous %>
-<%= link_to 'Next page', { :page => @nation_pages.current.next } if @nation_pages.current.next %> 
+<%= link_to '<< Page précédente', { :page => @nation_pages.current.previous } if @nation_pages.current.previous %>
+<%= link_to 'Page suivante >>', { :page => @nation_pages.current.next } if @nation_pages.current.next %> 
 
-<br />
+<br /><br />
 
 <%= link_to 'Créer une nouvelle nation', :action => 'new' %>

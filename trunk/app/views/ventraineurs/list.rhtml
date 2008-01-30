@@ -19,9 +19,9 @@
 <% end %>
 </table>
 
-<%= link_to 'Page suivante', { :page => @ventraineur_pages.current.previous } if @ventraineur_pages.current.previous %>
-<%= link_to 'Page précédente', { :page => @ventraineur_pages.current.next } if @ventraineur_pages.current.next %> 
+<%= link_to '<< Page précédente', { :page => @ventraineur_pages.current.previous } if @ventraineur_pages.current.previous %>
+<%= link_to 'Page suivante >>', { :page => @ventraineur_pages.current.next } if @ventraineur_pages.current.next %> 
 
-<br />
+<br /><br />
 
-<%= link_to 'Ajouter', :action => 'new' %>
+<%= link_to 'Créer un entraineur', :action => 'new' %>

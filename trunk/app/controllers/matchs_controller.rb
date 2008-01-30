@@ -46,7 +46,7 @@ class MatchsController < ApplicationController
   
   # selectionne les prochains match
   def prochains_matchs
-    @match_pages, @matchs = paginate :matchs, :per_page => 10
+    @match_pages, @matchs = paginate :matchs, :per_page => 5
     render( :layout => false) # n'affiche pas le layout
   end
   

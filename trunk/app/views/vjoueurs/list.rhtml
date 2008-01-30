@@ -19,9 +19,9 @@
 <% end %>
 </table>
 
-<%= link_to 'Page suivante', { :page => @vjoueur_pages.current.previous } if @vjoueur_pages.current.previous %>
-<%= link_to 'Page précédente', { :page => @vjoueur_pages.current.next } if @vjoueur_pages.current.next %> 
+<%= link_to '<< Page précédente', { :page => @vjoueur_pages.current.previous } if @vjoueur_pages.current.previous %>
+<%= link_to 'Page suivante >>', { :page => @vjoueur_pages.current.next } if @vjoueur_pages.current.next %> 
 
-<br />
+<br/><br/>
 
 <%= link_to 'Créer un nouveau joueur', :action => 'new' %>

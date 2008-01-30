@@ -19,9 +19,10 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @position_pages.current.previous } if @position_pages.current.previous %>
-<%= link_to 'Next page', { :page => @position_pages.current.next } if @position_pages.current.next %> 
+<%= link_to '<< Page précédente', { :page => @position_pages.current.previous } if @position_pages.current.previous %>
+<%= link_to 'Page suivante >>', { :page => @position_pages.current.next } if @position_pages.current.next %> 
 
 <br />
+<br />
 
-<%= link_to 'New position', :action => 'new' %>
+<%= link_to 'Créer une position', :action => 'new' %>
