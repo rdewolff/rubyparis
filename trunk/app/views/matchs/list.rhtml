@@ -3,19 +3,17 @@
 
 <table>
   <tr>
-  <% for column in Match.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
+    <th>Equipes concernées</th>
+	 <th>Date</th>
+	 <th>Lieu</th>
   </tr>
-  
+
 <% for match in @matchs %>
   <tr>
-    <td><%= match.equipea.nom%> vs</td>
-    <td><%= match.equipeb.nom%></td>
-    <td><%= match.scoreA%> - </td>
-    <td><%= match.scoreB%></td>
+    <td><%= match.equipea.nom%> <%= match.scoreA%> - <%= match.scoreB%> <%= match.equipeb.nom%></td>
+
     <td><%= match.date%></td>
-	<td><%= match.heure%></td>
+	 <!-- <td><%= match.heure.to_s%></td> -->
     <td><%= match.lieu%></td>
 	 
     <td><%= link_to 'Afficher', :action => 'show', :id => match %></td>
@@ -25,9 +23,10 @@
 <% end %>
 </table>
 
-<%= link_to 'Page suivante', { :page => @match_pages.current.previous } if @match_pages.current.previous %>
-<%= link_to 'Page précédente', { :page => @match_pages.current.next } if @match_pages.current.next %> 
+<%= link_to '<< Page précédente', { :page => @match_pages.current.previous } if @match_pages.current.previous %>
+<%= link_to 'Page suivante >>', { :page => @match_pages.current.next } if @match_pages.current.next %> 
 
+<br />
 <br />
 
 <%= link_to 'Nouveau match', :action => 'new' %>

@@ -1,0 +1,28 @@
+<h1>Résultats des matchs</h1>
+
+Vous pouvez insérer les résultats des matchs déjà terminés.
+
+<br/><br/>
+
+<table>
+  <tr>
+    <th>Equipes concernées</th>
+    <th>Date</th>
+    <th>Résultat</th>
+  </tr>
+
+<% for match in @matchs %>
+  <tr>
+    <td><%= match.equipea.nom%> - <%= match.equipeb.nom%></td>
+
+    <td><%= match.date%></td>
+    <td>
+    	<form name="<%=match.id%>" method="post" action="update_resultats">
+    		<%= text_field 'equipeA', 'nom', :size => 2 %> - 
+			<%= text_field 'equipeB', 'nom', :size => 2 %>
+			<input type="submit" value="Enregistrer">
+    	</form>
+    </td>
+  </tr>
+<% end %>
+</table>
