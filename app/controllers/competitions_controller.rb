@@ -43,6 +43,11 @@ class CompetitionsController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  def prochaines_compets
+    @competition_pages, @competitions = paginate :competitions, :per_page => 10
+    render( :layout => false) # n'affiche pas le layout
+  end
 
   def destroy
     Competition.find(params[:id]).destroy

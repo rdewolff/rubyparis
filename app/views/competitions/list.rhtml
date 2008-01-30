@@ -2,18 +2,15 @@
 
 <% for competition in @competitions %>
 <table>
-	<tr><td><h2><%= competition.nom %></h2></td></tr>
-	
 	<tr>
-		<td valign=top><%= competition.description %></td> 
-		
-		<td class="date">
-			Début: <%= competition.dateDebut %> <br/>
-		   Fin : <%= competition.dateFin %> <br/>
+		<td>
+			<h2><%= link_to competition.nom, :action => 'show', :id => competition %></h2>
+			Dates: <%= competition.dateDebut %> à <%= competition.dateFin %> <br/>
 		</td>
-	
 	</tr>
-	
+	<tr>
+		<td valign=top><%= competition.description %></td>
+	</tr>
 	<tr>
 	<td> Action : 
 		<%= link_to 'Afficher', :action => 'show', :id => competition %>
