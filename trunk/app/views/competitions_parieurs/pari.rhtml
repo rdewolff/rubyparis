@@ -1,0 +1,9 @@
+<h1>Vainqueur de la compétition</h1>
+
+<p><label for="competitions_parieurs_pari">Vainqueur:</label><br/>
+<% form_tag :action => 'create', :idCompetition => params[:id] do %>
+	<%= collection_select(:competitions_parieur, :resultat, @equipes, :id, :nom) %></p>
+  <%= submit_tag "Parier" %>
+<% end %>
+
+<%= link_to 'Retour', :controller => "", :action => 'list' %>
