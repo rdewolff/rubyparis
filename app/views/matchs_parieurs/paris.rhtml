@@ -1,0 +1,24 @@
+<h2>Paris sur <%= @competition.nom %></h2>
+
+<!-- affichage des groups -->
+<table>
+<% for groupe in @competition.groupe %>
+   	<tr>
+   		<th colspan="2" align=center>Groupe <%= groupe.nom %></th>
+		</tr>
+			
+			<% for match in groupe.match %>
+			<tr><td><%= match.equipea.nom %></td><td> vs </td><td><%= match.equipeb.nom %></td></tr>
+			<% end %>
+		
+<% end %>
+</table>
+
+<br/>
+<br/>
+
+
+
+
+<%= link_to 'Modifier', :action => 'edit', :id => @competition %> |
+<%= link_to 'Retour', :action => 'list' %>
