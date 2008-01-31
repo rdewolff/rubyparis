@@ -25,7 +25,7 @@ collection_select(:vjoueur, :position, @positions, :id, :position) %></p>
 <%= @clubs = Equipe.find( :all, :conditions => "selection = 0", :order => "nom asc")
 collection_select(:vjoueur, :club, @clubs, :id, :nom) %></p>
 
-<p><%= check_box("selection", {}, {}, "oui", "non") %>
+<p><%= check_box(:selection, :selection, {}, "oui", "non") %>
 <label for="vjoueur_selection">Selection Nationale</label></p>
 
 <!--[eoform:vjoueur]-->
