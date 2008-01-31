@@ -2,16 +2,20 @@
 
 <table>
   <tr>
-  <% for column in Equipe.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
+      <th>Nom</th>
+      <th>Pays</th>
+      <th>Lien</th>
+      <th>Stade</th>
   </tr>
   
 <% for equipe in @equipes %>
   <tr>
-  <% for column in Equipe.content_columns %>
-    <td><%=h equipe.send(column.name) %></td>
-  <% end %>
+   
+	  <td><%= link_to equipe.nom, :action => 'show', :id => equipe %></td>  
+     <td><%= equipe.nation.pays %></td>
+	  <td><%= link_to equipe.url, equipe.url %></td>
+     <td><%= equipe.stade %></td>
+	  
     <td><%= link_to 'Afficher', :action => 'show', :id => equipe %></td>
     <td><%= link_to 'Modifier', :action => 'edit', :id => equipe %></td>
     <td><%= link_to 'Effacer', { :action => 'destroy', :id => equipe },

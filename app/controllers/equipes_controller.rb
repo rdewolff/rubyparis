@@ -13,7 +13,10 @@ class EquipesController < ApplicationController
   end
 
   def show
+    # recupère les informations sur cette équipe
     @equipe = Equipe.find(params[:id])
+    # cherche les matchs joués par cette équipe
+    @matchs = Match.find(:all, :conditions => "equipeA=#{params[:id]} OR equipeB=#{params[:id]}")
   end
 
   def new

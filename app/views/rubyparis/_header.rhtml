@@ -35,8 +35,7 @@ Modifs     : Romain de Wolff & Bruno da Silva
    } // lookup
    
    function fill(thisValue) {
-      $('#inputString').val(thisValue);
-      setTimeout("$('#suggestions').hide();", 200);
+      window.location = '/equipes/eq?eq=' + thisValue;
    }
   </script>
 </head>
