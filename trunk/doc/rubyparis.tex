@@ -122,7 +122,9 @@
 \pagestyle{fancy}
 \pagenumbering{arabic}
 
+% -----------------------------------------------------------------------------
 \section{Introduction}
+% -----------------------------------------------------------------------------
 Dans le cadre du cours de Technologies Web, nous avons développé un site internet avec l'aide du framework “Ruby on Rails”. La réalisation de ce projet respecte les contraintes suivantes: \\
 \begin{itemize}
 	\item {l'application doit utiliser une base de données d'une dizaine de tables;}
@@ -132,12 +134,35 @@ Dans le cadre du cours de Technologies Web, nous avons développé un site inter
 
 Nous avons donc choisi de créer un site permettant d'effectuer des paris sur des matchs de football et l'avons nommé “RubyParis”.
 
+% -----------------------------------------------------------------------------
 \section{RubyParis}
+% -----------------------------------------------------------------------------
+
 Comme déjà mentionné, “RubyParis” est une site internet permettant à des utilisateurs de parier sur des matchs de football. Pour cela, le site doit permettre à un parieur de pouvoir s'inscrire sur le site et ensuite parier sur le vainqueur d'une compétition et sur les résultats des matchs des diverses compétitions. 
 
+% -----------------------------------------------------------------------------
 \section{Cas d'utilisation}\label{casUtilisation}
+% -----------------------------------------------------------------------------
 
+Les cas d'utilisation sont décrit dans le schéma ci-dessous.
+
+\includegraphics[width=12cm]{imgs/cas_utilisation-notitle.pdf}
+
+Voici une liste des contrôleurs qui s'occupent d'effectuer les tâches décrites dans les cas d'utilisation ci-dessus.
+
+\begin{description}
+	\item[label] description
+\end{description}
+% \begin{description}
+% 	\item[ajax_controller.rb] effectue la recherche sur les noms des équipes en fonction de ce que rentre l'utilisateur. La recherche est effectuée en AJAX.
+% 	\item[application.rb] base de l'application, contient les informations sur la session en cours de l'utilisateur connecté sur le site
+% 	\item[competitions_controller.rb] 
+% \end{description}
+
+% -----------------------------------------------------------------------------
 \section{Base de données}
+% -----------------------------------------------------------------------------
+
 Avant de pouvoir commencer le développement du site, il a en premier lieu fallu concevoir le schéma de la base de données. La conception de ce schéma, dont le résultat final est visible sur la figure \ref{MDC}, a été faite en prenant en compte les différents cas d'utilisation vus au chapitre \ref{casUtilisation}.\\
 \begin{figure}[!h]
 	\begin{center}
@@ -147,7 +172,7 @@ Avant de pouvoir commencer le développement du site, il a en premier lieu fallu
 	\end{center}
 \end{figure}
 
-Il est possible de décomposé ce schéma, afin de mieux l'expliquer, dans les parties suivantes:
+Il est possible de décomposer ce schéma, afin de mieux l'expliquer, dans les parties suivantes:
 \begin{itemize}
 	\item{Personnes}
 	\item{Paris}
@@ -170,468 +195,57 @@ Comme chacun de ses types possède un nom et un prénom, il a été décidé la 
 Pour les deux types restants, c'est-à-dire, “Parieur“ et “Administrateur”, il est également possible de les regrouper dans la catégorie “Utilisateur” qui hérite de “Personne”. En effet, ils ont en commun un nom d
 
 \subsection{Paris}
+
 \subsection{Compétitions}
+
 \subsection{Equipes}
 
+% -----------------------------------------------------------------------------
 \section{Ajax}
+% -----------------------------------------------------------------------------
 
+Nous avons utilisé AJAX pour la recherche d'équipe sur la home page. Ceci permet à l'utilisateur de taper quelques lettres d'une équipe, et les premières équipes contenant ces lettres seront affichées. Ensuite, en cliquant sur cette équipe, on affiche les informations la concernant. \\
+
+Nous aurions pu utiliser AJAX qui est fournit par \texttt{Ruby On Rails}, mais nous avons plutôt opté pour JQuery. Pour effectuer ceci, nous avons utiliser Ruby On Rails pour générer les données, ainsi que JQuery. JQuery a été présenté lors de notre travail précédant et il était intéressant pour nous de l'intégrer dans notre projet. \\
+
+Pour ceci, nous devons référencer la librairie JQuery que nous avons au préalable insérée dans \texttt{public/javascripts/jquery.js}. Ensuite, pour y faire référence, nous utilisons la méthode définie par ruby \texttt{javascript\_include\_tag "jquery"} dans notre modèle afin que le script soit importé. \\
+
+Nous avons défini une action dans un contrôleur prévu à cet effet. C'est le contrôleur \texttt{ajax\_controller.rb} qui s'occupe de cela. Ensuite nous avons défini une vue qui affichait la liste des équipes. C'est la vue \texttt{liste\_ajax.rhtml}. Elle affiche simplement une liste des équipes trouvées par le contrôleur. \\
+
+Il nous reste à écrire le code AJAX en JQuery qui permet d'interagir avec la vue citée ci-dessus. Voici le code :
+
+\begin{lstlisting}
+<script type="text/javascript">
+  	// fonction pour AJAX en utilisant la librairie jQuery et ROR
+   function lookup(inputString) {
+      if(inputString.length == 0) {
+         $('#suggestions').hide();
+      } else {
+         $.post("/ajax/liste_ajax", {eq: ""+inputString+""}, function(data){
+            if(data.length >2) {
+               $('#suggestions').show();
+               $('#autoSuggestionsList').html(data);
+            }
+         });
+      }
+   } // lookup
+   
+   function fill(thisValue) {
+      $('#inputString').val(thisValue);
+      setTimeout("$('#suggestions').hide();", 200);
+   }
+  </script>
+\end{lstlisting}
+
+Cette méthode sera appelée lors de l'insertion de texte dans le champs prévu à cet effet. Il s'agit d'un champs de texte affiché sur la home page. Lorsqu'un caractère est tapé dans ce champs et que ce champs n'est pas vide, la fonction va envoyer ces informations (\texttt{\$.post()})  à la vue. C'est ensuite la fonction \texttt{function(data)} qui prend le relais. Si le contenu de la liste retournée n'est pas vide, nous allons afficher la fenêtre flottante des résultats et y insérer les données HTML contenant la liste des équipes trouvées.
+
+% -----------------------------------------------------------------------------
 \section{Conclusion}
+% -----------------------------------------------------------------------------
 
+Il est passionnant de découvrir un technologie comme Ruby On Rails. Elle comporte beaucoup d'avantages et que quelques inconvénients. Parmi les avantages citons la capacité de modifier le code source en fonction de la base de données très facilement, les support du modèle MVC, l'intégration d'autres “plugins” se fait facilement, et la simplicité mais la force du langage \texttt{Ruby} en font une plate-forme de développement très puissante et agréable. Comme inconvénients, la fait que le nombre d'hébergeurs soit encore trop faible, la structure peut paraître complexe au premier abords, le nombre de fichiers à manipuler est surprenant au début.\\
 
-% \section{Qu'est-ce que jQuery?}\label{jQuery}
-% jQuery est un framework développé en javascript qui permet notamment de manipuler aisément DOM, d'utiliser AJAX, de créer des animations, etc...
-% La vocation première de ce “framework” n'est pas d'innover, mais de permettre un gain de temps non négligeable dans le développement des sites Web et de le rendre portable aisément.\\
-% 
-% On ne peut donc pas véritablement dire que jQuery vient combler un besoin, mais simplement simplifier le travail des développeurs utilisant le JavaScript en leur mettant à disposition une série de méthodes qui nécessiteraient plusieurs lignes de code pour être réalisées.
-% 
-% \newpage
-% \section{JavaScript et DOM}
-% Avant de commencer à proprement parler de jQuery, il est important d'avoir quelques notions des technologies sur lesquelles travaille jQuery. Un brève description de JavaScript et de DOM est donc nécessaire.
-% 
-% \subsection{Introduction}
-% A la base, le HTML est un langage totalement statique, ce qui convient pour afficher des informations simples, mais qui devient très vite limitatif lorsqu'un contenu dynamique est désiré. C'est pour pallier à ce besoin que le Dynamic HTML (DHTML) est apparut et c'est là que l'utilisation de DOM et JavaScript devient utile.
-% 
-% \subsection{DOM}
-% % http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html
-% % http://fr.wikipedia.org/wiki/Document_Object_Model
-% Le modèle objet de document (DOM), contrairement à ce que beaucoup de personnes croient, n'est pas un langage, mais une interface de programmation d'application (API) essentiellement utilisé pour des documents HTML valides et XML bien-formés. Ce modèle (DOM), créé en 1998 par le W3C, définit la structure logique d'un document et la manière d'y accéder et de le manipuler. Le terme “document” est définit au sens large par la spécification, ce qui permet par exemple à XML de stocker n'importe quel type de données sous forme de documents et ensuite de les gérer avec DOM.\\
-% 
-% L'API DOM permet donc de construire des documents, naviguer dans leur structure ainsi qu'ajouter, modifier ou supprimer des éléments et leur contenu. Il est ainsi possible d'accéder, modifier, supprimer ou ajouter, à quelques exceptions près, tout le contenu des documents HTML et XML.\\
-% 
-% Comme spécification du W3C, un objectif majeur du modèle objet document est qu'il puisse être utilisé par un grand nombre d'environnements et d'applications. Il est donc conçu de manière à pouvoir être utilisé par n'importe quel langage de programmation.\\
-% 
-% La structure du document DOM est très similaire à la structure des documents qu'elle modélise. Pour mieux illustrer cela, prenons l'exemple de code HTML suivant:
-% 
-% \begin{lstlisting}
-% <TABLE>
-% 	<TBODY> 
-% 		<TR> 
-% 			<TD>Text1</TD>
-% 			<TD>Text2</TD> 
-% 		</TR> 
-% 		<TR>
-% 			<TD>Text3</TD>        
-% 			<TD>Text4</TD> 
-% 		</TR> 
-% 	</TBODY>
-% </TABLE>
-% \end{lstlisting}
-% 
-% qui illustré sous forme graphique ressemble à la figure \ref{dom1}.
-% 
-% % \begin{figure}[h]
-% % 	\begin{center}
-% % 			\includegraphics[width=12cm]{img/exempleDOM.png}
-% % 			\caption{Répresentation graphique DOM de l'exemple de table}
-% % 			\label{dom1}
-% % 	\end{center}
-% % \end{figure}
-% 
-% On remarque que le code HTML est structure sous forme d'un arbre et qu'il est identique à la structure du code. Ce n'est toutefois pas DOM qui spécifie cette structure en arbre, il se limite tout simplement à reproduire la structure du langage l'utilisant, qui dans ce cas est le HTML.
-% 
-% \subsection{JavaScript}
-% % http://fr.wikipedia.org/wiki/Javascript
-% % http://www.commentcamarche.net/javascript/jsintro.php3
-% JavaScript est un “langage de scripting objet” développé par Brendan Eich, aujourd'hui l'un des leaders du projet Mozilla, en 1995 chez Netscape Communications Corp. Et contrairement à ce que beaucoup de monde croit, il n'a rien à voir avec le Java. Néanmoins, il possède une syntaxe similaire à ce dernier et C++ dans un souci de limiter le nombre de nouveaux concepts nécessaires à l'apprentissage du langage.\\
-% 
-% C'est un langage essentiellement orienté Web, qui au niveau historique se trouve être le premier langage de script pour le Web. Il a notamment permis d'apporter des améliorations au HTML en permettant d'exécuter des commandes du côté client, c'est-à-dire au niveau du navigateur et non du serveur. Il est donc fortement lié au navigateur appelant la page web incorporant le script, mais ne il ne nécessite pas de compilateur.\\
-% 
-% % \begin{figure}[h]
-% % 	\begin{center}
-% % 			\includegraphics[width=12cm]{img/schema_js.png}
-% % 			\caption{Hiérarchie d'un objet de navigateur en JavaScript}
-% % 			\label{schema}
-% % 	\end{center}
-% % \end{figure}
-% 
-% La figure \ref{schema} représente la hiérarchie d'un objet d'un navigateur en JavaScript. Ce qui permet de bien comprendre ce qu'il faut chercher et ou chercher lors de la conception d'un script.
-% 
-% \subsection{Qui fait quoi?}
-% % http://developer.mozilla.org/fr/docs/Le_DOM_et_JavaScript
-% % 
-% Comme vu précédemment, le JavaScript en lui-même ne suffit pas pour accéder et modifier le contenu du code HTML. Voici donc un petit exemple qui permettra de différencier ce qui est du DOM et ce qui est du JavaScript.
-% 
-% \begin{lstlisting}
-% var anchorTags = document.getElementsByTagName("a");
-% for (var i = 0; i < anchorTags.length ; i++)
-% {
-%    alert("L'attribut href du " + i + "e element est : " + anchorTags[i].href + "\n");
-% }	
-% \end{lstlisting}
-% 
-% Dans l'exemple qui précède, les parties JavaScript sont les suivantes:
-% \begin{description}
-% 	\item [\texttt{var anchorTags =}] {Création d'une variable appelée \texttt{anchorTags}}
-% 	\item [\texttt{;}] {Fin d'instruction}
-% 	\item [\texttt{for(var i = 0; i < }] {Boucle \texttt{for} typique dans un langage de programmation. Elle permet de parcourir chacun des noeuds de la liste \texttt{anchorTags}.}
-% 	\item [\texttt{; i++)}] {C'est l'incrémentation de la variable \texttt{i} dans la boucle, c'est-à-dire l'incré-mentation de la boucle.}
-% 	\item [\texttt{"L'attribut href du " + i + "e element est: " +}] {Une chaîne de caractères avec l'opérateur de concaténation (\texttt{+}).}
-% 	\item [\texttt{"$\backslash$n");}] {Encore une fois le caractère de concaténation et une chaîne de caractères avec le caractère le retour à la ligne.}
-% 	\item [\texttt{\}}] {Fin d'un bloc d'instructions. Dans ce cas fin de la boucle \texttt{for}.}
-% \end{description}
-% 
-% Maintenant ce qui concerne le DOM:
-% \begin{description}
-% 	\item [\texttt{document.getElementsByTagName("a")}] {\texttt{document} est l'objet contenant tout ce qui se trouve sur la page. La méthode \texttt{getElementsByTagName()} renvoie une \emph{NodeList} (sorte de tableau spécifique au DOM contenant des noeuds) de toutes les balises correspondant au paramètre passé à la fonction, et ceci dans l'ordre d'apparition dans le document source. La variable \texttt{anchorsTag} est maintenant une \emph{NodeList}.}
-% 	\item [\texttt{anchorTags.length}] {C'est la propriété \texttt{length} de l'interface \emph{NodeList}. Elle rend un entier contenant le nombre de noeuds présents dans \texttt{anchorTags}.}
-% 	\item [\texttt{alert}] {\texttt{alert()} est une méthode DOM qui affiche une boite de dialogue avec une chaîne de caractères passée en paramètres.}
-% 	\item [\texttt{anchorTags[i].href}] {Permet d'accéder à la propriété \texttt{href} du i\up{ème} noeud.}
-% \end{description}
-% 
-% \newpage
-% \renewcommand{\labelitemi}{$\bullet$}
-% \section{Au coeur de jQuery}
-% \subsection{Moteur}
-% La librairie jQuery est, comme mentionné au chapitre \ref{jQuery}, tout simplement du JavaScript. En effet, c'est une simple librairie JavaScript, ce qui permet l'intégration du code JavaScript “classique” en toute transparence.\\
-% 
-% La base de ce “framework” est le “\$”, en effet il est utilisé pour créer l'objet jQuery sur lequel travaille la librairie. Ils sont de type DOM, ce qui rend facile la navigation dans l'objet et l'accès aux diverses propriétés.\\
-% 
-% jQuery permet également la navigation par Xpath et l'ajout de plugins.
-% 
-% \subsection{Utilisation}\label{install}
-% Il est très facile d'utiliser jQuery. Il suffit de télécharger la librairie à l'adresse \url{http://jquery.info}, de décompresser le fichier et de le placer ou bon vous semble. Il faut ensuite insérer la ligne
-% \begin{lstlisting}
-% 	<script src="lib/jquery.js" type="text/javascript"/>
-% \end{lstlisting}
-% dans le champ \emph{head} d'un document HTML. L'attribut \texttt{src="lib/jquery.js"} correspond au chemin vers la librairie jQuery, qui dans cet exemple est placée dans un répertoire \texttt{lib} se trouvant dans le même répertoire que le fichier HTML.\\
-% 
-% Une fois ceci fait, la libraire est prête à être utilisée en appelant simplement les méthodes existantes de la librairie.
-% 
-% \begin{lstlisting}
-% <html>
-% 	<head>
-% 		<script type="text/javascript" src="jquery-1.2.1.js"/>
-% 		<script>
-% 			$(document).ready(function() {		
-% 				$("a.lien").click(function() {
-% 					$("p.text").toggle(150);
-% 				});
-% 			});
-% 		</script>
-% 	</head>
-% 	<body>
-% 
-% 		<a href="#" class="lien">anim: toggle()</a>
-% 
-% 	<p class="text" style="border:1px solid black; color: green;">
-% 		<br>Teste avec jQuery<br><br></p>
-% 		
-% 	</body>
-% </html>
-% \end{lstlisting}
-% 
-% L'exemple ci-dessus montre comment utiliser importer la librairie jQuery et ensuite d'appeler la méthode \texttt{toggle()} qui cache ou affiche les liens référencés respectivement s'ils sont visibles ou cachés. Cette méthode est appelée lorsqu'un click est détecté et c'est la méthode \texttt{click()} qui le fait. Ces deux méthodes sont toutes les deux issues de la librairie jQuery. On note également l'utilisation du “\$” bien propre à jQuery.\\
-% 
-% Il est également possible de spécifier la source de la libraire comme étant directement le lien internet.
-% \begin{lstlisting}
-% 	<script src="http://code.jQuery.com/jQuery-1.1.3.1.pack.js" type="text/javascript"/>
-% \end{lstlisting}
-% 
-% \subsection{Librairie}
-% Comme expliqué au chapitre \ref{install}, l'appel à un simple fichier suffit pour pouvoir utiliser la librairie et à l'instar d'un langage comme Java, jQuery ne possède actuellement qu'une seule librairie. Néanmoins, il est possible de catégoriser les différentes méthodes afin de pouvoir mieux s'y retrouver lors d'une recherche.\\
-% 
-% C'est exactement qui a été fait dans la documentation officielle et par l'excellente traduction française respectivement disponibles aux adresses \url{http://docs.jquery.com/Main_Page} et \url{http://jquery.developpeur-web2.com/}.\\
-% 
-% C'est donc également par catégories que la librairie sera décrite dans ce document. Néanmoins, cette description est faite dans le but d'informer de certaines possibilités existantes et ne sera pas exhaustive. Donc pour des informations plus précises, il faut se référer aux deux sites cités ci-dessus.
-% 
-% \subsubsection{Fonctions essentielles}
-% Cette partie de la librairie met à disposition ce que les concepteurs ont estimé être les fonctions de base pour pouvoir faire du jQuery. En effet, c'est là qu'il est possible de trouver les fonctions construisant un objet jQuery et ensuite d'exécuter dessus certaines opérations:
-% 
-% \begin{itemize}
-% 	\item parcourir tous les éléments de l'objet et appliquer un traitement dessus;
-% 	\item chercher des éléments par position;
-% 	\item trouver la position d'un élément;
-% 	\item savoir de combien d'éléments est composé l'objet.\\
-% \end{itemize}
-% 
-% Voici un petit exemple pour mieux illustrer cela:
-% 
-% \begin{lstlisting}
-% $("img").each(function(i){
-% 	this.src = "test" +  i +  ".jpg";
-% });
-% \end{lstlisting}
-% 
-% Le code ci-dessus créé un objet jQuery contenant tous les éléments \texttt{img} de la page web, les parcourt et ajoute la source de l'image.\\
-% 
-% Code de test:
-% \begin{lstlisting}
-% <img/><img/>
-% \end{lstlisting}
-% 
-% 
-% Résultat obtenu:
-% \begin{lstlisting}
-% <img src="test0.jpg"/><img src="test1.jpg"/>
-% \end{lstlisting}
-% 
-% \subsubsection{Attributs}
-% Cette partie regroupe les fonctions permettant d'accéder aux attributs des balises HTML. Elles permettent entre autres d'ajouter, modifier ou supprimer la valeur de l'attribut. Elles permettent également d'insérer ou supprimer un attribut.\\
-% 
-% Par exemple, le code qui suit permet d'ajouter l'attribut \texttt{src} avec la valeur \texttt{test.jpg} à la balise \texttt{img}.
-% 
-% \begin{lstlisting}
-% $("img").attr("src","test.jpg");
-% \end{lstlisting}
-% 
-% 
-% Code de test:
-% \begin{lstlisting}
-% <img/>
-% \end{lstlisting}
-% 
-% 
-% Résultat obtenu:
-% \begin{lstlisting}
-% <img src="test.jpg"/>
-% \end{lstlisting}
-% 
-% \subsubsection{Parcours}
-% Cet ensemble est divisé en deux types de fonctions:
-% \begin{itemize}
-% 	\item filtre;
-% 	\item recherche.\\
-% \end{itemize}
-% 
-% Le premier type de la liste permet, comme son nom l'indique, de faire un filtrage sur l'objet jQuery, ce qui veut dire effectuer un tri parmi l'objet. L'exemple qui suit parcourt tout l'objet et retourne tous les éléments appartenant à la classe \texttt{selected}.
-% 
-% \begin{lstlisting}
-% $("p").filter(".selected");
-% \end{lstlisting}
-% 
-% Code de test:
-% \begin{lstlisting}
-% <p class="selected">Hello</p><p>How are you?</p>
-% \end{lstlisting}
-% 
-% Résultat:
-% \begin{lstlisting}
-% [ <p class="selected">Hello</p> ]
-% \end{lstlisting}
-% 
-% Le deuxième type de la liste permet d'effectuer des recherches dans l'objet jQuery. L'exemple suivant permet de rechercher tous les enfants de chaque \texttt{div}.
-% 
-% \begin{lstlisting}
-% $("div").children();
-% \end{lstlisting}
-% 
-% 
-% Code de test:
-% \begin{lstlisting}
-% <p>Hello</p><div>Hello Again</div><p>And Again</p>
-% \end{lstlisting}
-% 
-% 
-% Résultat obtenu:
-% \begin{lstlisting}
-% [Hello Again]
-% \end{lstlisting}
-% 
-% \subsubsection{Manipulation}
-% Les fonctions de type manipulation permettent de changer, remplacer, supprimer ou copier le contenu. Permettent également l'insertion au milieu, avant, après, autour.\\
-% 
-% L'exemple suivant montre comment appondre du texte à un texte déjà existant:
-% \begin{lstlisting}
-% $("p").append( $("b") );
-% \end{lstlisting}
-% 
-% Code de test:
-% \begin{lstlisting}
-% <p>I would like to say: </p><b>Hello</b>
-% \end{lstlisting}
-% 
-% Résultat obtenu:
-% \begin{lstlisting}
-% <p>I would like to say: <b>Hello</b></p
-% \end{lstlisting}
-% 
-% \subsubsection{CSS}
-% Les fonctions de type CSS permettent d'accéder aux propriétés d'un style CSS. En effet, il est possible d'ajouter et modifier un style CSS.\\
-% 
-% L'exemple qui suit montre comment ajouter un style CSS:
-% \begin{lstlisting}
-% $("p").css("left",30);
-% \end{lstlisting}
-% 
-% Code de test:
-% \begin{lstlisting}
-% <p>Test Paragraph.</p>
-% \end{lstlisting}
-% 
-% Résultat obtenu:
-% \begin{lstlisting}
-% <p style="left:30px;">Test Paragraph.</p>
-% \end{lstlisting}
-% 
-% Il existe également les fonctions \texttt{height} et \texttt{width} qui permettent d'accéder respectivement, de manière très simple,  à la hauteur et la largeur d'un style CSS.
-% 
-% \subsubsection{Evénements}
-% Les événements sont des méthodes qui permettent de détecter les actions de l'utilisateur sur la page Web, telles que:
-% \begin{itemize}
-% 	\item {le click de souris;}
-% 	\item {le double-click de souris;}
-% 	\item {lorsque le curseur passe sur un élément;}
-% 	\item {lorsqu'un événement obtient le focus;}
-% 	\item {lorsqu'une touche du clavier est pressée;}
-% 	\item {lorsque la taille d'un élément est modifiée;}
-% 	\item {etc...\\}
-% \end{itemize}
-% 
-% Pour mieux illustrer cela, voici un exemple qui appond du texte à une chaîne de caractères lorsque la souris passe dessus et l'enlève lorsque la souris n'est plus dessus:
-% 
-% \begin{lstlisting}
-% $("p").hover(
-% 	function () {
-% 		$(this).append($("<span> ***</span>"));
-% 	}, 
-% 	function () {
-% 		$(this).find("span:last").remove();
-% 	}
-% );
-% \end{lstlisting}
-% 
-% 
-% \subsubsection{Effets}
-% Cette partie de la librairie regroupe toutes les méthodes permettant de réaliser des effets sur certains événements. Il devient donc très facile de faire une page Web avec des effets attirants uniquement avec quelques fonctions comme le démontre l'exemple qui suit.
-% 
-% \begin{lstlisting}
-% $("p").slideToggle(1000);
-% \end{lstlisting}
-% 
-% La commande qui précède, rend possible de cacher un paragraphe s'il est visible et de l'afficher s'il est invisible. Et ceci avec un effet de glissement du texte vers le haut pour le cacher et l'effet inverse pour l'afficher. La valeur \texttt{1000} correspond à la durée de l'animation en millisecondes.
-% 
-% \subsection{Compatibilité avec les navigateurs}
-% % http://docs.jquery.com/Browser_Compatibility
-% La version actuelle de jQuery est supportée par les navigateurs suivants:
-% 
-% \begin{itemize}
-% 	\item {Firefox 1.5+;}
-% 	\item {Internet Explorer 6+;}
-% 	\item {Safari 2.0.2+;}
-% 	\item {Opera 9+.\\}
-% \end{itemize}
-% 
-% Par contre, certains problèmes ont été reportés sur les suivantes versions:
-% \begin{itemize}
-% 	\item {Firefox 1.0.x;}
-% 	\item {Internet Explorers 1-5.x;}
-% 	\item {Safari 1.x;}
-% 	\item {Safari 2.0;}
-% 	\item {Opera 1.0-8.5;}
-% 	\item {Konqueror.\\}
-% \end{itemize}
-% 
-% En général, jQuery fonctionne avec Konqueror et Firefox 1.0.x, mais il peut se produire certains bugs depuis que les tests ne sont pas fait aussi régulièrement qu'avec les versions plus récentes.\\
-% 
-% Pour des renseignements plus précis sur la compatibilité d'un navigateur en particulier, il existe un très bon test de compatibilité à l'adresse \url{http://jquery.com/test/}.
-% 
-% \newpage
-% \section{Comparatif}
-% 
-% Nous allons comparer le travail à effectuer pour arriver au même résultat avec et sans jQuery. Pour ce faire, nous avons repris un petit script disponible sur internet qui s'occupe de modifier les \texttt{checkbox} d'un formulaire. Nous allons l'analyser et ensuite le refaire à l'aide de jQuery. \\
-% 
-% Trois boutons permettent d'effectuer une modification sur les cases à cocher. Le premier permet de les sélectionner, le deuxième d'enlever la sélection et finalement le troisième de l'inverser. \\
-% 
-% \subsection{Version sans jQuery}
-% 
-% Voici ce que donne le résultat avec l'utilisation de JavaScript sans s'aider de la librairie jQuery. \\
-% 
-% Fichier \texttt{comparatif-js.html}, disponible sur \url{http://code.google.com/p/rubyparis/downloads}
-% 
-% % \lstinputlisting{exemple/comparatif-js.html}
-% 
-% Le formulaire comporte donc trois boutons qui, chacun, possèdent un événement sur click. On appelle la fonction \texttt{GereChkbox()} qui comporte deux paramètres. Le premier est le nom de l'objet dans lequel se trouvent les cases à cocher. Le deuxième est un numéro qui permet de déterminer l'action à effectuer : 
-% 
-% 
-% \begin{description}
-% 	\item[0] Tout décocher
-% 	\item[1] Tout cocher
-% 	\item[2] Inverser la sélection
-% \end{description}
-% 
-% La fonction \texttt{GereChkbox()} fonctionne de la manière suivante. Elle récupère l'élément contenant les cases à cocher grâce à la méthode \texttt{getElementById(conteneur)}. La méthode \texttt{firstChild()} permet de récupérer le premier objet contenu dans cet objet. Dans notre cas, une \emph{checkbox}. Avant d'appliquer un éventuel changement d'état à cet objet, nous vérifions qu'il s'agit bien d'un objet du type \emph{formulaire} et qu'il s'agit bien d'une case à cocher. Finalement, nous changeons l'état en fonction du bouton qui a été clické, en utilisant le numéro passé en paramètre dont nous avons parlé ci-dessus.
-% 
-% \subsection{Version avec jQuery}
-% 
-% Adaptons maintenant la version de notre exemple en utilisant jQuery. Nous allons reprendre le code HTML et supprimer quelques information inutiles comme l'appel de la fonction \texttt{GereChkbox()} ainsi que le \texttt{div} englobant les cases à cocher. \\
-% 
-% Nous allons rajouter un attribut \texttt{id} aux boutons afin de pouvoir détecter lequel a été pressé. \\
-% 
-% Puis, nous allons importer la librairie jQuery à l'aide de la commande citée en début de ce document. 
-% 
-% \begin{lstlisting}
-% <script type="text/javascript" 
-% 	src="http://code.jquery.com/jquery-1.1.3.1.pack.js"/>
-% \end{lstlisting}
-% 
-% Nous pouvons dès lors utiliser les fonctionnalités mises à disposition par la librairie jQuery pour simplifier et clarifier notre code. \\
-% 
-% Notre code sera appelé une fois que le document a été chargé. Nous le plaçons donc dans une balise de script, après la ligne :
-% 
-% \begin{lstlisting}
-% $(document).ready(function() { <code ici> });
-% \end{lstlisting}
-% 
-% Il est très facile de définir une action globale sur tous les éléments d'un certain type. Pour définir une fonction anonyme sur click de tout les boutons, nous utilisons cette ligne :
-% 
-% \begin{lstlisting}
-% $(":button").click( function(){..} );
-% \end{lstlisting}
-% 
-% Ensuite nous allons utiliser l'\texttt{id} du bouton clické pour savoir quelle action effectuer. Il faut donc stocker cette information dans une variable. Cela se fait à l'aide de la ligne suivante :
-% 
-% \begin{lstlisting}
-% action = $(this).attr("id");
-% \end{lstlisting}
-% 
-% Le mot clé \texttt{this} fait référence à l'objet en cours d'utilisation. La méthode \texttt{attr("nomAttribut")} permet de récupérer la valeur d'un attribut. \\
-% 
-% Nous allons maintenant parcourir toutes les cases à cocher à l'aide de la méthode \texttt{each()}. Pour ce faire, jQuery retourne la liste d'objet d'un certain type (dans notre cas \texttt{checkbox}) à l'aide de \verb!$(":checkbox")!.  \\ 
-% 
-% La ligne suivante permet donc de parcourir toutes les cases à cocher du document et de leur appliquer une fonction.
-% 
-% \begin{lstlisting}
-% $(":checkbox").each( function() {
-% \end{lstlisting}
-% 
-% Finalement, dans la fonction anonyme déclarée ci-dessus, nous allons mettre une instruction \texttt{switch} qui va utiliser la valeur de la variable \texttt{action} pour déterminer que faire.\\
-% 
-% Voici le code complet auquel on arrive en utilisant jQuery. \\
-% 
-% Fichier \texttt{comparatif-jq.html}, disponible sur \url{http://code.google.com/p/rubyparis/downloads}
-% 
-% % \lstinputlisting{exemple/comparatif-jq.html}
-% 
-% \subsection{Remarques}
-% 
-% Il est évidemment possible d'utiliser d'autres méthodes pour y arriver. Mais celle que nous avons réalisé semble être un bon moyen d'effectuer la même action proprement.  \\
-% 
-% Ce qui est agréable, c'est qu'en utilisant jQuery, on a besoin de moins de méthodes et autres vérifications pour arriver au même résultat. En effet, sans jQuery, on utilise 9 méthodes, dont 5 distinctes. \\
-% 
-% En utilisant jQuery, on en utilise 4 en tout et pour tout. Le code produit par jQuery est beaucoup plus clair et concis. Il est aussi portable étant donné que jQuery supporte la majorité des navigateurs récents.
-% 
-% \newpage
-% \section{Conclusion}
-% 
-% 
-% En suivant les exemples et en s'aidant de la documentation disponibles sur internet, on s'aperçoit très vite des gains de temps et des fonctionnalités que nous apporte jQuery. \\
-% 
-% Il est malheureusement impossible de couvrir dans ce document toutes les fonctionnalités de jQuery. Nous pouvons simplement résumer qu'il est facile d'altérer du code HTML et de le manipuler. Enormément d'opérations complexes en JavaScript se font en un tour de main à l'aide de jQuery. \\
-% 
-% La simplicité est au rendez-vous ce qui nous rend des plus content! Nous sommes très heureux d'avoir choisi ce sujet, même un peu par hasard. Nous sommes heureux de l'utiliser dans notre projet de WEB en cours, notamment pour la partie AJAX.
-% 
-% \newpage
-% \section{Références}
-% \small
-% \begin{description}
-% 	\item[\url{http://jquery.com/}] {Site officiel de jQuery.}
-% 	\item[\url{http://www.jquery.info/}] {Site francophone sur jQuery.}
-% 	\item[\url{http://docs.jquery.com/Tutorials}] {Tutoriels officiels.}
-% 	\item[\url{http://www.gotapi.com/html}] {Description de l'API jQuery ainsi que HTML. Très utile comme référence rapide et disponibles pour une grande variété de langages courants.}
-% 	\item[\url{http://developer.mozilla.org/fr/docs/Le_DOM_et_JavaScript}] {Explication du DOM et JavaScript.}
-% 	\item[\url{http://www.yoyodesign.org/doc/w3c/dom2-core/introduction.html}] {Documentation DOM.}
-% 	\item[\url{http://fr.wikipedia.org/wiki/Document_Object_Model}] {Documentation DOM.}
-% 	\item[\url{http://fr.wikipedia.org/wiki/Javascript}] {Documentation JavaScript.}
-% \end{description}
+Mais dans l'ensemble, nous sommes très content d'utiliser \texttt{ROR} et espérons pouvoir l'utiliser encore prochainement sur un projet avec plus de temps à dispositions. 
+
 
 \end{document}

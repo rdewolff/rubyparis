@@ -1,11 +1,37 @@
-<% for column in Equipe.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @equipe.send(column.name) %>
-</p>
+<h1><%= @equipe.nom %></h1>
+
+<%= link_to @equipe.url, @equipe.url %>
+
+<br/><br/>
+
+<% if @equipe.entraineur %>
+<b>Entrainée par :</b> <%= @equipe.entraineur.sportif.personne.nom + ' ' +
+   @equipe.entraineur.sportif.personne.prenom %><br/><br/>
 <% end %>
 
-<b>Entraineur: </b> <%= @equipe.entraineur.sportif.personne.nom + ' ' +
-   @equipe.entraineur.sportif.personne.prenom %>
+
+<b>Stade principal :</b> <%= @equipe.stade %><br/><br/>
+
+
+<b>Joueurs:</b><br/>
+<% for jou in @equipe.joueur %>
+
+   <%= jou.sportif.personne.prenom + ' ' + jou.sportif.personne.nom %><br/>
+
+<% end %>
+
+<br/><br/>
+
+
+<b>Matchs : <%= @matchs.size %></b><br/><br/>
+
+<% for match in @matchs %>
+
+   <%= match.equipea.nom + ' ' + match.scoreA.to_s + ' - ' + 
+       match.scoreB.to_s + ' ' + match.equipeb.nom %> <br/>
+
+<% end %>
+
 
 <br/><br/>
 

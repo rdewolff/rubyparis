@@ -2,11 +2,10 @@
 	   
       <% if request.request_uri == "/home" || request.request_uri == "/" %>
 		<div>
-      <form methode="get" action="/equipes/eq">
+      <form methode="get" action="/equipes/eq" name="formEq" id="formEq" >
          <div>
             <h3>Chercher une équipe :</h3> 
             <input type="text" size="30" value="" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" name="eq" />
-				<input type="submit" value="Afficher">
          </div>
          
          <div class="suggestionsBox" id="suggestions" style="display: none;">
