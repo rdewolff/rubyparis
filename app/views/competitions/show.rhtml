@@ -1,6 +1,7 @@
 <h2><%= @competition.nom %></h2>
 
-<li><%= link_to 'Parier', :controller => 'competitions_parieurs', :action => 'pari', :id => @competition.id %></li>
+<%= button_to 'Parier sur cette compétition', :controller => 'competitions_parieurs', :action => 'pari', :id => @competition.id %>
+<br/>
 
 <h3><%= @competition.groupe.size %> Groupes</h3>
 
