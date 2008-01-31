@@ -1,8 +1,0 @@
-<% for column in Sportif.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @sportif.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @sportif %> |
-<%= link_to 'Back', :action => 'list' %>

@@ -21,7 +21,15 @@ class CompetitionsParieursController < ApplicationController
   end
 
   def create
-    @competitions_parieur = CompetitionsParieur.new(params[:competitions_parieur])
+    idCompetition = params[:idCompetition]
+    @parieur = session[:user]
+    resultat = params[:competitions_parieur][:resultat]
+    
+    
+    @competitions_parieur = CompetitionsParieur.new(:parieur_id => @parieur.id,
+      :competition_id => idCompetition, :resultat => resultat)
+    puts @competitions_parieur.parieur_id
+    
     if @competitions_parieur.save
       flash[:notice] = 'CompetitionsParieur was successfully created.'
       redirect_to :action => 'list'
@@ -50,9 +58,23 @@ class CompetitionsParieursController < ApplicationController
   end
   
   def pari
-    @competition = Competitions.new(params[:id])
-if product.save
-  product.options << Option.find_by_name("red")
-end
+    
+    if params[:id].nil?
+      redirect_to :controller => 'home'
+    else
+    
+      @competition = Competition.find(params[:id])
+    
+      @equipes = Array.new
+      @groupes = @competition.groupe.find(:all)
+    
+      for t in @groupes
+        for m in t.match
+          @equipes << m.equipea
+          @equipes << m.equipeb
+        end
+      end
+      @equipes = @equipes.uniq
+    end
   end
 end

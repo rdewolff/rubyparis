@@ -1,8 +1,0 @@
-<% for column in Parieur.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @parieur.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @parieur %> |
-<%= link_to 'Back', :action => 'list' %>

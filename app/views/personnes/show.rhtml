@@ -1,8 +1,0 @@
-<% for column in Personne.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @personne.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @personne %> |
-<%= link_to 'Back', :action => 'list' %>

@@ -1,9 +1,0 @@
-<h1>Editing sportif</h1>
-
-<% form_tag :action => 'update', :id => @sportif do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', :action => 'show', :id => @sportif %> |
-<%= link_to 'Back', :action => 'list' %>
