@@ -17,10 +17,12 @@
     <td><%= match.lieu%></td>
 	 
     <td><%= link_to 'Afficher', :action => 'show', :id => match %></td>
+	<% if !session[:admin].nil? %>
     <td><%= link_to 'Modifier', :action => 'edit', :id => match %></td>
     <td><%= link_to 'Effacer', { :action => 'destroy', :id => match },
 		:confirm => ("Etes vous sur de vouloir effacer '" + match.equipea.nom + " vs " + match.equipeb.nom + "'?"),
 		:method => :post %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
@@ -31,4 +33,7 @@
 <br />
 <br />
 
+<%= link_to 'Retour', :controller => 'home' %>
+<% if !session[:admin].nil? %>
 <%= link_to 'Nouveau match', :action => 'new' %>
+<% end %>
