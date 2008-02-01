@@ -1,12 +1,20 @@
 <h1>Vainqueur de la compétition</h1>
-
-<p><label for="competitions_parieurs_pari">Vainqueur:</label><br/>
-<% form_tag :action => 'create', :idCompetition => params[:id] do %>
-	<%= collection_select(:competitions_parieur, :resultat, @equipes, :id, :nom) %></p>
-  <%= submit_tag "Parier" %>
-<% end %>
-
+<table>
+	<tr>
+		<td><label for="competitions_parieurs_pari">Vainqueur: </label></td>
+	<% if !@vainqueur.nil? %>
+		<td><%= @vainqueur %></td>
+		<td><%= form_tag :action => 'annuler', :id => @competitions_parieur.id, :idC => @competition.id %>
+			<%= submit_tag "Annuler" %><%= end_form_tag %></td>
+	<% end %>
+	</tr>
+	<tr>
+		<td colspan="3"><% form_tag :action => 'parier', :idCompetition => params[:id] do %>
+			<%= collection_select(:competitions_parieur, :resultat, @equipes, :id, :nom) %>
+  			<%= submit_tag "Parier" %>
+		<% end %></td>
+	</tr>
+</table>
 <br/>
-<br/>
 
-<%= link_to 'Retour', :controller => "", :action => 'list' %>
+<%= link_to 'Retour', :controller => "competitions", :action => 'show', :id => @competition.id %>

@@ -1,6 +1,6 @@
 class CreateMatchsParieurs < ActiveRecord::Migration
   def self.up
-    create_table "matchs_parieurs", :id => false do |t|
+    create_table "matchs_parieurs" do |t|
       t.column "parieur_id", :int, :null => false
       t.column "match_id", :int, :null => false
       t.column "resultat", :int, :null => false

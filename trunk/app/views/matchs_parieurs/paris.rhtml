@@ -8,7 +8,27 @@
 		</tr>
 			
 			<% for match in groupe.match %>
-			<tr><td><%= match.equipea.nom %></td><td> vs </td><td><%= match.equipeb.nom %></td></tr>
+				<% @res = MatchsParieur.find(:first, :conditions => ["parieur_id = ? and match_id = ?",session[:user], match.id]) %>
+				
+				<tr><td><%= match.equipea.nom %></td><td> vs </td><td><%= match.equipeb.nom %></td>
+				<td><%= form_tag :action => 'parier', :res => 1, :id => match.id, :idC => @competition.id %>
+				<%= submit_tag "1" %><%= end_form_tag %></td>
+				<td><%= form_tag :action => 'parier', :res => 0, :id => match.id, :idC => @competition.id %>
+				<%= submit_tag "X" %><%= end_form_tag %></td>
+				<td><%= form_tag :action => 'parier', :res => 2, :id => match.id, :idC => @competition.id %>
+				<%= submit_tag "2" %><%= end_form_tag %></td>
+				<% if !@res.nil?%>
+					<td>Pari sur
+					<% if @res.resultat == 1%>
+						<%= match.equipea.nom %>
+					<% elsif @res.resultat == 0 %>
+						match nul
+					<% else %>
+						<%= match.equipeb.nom %>
+					<% end %></td>
+					<td><%= form_tag :action => 'annuler', :id => @res.id, :idC => @competition.id %>
+					<%= submit_tag "Annuler" %><%= end_form_tag %></td>
+				<% end %>
 			<% end %>
 		
 <% end %>
@@ -17,8 +37,4 @@
 <br/>
 <br/>
 
-
-
-
-<%= link_to 'Modifier', :action => 'edit', :id => @competition %> |
-<%= link_to 'Retour', :action => 'list' %>
+<%= link_to 'Retour', :controller => "competitions", :action => 'show', :id => @competition.id %>

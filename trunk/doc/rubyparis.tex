@@ -177,7 +177,7 @@ Il est possible de décomposer ce schéma, afin de mieux l'expliquer, dans les p
 	\item{Personnes}
 	\item{Paris}
 	\item{Compétitions}
-	\item{Equipes}
+	\item{Matchs}
 \end{itemize}
 
 \subsection{Personnes}
@@ -187,18 +187,53 @@ Cette partie du schéma se réfère à toutes les types de personnes existant da
 	\item{les entraîneurs;}
 	\item{les arbitres;}
 	\item{les parieurs;}
-	\item{les administrateurs;}
+	\item{les administrateurs;\\}
 \end{itemize}
 
 Comme chacun de ses types possède un nom et un prénom, il a été décidé la création d'un type “Personne” dont tout le monde hérite. Néanmoins il est encore possible de diviser en deux catégories les cinq types de personnes énumérées ci-dessus. En effet, les types “Joueur”, “Entraîneur” et “Arbitre” possèdent en commun une taille, une date de naissance et une nationalité, la catégorie “Sportif” a donc été définie. Elle hérite donc du type “Personne” et est le type “parent” des joueurs, entraîneurs et arbitres.\\
 
-Pour les deux types restants, c'est-à-dire, “Parieur“ et “Administrateur”, il est également possible de les regrouper dans la catégorie “Utilisateur” qui hérite de “Personne”. En effet, ils ont en commun un nom d
+Pour les deux types restants, c'est-à-dire, “Parieur“ et “Administrateur”, il est également possible de les regrouper dans la catégorie “Utilisateur” qui hérite de “Personne”. En effet, ils ont en commun un nom d'utilisateur, un mot de passe et un email.\\
+
+Le schéma de la base de données de “RubyParis” possède donc de l'héritage, ce qui à priori est considéré un avantage en programmation, ne nous a pas convaincu dans ce cas. En effet, il est difficile de mettre en place un système d'héritage en base de données tel qu'il existe dans les langages de programmation. Il nous a donc fallu passer quelque temps à tester diverses façons de faire et les deux les plus plausibles sont, l'utilisation de “vues” dans la base de données et la création d'une seule table dans la base de données. Cette dernière façon de faire doit être couplée à un système d'héritage au niveau du modèle ce qui permet ensuite l'accès aux tables de manière héritée au niveau du code ruby.\\
+
+Nous avons finalement opté pour la première méthode, c'est-à-dire, la création de cinq vues afin de pouvoir accéder plus facilement au contenu de ces cinq tables.
 
 \subsection{Paris}
+Il existe deux types de paris, le pari sur le résultat d'un match, c'est-à-dire le nom du gagnant du match ou le match nul, ou le vainqueur final d'une compétition. Cette gestion est gérée avec les deux relations “N à N”, “parie” et “parie2” visibles sur le schéma de la figure \ref{MDC}.\\
+
+Au niveau de la base de données, il a fallu créer deux tables, “competitions\_parieurs” et “matchs\_parieurs”, contenant chacune un champ résultat afin de pouvoir gérer ces relations “N à N”. Dans le cas de “competitions\_parieurs”, c'est les paris sur le vainqueur final des compétitions qui est stocké dans le champ résultat. C'est donc directement l'identifiant de l'équipe. Par contre, dans le cas de “matchs\_parieurs”, c'est les résultats des matchs qui est stocké. Le champ résultat peut avoir trois valeurs différentes:
+\begin{description}
+	\item [1] {Indique que c'est l'équipe jouant à domicile qui gagne}
+	\item [0] {Indique qu'il y a match nul}
+	\item [2] {Indique que c'est l'équipe jouant à l'extérieur qui gagne\\}
+\end{description}
+
+Les paris sont uniquement effectués par les “Parieurs”.
 
 \subsection{Compétitions}
+La conception de la base de données a été pensée dans le sens de pouvoir être assez flexible sur les différents formats de compétitions de football existantes. Une compétition est donc décomposée en groupes qui contiennent des matchs.\\
 
-\subsection{Equipes}
+Cette manière de faire permet de gérer les compétitions avec un classement final ou le vainqueur est celui possède le plus de points à la fin. En effet, il suffit de définir une compétition possédant un seul groupe avec une série de matchs. Il est également possible de définir une compétition avec des matchs à élimination directe, pour cela il suffit de créer une compétition possédant plusieurs groupes de deux équipes. Il va de soit qu'il est également possible de définir une compétition mélangeant les deux formats.
+
+\subsection{Matchs}
+Le match peut être considéré l'élément central de l'application. En effet, c'est autour du match que tout tourne et c'est ce dernier qui fait le lien entre les parieurs, les compétitions et la partie sportive.\\
+
+Un match est donc composé de deux équipes qui possèdent des joueurs et un entraîneur, d'un arbitre et d'autres champs. Le match est ensuite lié aux parieurs, qui comme déjà mentionné peuvent parier sur le résultat, et à un groupe qui appartient à une compétition.
+
+% -----------------------------------------------------------------------------
+\section{Authentification}
+% -----------------------------------------------------------------------------
+Afin de pouvoir parier, il faut être inscrit sur le site et ensuite authentifié. Il en va de même pour les administrateurs du site qui doivent pouvoir se connecter et accéder aux différentes options de gestion.\\
+
+Cette authentification est faite à l'aide d'un nom d'utilisateur (login) et d'un mot de passe (password). Ces informations sont stockées dans la table “Utilisateur” de la manière suivante:
+\begin{description}
+	\item [login] {Il est stocké sous forme de caractères.}
+	\item [password] {Le mot de passe est également stocké sous forme de caractères, mais il est chiffré. En effet, lors de l'inscription de l'utilisateur, le mot de passe est chiffré avec l'algorithme SHA-1 avec un “sel” aléatoire de deux caractères. Le “sel” est ensuite concaténé avec le mot de passe et le tout est stocké dans le champs “password” dans la table.\\}
+\end{description}
+
+Lors de l'authentification, le mot de passe chiffré est récupéré dans la base de données grâce au nom d'utilisateur. Le “sel” concaténé au mot de passe est récupéré et l'opération de chiffrement décrite auparavant est effectuée sur le mot de passe entré par l'utilisateur avec le “sel” récupéré. Une fois ceci fait, les deux mots de passe chiffrés sont comparés et s'il sont identiques, l'authentification est réussie.\\
+
+Une classe a été créé afin d'effectuer ces opérations. C'est la classe \verb!Hashpw! qui se trouve dans le répertoire \verb!helpers!.
 
 % -----------------------------------------------------------------------------
 \section{Ajax}

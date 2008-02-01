@@ -1,6 +1,6 @@
 class CreateCompetitionsParieurs < ActiveRecord::Migration
   def self.up
-    create_table "competitions_parieurs", :id => false do |t|
+    create_table "competitions_parieurs" do |t|
       t.column "parieur_id", :int, :null => false
       t.column "competition_id", :int, :null => false
       t.column "resultat", :int, :null => false

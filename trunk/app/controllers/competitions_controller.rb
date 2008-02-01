@@ -13,7 +13,20 @@ class CompetitionsController < ApplicationController
   end
 
   def show
-    @competition = Competition.find(params[:id])
+    if params[:id].nil?
+      redirect_to :controller => 'home'
+    else
+      @competition = Competition.find(params[:id])
+      @groupes = Array.new
+      
+     for g in @competition.groupe
+        @equipesGroupes = Array.new
+        for m in g.match
+          @equipesGroupes << m.equipea.nom << m.equipeb.nom
+        end
+        @groupes << [g.nom,@equipesGroupes.uniq]
+      end
+    end
   end
 
   def new

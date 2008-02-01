@@ -1,19 +1,22 @@
 <h2><%= @competition.nom %></h2>
 
-<%= button_to 'Parier sur cette compétition', :controller => 'competitions_parieurs', :action => 'pari', :id => @competition.id %>
+<% if session[:admin].nil?%>
+	<h3>Paris sur </h3>
+	<%= button_to 'Vainqueur compétition', :controller => 'competitions_parieurs', :action => 'pari', :id => @competition.id %><br>
+	<%= button_to 'Matchs', :controller => 'matchs_parieurs', :action => 'paris', :id => @competition.id %>
+<% end%>
 <br/>
-
-<h3><%= @competition.groupe.size %> Groupes</h3>
+<h3><%= @competition.groupe.size %> Groupe<% if @competition.groupe.size > 1%>s<%end%></h3>
 
 <!-- affichage des groups -->
 <table>
-<% for groupe in @competition.groupe %>
+<% for groupe in @groupes %>
    	<tr>
-   		<th colspan="2" align=center><%= groupe.nom %></th>
+   		<th colspan="2" align=center><%= groupe[0] %></th>
 		</tr>
-		
-			<% for match in groupe.match %>
-			<tr><td><%= match.equipea.nom %></td><td><%= match.equipeb.nom %></td></tr>
+			
+			<% for equipe in groupe[1] %>
+			<tr><td><%= equipe %></td></tr>
 			<% end %>
 		
 <% end %>
@@ -23,7 +26,4 @@
 <br/>
 
 
-
-
-<%= link_to 'Modifier', :action => 'edit', :id => @competition %> |
 <%= link_to 'Retour', :action => 'list' %>

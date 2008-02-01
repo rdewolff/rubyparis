@@ -12,44 +12,19 @@
 		<td valign=top><%= competition.description %></td>
 	</tr>
 	<tr>
-	<td> Action : 
+	<td> Action :
 		<%= link_to 'Afficher', :action => 'show', :id => competition %>
-	   <%= link_to 'Modifier', :action => 'edit', :id => competition %>
-	   <%= link_to 'Effacer', { :action => 'destroy', :id => competition },
+		<% if !session[:admin].nil? %>
+	   	<%= link_to 'Modifier', :action => 'edit', :id => competition %>
+	   	<%= link_to 'Effacer', { :action => 'destroy', :id => competition },
 			:confirm => ("Etes vous sur de vouloir effacer '" + competition.nom + "'?"),
 			:method => :post %>
+		<% end %>
 	</td>	
    </tr>
 	<tr><tr height='20px'></tr></tr>
 </table>
 <% end %>
-
-
-<!-- 
-<table>
-  <tr>
-  <% for column in Competition.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for competition in @competitions %>
-  <tr>
-  <% for column in Competition.content_columns %>
-    <td><%=h competition.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => competition %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => competition %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => competition }, :confirm => 'Are you sure?', :method => :post %></td>
-  </tr>
-<% end %>
-</table>
-
-<%= link_to 'Previous page', { :page => @competition_pages.current.previous } if @competition_pages.current.previous %>
-<%= link_to 'Next page', { :page => @competition_pages.current.next } if @competition_pages.current.next %> 
-
-<br />
--->
 
 <br/>
 
