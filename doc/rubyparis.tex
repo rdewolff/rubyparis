@@ -138,7 +138,9 @@ Nous avons donc choisi de créer un site permettant d'effectuer des paris sur de
 \section{RubyParis}
 % -----------------------------------------------------------------------------
 
-Comme déjà mentionné, “RubyParis” est une site internet permettant à des utilisateurs de parier sur des matchs de football. Pour cela, le site doit permettre à un parieur de pouvoir s'inscrire sur le site et ensuite parier sur le vainqueur d'une compétition et sur les résultats des matchs des diverses compétitions. 
+Comme déjà mentionné, “RubyParis” est une site internet permettant à des utilisateurs de parier sur des matchs de football. Pour cela, le site doit permettre à un parieur de pouvoir s'inscrire sur le site et ensuite parier sur le vainqueur d'une compétition et sur les résultats des matchs des diverses compétitions. \\
+
+Des administrateurs sont chargés de gérer les compétitions, les équipes et les matchs, ainsi que d'insérer les résultats.
 
 % -----------------------------------------------------------------------------
 \section{Cas d'utilisation}\label{casUtilisation}
@@ -148,11 +150,23 @@ Les cas d'utilisation sont décrit dans le schéma ci-dessous.
 
 \includegraphics[width=12cm]{imgs/cas_utilisation-notitle.pdf}
 
-Voici une liste des contrôleurs qui s'occupent d'effectuer les tâches décrites dans les cas d'utilisation ci-dessus.
+Voici une liste des contrôleurs qui s'occupent d'effectuer les tâches décrites dans les cas d'utilisation ci-dessus. \\
 
+L'administrateur peut gérer les compétitions, les matchs, les équipes et les paris grâce aux contrôleurs correspondant, soit \texttt{competitions\_controller.rb}, \texttt{matchs\_controller.rb}, \texttt{equipes\_controller.rb}, \texttt{competitions\_parieurs\_controller.rb} et \texttt{matchs\_parieurs\_controller.rb}. \\
+
+Les utilisateurs peuvent effectuer les actions suivantes grâce aux contrôleurs décrits ci-dessous :
 \begin{description}
-	\item[label] description
+	\item[Créer un compte] \texttt{vparieurs\_controller.rb}
+	\item[Parier sur un match] \texttt{matchs\_parieurs\_controller.rb}
+	\item[Parier sur une compétition] \texttt{competitions\_parieurs\_controller.rb}
+	\item[Afficher les équipes] \texttt{equipes\_controller.rb}
+	\item[Afficher les classements] pas implementé
+	\item[Afficher les compétitions] \texttt{competitions\_controller.rb}
+	\item[Afficher les matchs] \texttt{matchs\_parieurs\_controller.rb}
 \end{description}
+
+L'authentification des utilisateurs est décrite dans la section consacrée à ce sujet. 
+
 % \begin{description}
 % 	\item[ajax_controller.rb] effectue la recherche sur les noms des équipes en fonction de ce que rentre l'utilisateur. La recherche est effectuée en AJAX.
 % 	\item[application.rb] base de l'application, contient les informations sur la session en cours de l'utilisateur connecté sur le site
@@ -274,13 +288,30 @@ Il nous reste à écrire le code AJAX en JQuery qui permet d'interagir avec la v
 
 Cette méthode sera appelée lors de l'insertion de texte dans le champs prévu à cet effet. Il s'agit d'un champs de texte affiché sur la home page. Lorsqu'un caractère est tapé dans ce champs et que ce champs n'est pas vide, la fonction va envoyer ces informations (\texttt{\$.post()})  à la vue. C'est ensuite la fonction \texttt{function(data)} qui prend le relais. Si le contenu de la liste retournée n'est pas vide, nous allons afficher la fenêtre flottante des résultats et y insérer les données HTML contenant la liste des équipes trouvées.
 
+
+% -----------------------------------------------------------------------------
+\section{Problèmes rencontrés}
+% -----------------------------------------------------------------------------
+
+Les plus gros problèmes que nous avons eus sont ceux relatif à ce nouvel environnement de travail. Ainsi l'utilisation des \texttt{has\_one}, \texttt{has\_many}, \texttt{belongs\_to}, ... était bizarre au début. Mais une fois le système bien prit en main, les requêtes qui peuvent paraître complexe deviennent un jeu d'enfant! Et remonter dans les liens des classes est d'une simplicité étonnante. 
+
+
+% -----------------------------------------------------------------------------
+\section{Evolution futur}
+% -----------------------------------------------------------------------------
+
+Nous n'avons malheureusement pas eu le temps de mettre en place tout ce que nous désirions. Ainsi, les paris sont gérés, mais nous n'avons pas de score pour conserver quels sont les meilleurs parieurs. On pourrait imaginer une valeur entre 0 et 1 qui évolue au fils des paris effectués pour chaque parieurs, et ainsi afficher une liste, sur la home page, des meilleurs parieurs. \\
+
+Les classements des équipes ne sont pas calculés. Il aurait été intéressant d'ajouter ces fonctionnalités, et bien d'autres petits détails qui ajouteraient un plus à notre application web.
+
+
 % -----------------------------------------------------------------------------
 \section{Conclusion}
 % -----------------------------------------------------------------------------
 
-Il est passionnant de découvrir un technologie comme Ruby On Rails. Elle comporte beaucoup d'avantages et que quelques inconvénients. Parmi les avantages citons la capacité de modifier le code source en fonction de la base de données très facilement, les support du modèle MVC, l'intégration d'autres “plugins” se fait facilement, et la simplicité mais la force du langage \texttt{Ruby} en font une plate-forme de développement très puissante et agréable. Comme inconvénients, la fait que le nombre d'hébergeurs soit encore trop faible, la structure peut paraître complexe au premier abords, le nombre de fichiers à manipuler est surprenant au début.\\
+Il est passionnant de découvrir une technologie comme Ruby On Rails. Elle comporte beaucoup d'avantages et que quelques inconvénients. Parmi les avantages citons la capacité de modifier le code source en fonction de la base de données très facilement, le support du modèle MVC, l'intégration d'autres “plugins” se fait facilement, et la simplicité mais la force du langage \texttt{Ruby} en font une plate-forme de développement très puissante et agréable. Comme inconvénients, la fait que le nombre d'hébergeurs soit encore trop faible, la structure peut paraître complexe au premier abords, le nombre de fichiers à manipuler est surprenant au début.\\
 
-Mais dans l'ensemble, nous sommes très content d'utiliser \texttt{ROR} et espérons pouvoir l'utiliser encore prochainement sur un projet avec plus de temps à dispositions. 
+Mais dans l'ensemble, nous sommes très contents d'utiliser \texttt{ROR} et espérons pouvoir l'utiliser encore prochainement sur un projet avec plus de temps à dispositions. 
 
 
 \end{document}

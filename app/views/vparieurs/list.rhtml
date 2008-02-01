@@ -2,16 +2,20 @@
 
 <table>
   <tr>
-  <% for column in Vparieur.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
+  
+    <th>Nom</th>
+	 <th>Prénom</th>
+	 <th>E-Mail</th>
+  
   </tr>
   
 <% for vparieur in @vparieurs %>
   <tr>
-  <% for column in Vparieur.content_columns %>
-    <td><%=h vparieur.send(column.name) %></td>
-  <% end %>
+  
+    <td><%=vparieur.nom%></td>
+	 <td><%=vparieur.prenom%></td>
+	 <td><%=vparieur.email%></td>
+  
     <td><%= link_to 'Afficher', :action => 'show', :id => vparieur %></td>
     <td><%= link_to 'Modifier', :action => 'edit', :id => vparieur %></td>
     <td><%= link_to 'Effacer', { :action => 'destroy', :id => vparieur },
